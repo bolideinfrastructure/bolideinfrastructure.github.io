@@ -1,324 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Bolide Infrastructure Solutions Limited | Construction & Infrastructure Zambia</title>
+<title>Bolide Infrastructure Solutions Limited | Construction & Infrastructure Zambia</title>
 
-  <!-- SEO -->
-  <meta name="description" content="Bolide Infrastructure Solutions Limited is a Zambian-owned construction and infrastructure company delivering structural steel, civil works, fencing, and industrial infrastructure solutions." />
-  <meta name="keywords" content="Bolide Infrastructure, Construction Zambia, Structural Steel, Civil Works, Industrial Infrastructure, Fencing, Warehouses" />
-  <meta name="author" content="Bolide Infrastructure Solutions Limited" />
+<meta name="description" content="Bolide Infrastructure Solutions Limited is a Zambian-owned construction company delivering steel fabrication, civil works, fencing, and industrial infrastructure." />
+<meta name="keywords" content="Construction Zambia, Steel Fabrication, Civil Works, Fencing, Infrastructure Zambia" />
 
-  <style>
-    :root {
-      --primary: #ff6a13;
-      --dark: #111;
-      --light: #fff;
-      --grey: #666;
-    }
+<style>
+:root {
+  --primary:#ff6a00;
+  --dark:#111;
+  --light:#fff;
+}
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+/* RESET */
+* { box-sizing:border-box; margin:0; padding:0; }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height:1.6;
+  color:#222;
+}
 
-    body {
-      color: #222;
-      background: #fafafa;
-      line-height: 1.6;
-    }
+/* NAV */
+nav {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 30px;
+  border-bottom:3px solid var(--primary);
+  background:#fff;
+}
+nav img { height:45px; }
+nav a {
+  margin-left:20px;
+  text-decoration:none;
+  color:#000;
+  font-weight:600;
+}
+nav a:hover { color:var(--primary); }
 
-    /* NAV */
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-      border-bottom: 3px solid var(--primary);
-      background: #fff;
-    }
+/* HERO */
+.hero {
+  background:url('images/zega.JPG') center/cover no-repeat;
+  position:relative;
+}
+.hero::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.35); /* LIGHTER OVERLAY */
+}
+.hero-content {
+  position:relative;
+  max-width:1200px;
+  margin:auto;
+  padding:140px 20px;
+  color:#fff;
+}
+.hero h1 {
+  font-size:3rem;
+  margin-bottom:15px;
+}
+.hero p {
+  font-size:1.2rem;
+  max-width:650px;
+}
 
-    .nav img {
-      height: 45px;
-    }
+/* SECTION */
+section {
+  padding:80px 20px;
+  max-width:1200px;
+  margin:auto;
+}
+section h2 {
+  color:var(--primary);
+  font-size:2.2rem;
+  margin-bottom:40px;
+}
 
-    .nav a {
-      margin-left: 20px;
-      text-decoration: none;
-      color: #000;
-      font-weight: 600;
-    }
+/* PROJECT GRID */
+.projects {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+  gap:30px;
+}
+.card {
+  background:#fff;
+  border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
+  overflow:hidden;
+  position:relative;
+}
+.card::before {
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:6px;
+  background:var(--primary);
+}
+.card img {
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  cursor:pointer;
+}
+.card-content {
+  padding:20px;
+}
+.card h3 { margin-bottom:10px; }
+.card p { font-size:.95rem; margin-bottom:6px; }
 
-    .nav a:hover {
-      color: var(--primary);
-    }
+/* DOWNLOADS */
+.downloads a {
+  display:block;
+  margin-bottom:10px;
+  color:var(--primary);
+  font-weight:600;
+  text-decoration:none;
+}
 
-    /* HERO */
-    .hero {
-      background: url('images/zega.JPG') center/cover no-repeat;
-      position: relative;
-    }
+/* CONTACT */
+.contact-info {
+  margin-bottom:30px;
+}
+.contact-info p { margin-bottom:8px; }
 
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.55);
-    }
+form input, form textarea {
+  width:100%;
+  padding:12px;
+  margin-bottom:12px;
+  border:1px solid #ccc;
+  border-radius:6px;
+}
+form button {
+  background:var(--primary);
+  color:#fff;
+  border:none;
+  padding:12px 20px;
+  font-weight:600;
+  border-radius:6px;
+  cursor:pointer;
+}
 
-    .hero-content {
-      position: relative;
-      max-width: 1200px;
-      margin: auto;
-      padding: 130px 20px;
-      color: #fff;
-    }
+/* FOOTER */
+footer {
+  background:#111;
+  color:#fff;
+  text-align:center;
+  padding:30px 20px;
+}
+footer img {
+  height:50px;
+  margin-bottom:10px;
+}
 
-    .hero-content h1 {
-      font-size: 44px;
-      font-weight: 800;
-      margin-bottom: 15px;
-      text-shadow: 0 4px 10px rgba(0,0,0,0.9);
-    }
+/* LIGHTBOX */
+.lightbox {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+.lightbox img {
+  max-width:90%;
+  max-height:90%;
+}
+.lightbox.active { display:flex; }
 
-    .hero-content p {
-      max-width: 700px;
-      font-size: 18px;
-      color: #f5f5f5;
-      text-shadow: 0 3px 8px rgba(0,0,0,0.85);
-    }
+/* WHATSAPP FLOAT */
+.whatsapp {
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#25D366;
+  color:#fff;
+  padding:14px 18px;
+  border-radius:50px;
+  font-weight:bold;
+  text-decoration:none;
+  z-index:10000;
+}
 
-    /* SECTIONS */
-    section {
-      max-width: 1200px;
-      margin: auto;
-      padding: 70px 20px;
-    }
-
-    h2 {
-      color: var(--primary);
-      margin-bottom: 40px;
-      font-size: 32px;
-    }
-
-    /* PROJECT CARDS */
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 30px;
-    }
-
-    .card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      border-left: 6px solid var(--primary);
-    }
-
-    .card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 15px;
-    }
-
-    .card h3 {
-      margin-bottom: 10px;
-      font-size: 20px;
-    }
-
-    .card p {
-      font-size: 14.5px;
-      margin-bottom: 6px;
-      color: #333;
-    }
-
-    /* DOWNLOADS */
-    .downloads a {
-      display: inline-block;
-      margin-right: 15px;
-      padding: 12px 20px;
-      background: var(--primary);
-      color: #fff;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    /* CONTACT */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-    }
-
-    .contact form input,
-    .contact form textarea {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
-
-    .contact form button {
-      padding: 12px 25px;
-      background: var(--primary);
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    /* FOOTER */
-    footer {
-      background: #111;
-      color: #fff;
-      text-align: center;
-      padding: 40px 20px;
-    }
-
-    footer img {
-      height: 50px;
-      margin-bottom: 10px;
-    }
-
-    /* WHATSAPP FLOAT */
-    .whatsapp {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      background: #25d366;
-      color: #fff;
-      padding: 14px 18px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: bold;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-    }
-
-    @media (max-width: 768px) {
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+/* MOBILE */
+@media(max-width:768px){
+  .hero-content { padding:100px 20px; }
+  .hero h1 { font-size:2.2rem; }
+  section { padding:60px 20px; }
+}
+</style>
 </head>
 
 <body>
 
-  <!-- NAV -->
-  <div class="nav">
-    <img src="images/logo.png" alt="Bolide Infrastructure Logo">
-    <div>
-      <a href="#projects">Projects</a>
-      <a href="#downloads">Downloads</a>
-      <a href="#contact">Contact</a>
-    </div>
+<nav>
+  <img src="images/logo.png" alt="Bolide Infrastructure Logo">
+  <div>
+    <a href="#projects">Projects</a>
+    <a href="#downloads">Downloads</a>
+    <a href="#contact">Contact</a>
   </div>
+</nav>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="hero-content">
-      <h1>Bolide Infrastructure Solutions Limited</h1>
-      <p>
-        We Build Better Futures. A Zambian-owned construction and infrastructure company delivering compliant,
-        cost-effective, and reliable solutions across industrial, commercial, and public sectors.
-      </p>
-    </div>
+<div class="hero">
+  <div class="hero-content">
+    <h1>Bolide Infrastructure Solutions Limited</h1>
+    <p>We Build Better Futures. A Zambian-owned construction and infrastructure company delivering compliant, cost-effective solutions.</p>
   </div>
+</div>
 
-  <!-- PROJECTS -->
-  <section id="projects">
-    <h2>Selected Project Experience</h2>
+<section id="projects">
+  <h2>Selected Project Experience</h2>
 
-    <div class="projects">
-      <div class="card">
-        <img src="images/steel.JPG" loading="lazy">
+  <div class="projects">
+
+    <div class="card">
+      <img src="images/steel.JPG" onclick="openLightbox(this.src)">
+      <div class="card-content">
         <h3>Structural Steel Fabrication</h3>
-        <p>• Fabrication and erection of steel frameworks.</p>
-        <p>• Columns, beams, and structural members.</p>
-        <p>• Compliance with SABS specifications.</p>
-        <p>• Industrial and institutional projects.</p>
-        <p>• Delivered within programme and budget.</p>
+        <p>• Fabrication of steel frames and supports</p>
+        <p>• Supply and on-site erection</p>
+        <p>• Industrial and institutional projects</p>
+        <p>• Compliance with engineering drawings</p>
+        <p>• Durable, load-tested structures</p>
       </div>
+    </div>
 
-      <div class="card">
-        <img src="images/fencing.JPG" loading="lazy">
+    <div class="card">
+      <img src="images/fencing.JPG" onclick="openLightbox(this.src)">
+      <div class="card-content">
         <h3>Perimeter Security & Fencing</h3>
-        <p>• Clear view fencing and razor wire.</p>
-        <p>• Access control gates and systems.</p>
-        <p>• Industrial and commercial sites.</p>
-        <p>• Durable low-maintenance solutions.</p>
-        <p>• Improved site safety and control.</p>
+        <p>• Clear view fencing systems</p>
+        <p>• Razor wire and gates</p>
+        <p>• Access control installations</p>
+        <p>• Commercial & industrial sites</p>
+        <p>• Improved site security</p>
       </div>
+    </div>
 
-      <div class="card">
-        <img src="images/warehouse.JPG" loading="lazy">
+    <div class="card">
+      <img src="images/warehouse.JPG" onclick="openLightbox(this.src)">
+      <div class="card-content">
         <h3>Industrial & Warehouse Infrastructure</h3>
-        <p>• Steel superstructures and warehouses.</p>
-        <p>• Internal and external installations.</p>
-        <p>• Logistics and operational facilities.</p>
-        <p>• Optimised layouts for efficiency.</p>
-        <p>• Long-term structural durability.</p>
+        <p>• Steel warehouse structures</p>
+        <p>• Internal industrial works</p>
+        <p>• External yard development</p>
+        <p>• Logistics facility optimisation</p>
+        <p>• Operational efficiency focus</p>
       </div>
+    </div>
 
-      <div class="card">
-        <img src="images/civil.JPG" loading="lazy">
+    <div class="card">
+      <img src="images/civil.JPG" onclick="openLightbox(this.src)">
+      <div class="card-content">
         <h3>Civil & Road Infrastructure</h3>
-        <p>• Earthworks and foundations.</p>
-        <p>• Drainage and concrete works.</p>
-        <p>• Public and private sector projects.</p>
-        <p>• Engineering specification compliance.</p>
-        <p>• Durable civil infrastructure delivery.</p>
+        <p>• Earthworks and foundations</p>
+        <p>• Drainage systems</p>
+        <p>• Concrete works</p>
+        <p>• Public & private sector projects</p>
+        <p>• Long-term durability</p>
       </div>
     </div>
-  </section>
 
-  <!-- DOWNLOADS -->
-  <section id="downloads" class="downloads">
-    <h2>Company Documents</h2>
-    <a href="Bolide_Infrastructure_Capability_Statement.pdf" target="_blank">Capability Statement</a>
-    <a href="Bolide-Company-Profile.pdf" target="_blank">Company Profile</a>
-  </section>
+  </div>
+</section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="contact">
-    <h2>Contact Us</h2>
+<section id="downloads" class="downloads">
+  <h2>Downloads</h2>
+  <a href="Bolide_Infrastructure_Capability_Statement.pdf" download>📄 Capability Statement</a>
+  <a href="Bolide-Company-Profile.pdf" download>📄 Company Profile</a>
+</section>
 
-    <div class="contact-grid">
-      <div>
-        <p><strong>Phone / WhatsApp:</strong> +260 966 855 207</p>
-        <p><strong>Email:</strong> hamachila.bolideinfrastructure@outlook.com</p>
-        <p><strong>Location:</strong> Lusaka, Zambia</p>
-      </div>
+<section id="contact">
+  <h2>Contact Us</h2>
 
-      <form action="mailto:hamachila.bolideinfrastructure@outlook.com" method="post" enctype="text/plain">
-        <input type="text" name="Name" placeholder="Your Name" required>
-        <input type="email" name="Email" placeholder="Your Email" required>
-        <textarea name="Message" rows="5" placeholder="Your Message"></textarea>
-        <button type="submit">Send Message</button>
-      </form>
-    </div>
-  </section>
+  <div class="contact-info">
+    <p>📞 +260966855207 (WhatsApp available)</p>
+    <p>📧 hamachila.bolideinfrastructure@outlook.com</p>
+  </div>
 
-  <!-- FOOTER -->
-  <footer>
-    <img src="images/logo.png" alt="Bolide Infrastructure">
-    <p>© 2026 Bolide Infrastructure Solutions Limited</p>
-  </footer>
+  <form action="mailto:hamachila.bolideinfrastructure@outlook.com" method="post" enctype="text/plain">
+    <input type="text" name="Name" placeholder="Your Name" required>
+    <input type="email" name="Email" placeholder="Your Email" required>
+    <textarea name="Message" placeholder="Your Message" rows="5" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
 
-  <!-- WHATSAPP -->
-  <a class="whatsapp" href="https://wa.me/260966855207" target="_blank">
-    WhatsApp Us
-  </a>
+<footer>
+  <img src="images/logo.png">
+  <p>© 2026 Bolide Infrastructure Solutions Limited</p>
+</footer>
+
+<a class="whatsapp" href="https://wa.me/260966855207" target="_blank">WhatsApp</a>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img">
+</div>
+
+<script>
+function openLightbox(src){
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('active');
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('active');
+}
+</script>
 
 </body>
 </html>
