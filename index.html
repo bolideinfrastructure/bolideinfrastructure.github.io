@@ -1,238 +1,328 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Bolide Infrastructure Solutions Limited</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Bolide Infrastructure Solutions Limited is a Zambian-owned construction and steel infrastructure company delivering compliant and cost-effective solutions across Zambia.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bolide Infrastructure Solutions Limited</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.6;
-      color: #222;
-      background: #fff;
-    }
+<style>
+:root {
+  --orange: #f26522;
+  --dark: #0f1a2c;
+  --gray: #f5f5f5;
+}
 
-    a { text-decoration: none; color: inherit; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-    /* NAV */
-    nav {
-      background: #fff;
-      border-bottom: 1px solid #eee;
-      padding: 15px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+body {
+  line-height: 1.6;
+  color: #222;
+}
 
-    nav a {
-      margin-left: 20px;
-      font-weight: bold;
-    }
+/* NAV */
+nav {
+  background: #fff;
+  padding: 15px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
 
-    nav a.active {
-      color: #e0581c;
-    }
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
 
-    /* HERO */
-    .hero {
-      background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
-                  url("images/steel.JPG") center/cover no-repeat;
-      color: #fff;
-      padding: 120px 40px;
-    }
+nav a {
+  text-decoration: none;
+  font-weight: 600;
+  color: #000;
+}
 
-    .hero h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
-    }
+nav a:hover {
+  color: var(--orange);
+}
 
-    .hero p {
-      max-width: 700px;
-      font-size: 18px;
-    }
+/* HERO */
+.hero {
+  background:
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+    url("images/zega.JPG") center/cover no-repeat;
+  color: #fff;
+  padding: 140px 60px;
+}
 
-    /* SECTIONS */
-    section {
-      padding: 80px 40px;
-      max-width: 1200px;
-      margin: auto;
-    }
+.hero h1 {
+  font-size: 46px;
+  max-width: 900px;
+}
 
-    h2 {
-      color: #e0581c;
-      margin-bottom: 20px;
-    }
+.hero p {
+  margin-top: 15px;
+  max-width: 800px;
+  font-size: 18px;
+}
 
-    /* PROJECT CARDS */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 30px;
-      align-items: stretch;
-    }
+/* SECTIONS */
+section {
+  padding: 80px 60px;
+}
 
-    .card {
-      background: #fafafa;
-      padding: 20px;
-      border-left: 4px solid #e0581c;
-      border-radius: 8px;
-      display: flex;
-      flex-direction: column;
-    }
+.section-title {
+  color: var(--orange);
+  font-size: 28px;
+  margin-bottom: 40px;
+}
 
-    .card img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 12px;
-    }
+/* ABOUT + DOWNLOADS */
+.about-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+}
 
-    /* DOWNLOAD */
-    .download-box {
-      background: #f4f4f4;
-      padding: 25px;
-      border-radius: 8px;
-    }
+.download-box {
+  background: var(--gray);
+  padding: 25px;
+  border-left: 5px solid var(--orange);
+}
 
-    /* FOOTER */
-    footer {
-      background: #111;
-      color: #fff;
-      padding: 60px 40px;
-      text-align: center;
-    }
+.download-btn {
+  display: block;
+  margin-top: 15px;
+  padding: 12px 18px;
+  background: var(--orange);
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+}
 
-    footer img {
-      max-width: 220px;
-      margin-bottom: 20px;
-    }
+/* PROJECTS */
+.projects {
+  background: #fafafa;
+}
 
-    footer p {
-      margin: 6px 0;
-    }
-  </style>
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+.project-card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-left: 5px solid var(--orange);
+}
+
+.project-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.project-content {
+  padding: 20px;
+}
+
+.project-content h3 {
+  margin-bottom: 10px;
+}
+
+/* CONTACT */
+.contact {
+  background: #fff;
+}
+
+.contact p {
+  margin-bottom: 10px;
+}
+
+/* FOOTER */
+footer {
+  background: var(--dark);
+  color: #fff;
+  padding: 60px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+}
+
+footer img {
+  max-width: 180px;
+  margin-bottom: 15px;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero {
+    padding: 100px 30px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  section {
+    padding: 60px 30px;
+  }
+
+  .about-grid,
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
 </head>
 
 <body>
 
 <!-- NAV -->
 <nav>
-  <strong>Bolide Infrastructure</strong>
-  <div>
-    <a href="#home" class="active">Home</a>
-    <a href="#services">Services</a>
-    <a href="#projects">Projects</a>
-    <a href="#hse">HSE & Compliance</a>
-    <a href="#downloads">Downloads</a>
-    <a href="#contact">Contact</a>
-  </div>
+  <strong>BOLIDE</strong>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#downloads">Downloads</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 </nav>
 
 <!-- HERO -->
-<div class="hero" id="home">
+<div class="hero">
   <h1>Bolide Infrastructure Solutions Limited</h1>
   <p>
-    We Build Better Futures. A Zambian-owned and operated multi-disciplinary construction
-    and steel infrastructure company delivering reliable, compliant, and cost-effective
-    solutions across Zambia.
+    We Build Better Futures. A Zambian-owned and operated multi-disciplinary
+    construction and steel infrastructure company delivering reliable,
+    compliant, and cost-effective solutions across Zambia.
   </p>
 </div>
 
 <!-- ABOUT -->
-<section id="services">
-  <h2>About Us</h2>
-  <p>
-    Bolide Infrastructure Solutions Limited (BIS) is a Zambian-owned construction company
-    established in 2019. We deliver integrated construction, steel fabrication, and civil
-    infrastructure solutions for industrial, commercial, public-sector, and residential clients.
-  </p>
-  <p>
-    Our strength lies in combining local market knowledge with international standards.
-    We source materials from South Africa and China, ensuring compliance with SABS and
-    globally recognised specifications.
-  </p>
+<section>
+  <h2 class="section-title">About Us</h2>
+
+  <div class="about-grid">
+    <div>
+      <p>
+        Bolide Infrastructure Solutions Limited (BIS) is a Zambian-owned
+        construction company delivering integrated construction, steel
+        fabrication, perimeter security, and civil infrastructure solutions
+        for industrial, commercial, public-sector, and residential clients.
+      </p>
+    </div>
+
+    <div class="download-box" id="downloads">
+      <h3>Downloads</h3>
+
+      <a class="download-btn"
+         href="Bolide_Infrastructure_Capability_Statement.pdf"
+         target="_blank">
+        📄 Capability Statement
+      </a>
+
+      <a class="download-btn"
+         href="Bolide-Company-Profile.pdf"
+         target="_blank">
+        📘 Company Profile
+      </a>
+    </div>
+  </div>
 </section>
 
 <!-- PROJECTS -->
-<section id="projects">
-  <h2>Selected Project Experience</h2>
+<section class="projects" id="projects">
+  <h2 class="section-title">Selected Project Experience</h2>
 
-  <div class="cards">
+  <div class="project-grid">
 
-    <div class="card">
-      <img src="images/steel.JPG" alt="Structural steel fabrication">
-      <strong>Structural Steel Fabrication & Erection</strong><br>
-      <em>Client Type:</em> Institutional / Industrial<br>
-      <em>Scope:</em> Fabrication, supply, and erection of structural steel frameworks.<br>
-      <em>Outcome:</em> Delivered within programme and compliant with SABS standards.
+    <div class="project-card">
+      <img src="images/Warehouse.JPG" alt="Structural Steel">
+      <div class="project-content">
+        <h3>Structural Steel Fabrication & Erection</h3>
+        <p><strong>Client Type:</strong> Institutional / Industrial</p>
+        <p><strong>Scope:</strong> Fabrication, supply, and erection of steel frameworks.</p>
+        <p><strong>Outcome:</strong> Delivered within programme and compliant with SABS standards.</p>
+      </div>
     </div>
 
-    <div class="card">
-      <img src="images/fencing.JPG" alt="Perimeter fencing">
-      <strong>Perimeter Security & Fencing Works</strong><br>
-      <em>Client Type:</em> Commercial / Industrial<br>
-      <em>Scope:</em> Clear view fencing, razor wire, gates, and access control systems.<br>
-      <em>Outcome:</em> Improved site security with durable solutions.
+    <div class="project-card">
+      <img src="images/fencing.JPG" alt="Fencing">
+      <div class="project-content">
+        <h3>Perimeter Security & Fencing Works</h3>
+        <p><strong>Client Type:</strong> Commercial / Industrial</p>
+        <p><strong>Scope:</strong> Clear view fencing, razor wire, gates, access control.</p>
+        <p><strong>Outcome:</strong> Improved site security with durable solutions.</p>
+      </div>
     </div>
 
-    <div class="card">
-      <img src="images/industrial.jpg" alt="Industrial infrastructure">
-      <strong>Industrial & Warehouse Infrastructure</strong><br>
-      <em>Client Type:</em> Industrial / Logistics<br>
-      <em>Scope:</em> Internal and external industrial works including fencing and structural installations.<br>
-      <em>Outcome:</em> Secure and efficient operational facilities.
+    <div class="project-card">
+      <img src="images/steel.JPG" alt="Industrial Works">
+      <div class="project-content">
+        <h3>Industrial & Warehouse Infrastructure</h3>
+        <p><strong>Client Type:</strong> Industrial / Logistics</p>
+        <p><strong>Scope:</strong> Internal and external industrial works.</p>
+        <p><strong>Outcome:</strong> Secure and efficient operational facilities.</p>
+      </div>
     </div>
 
-    <div class="card">
-      <img src="images/civil.JPG" alt="Civil works">
-      <strong>Civil & Road Infrastructure Works</strong><br>
-      <em>Client Type:</em> Public & Private Sector<br>
-      <em>Scope:</em> Earthworks, foundations, drainage systems, and concrete works.<br>
-      <em>Outcome:</em> Durable civil infrastructure delivered to engineering specifications.
+    <div class="project-card">
+      <img src="images/civil.JPG" alt="Civil Works">
+      <div class="project-content">
+        <h3>Civil & Road Infrastructure Works</h3>
+        <p><strong>Client Type:</strong> Public & Private Sector</p>
+        <p><strong>Scope:</strong> Earthworks, foundations, drainage, concrete works.</p>
+        <p><strong>Outcome:</strong> Durable civil infrastructure delivered to specification.</p>
+      </div>
     </div>
 
   </div>
 </section>
 
-<!-- HSE -->
-<section id="hse" style="background:#fafafa;">
-  <h2>Health, Safety, Environment & Quality (HSEQ)</h2>
-  <p>
-    Bolide Infrastructure Solutions Limited is committed to achieving high standards of
-    health, safety, environmental protection, and quality across all its operations.
-  </p>
-  <ul>
-    <li>Project-specific risk assessments and method statements</li>
-    <li>Regular toolbox talks and site safety briefings</li>
-    <li>Compliance with Zambian regulations and client HSE requirements</li>
-    <li>Quality inspections aligned with approved drawings</li>
-    <li>Environmentally responsible site practices</li>
-  </ul>
-</section>
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <h2 class="section-title">Contact Us</h2>
 
-<!-- DOWNLOADS -->
-<section id="downloads">
-  <h2>Downloads</h2>
-  <div class="download-box">
-    <p><strong>Company Capability Statement</strong></p>
-    <a href="Bolide_Infrastructure_Capability_Statement.pdf" download>
-      Download PDF
-    </a>
-  </div>
+  <p>📞 <a href="tel:+260966855207">+260 966 855 207</a> (Call & WhatsApp)</p>
+<p>💬 <a href="https://wa.me/260966855207" target="_blank">Chat on WhatsApp</a></p>
+<p>📧 bolideinfra@outlook.com</p>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <img src="images/logo.png" alt="Bolide Infrastructure Logo">
-  <p><strong>Bolide Infrastructure Solutions Limited</strong></p>
-  <p style="color:#e0581c;">We Build Better Futures</p>
-  <p style="color:#ccc; font-size:13px;">
-    © 2026 Bolide Infrastructure Solutions Limited. All rights reserved.
-  </p>
+  <div class="footer-grid">
+    <div>
+      <img src="images/logo.png" alt="Bolide Logo">
+      <p>We Build Better Futures</p>
+    </div>
+
+    <div>
+      <p><strong>Bolide Infrastructure Solutions Limited</strong></p>
+      <p>Zambia</p>
+    </div>
+  </div>
 </footer>
 
 </body>
