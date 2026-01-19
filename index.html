@@ -3,7 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>Bolide Infrastructure Solutions Limited</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Bolide Infrastructure Solutions Limited is a Zambian-owned construction company delivering steel fabrication, civil works, fencing, and industrial infrastructure solutions.">
+  <meta name="keywords" content="Bolide Infrastructure, Construction Zambia, Steel Fabrication, Civil Works, Fencing, Industrial Infrastructure">
+  <meta name="author" content="Bolide Infrastructure Solutions Limited">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Bolide Infrastructure Solutions Limited">
+  <meta property="og:description" content="We Build Better Futures. Reliable, compliant, and cost-effective construction solutions across Zambia.">
+  <meta property="og:image" content="https://bolideinfrastructure.github.io/images/logo.png">
+  <meta property="og:type" content="website">
 
   <style>
     :root {
@@ -13,36 +24,23 @@
       --gray: #f5f5f5;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    body {
-      background: var(--light);
-      color: var(--dark);
-      line-height: 1.6;
-    }
-
-    a {
-      color: var(--primary);
-      text-decoration: none;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; }
+    body { background: var(--light); color: var(--dark); line-height: 1.6; }
+    a { color: var(--primary); text-decoration: none; }
 
     header {
-      background: var(--light);
+      background: white;
       padding: 16px 40px;
       border-bottom: 2px solid var(--primary);
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
-    header img {
-      height: 48px;
-    }
+    header img { height: 48px; }
 
     nav a {
       margin-left: 20px;
@@ -51,9 +49,7 @@
 
     /* HERO */
     .hero {
-      background-image: url('images/zega.JPG');
-      background-size: cover;
-      background-position: center;
+      background: url('images/zega.JPG') center/cover no-repeat;
       padding: 120px 40px;
       color: white;
       position: relative;
@@ -63,7 +59,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.6);
+      background: rgba(0,0,0,0.65);
     }
 
     .hero-content {
@@ -71,14 +67,8 @@
       max-width: 900px;
     }
 
-    .hero h1 {
-      font-size: 40px;
-      margin-bottom: 16px;
-    }
-
-    .hero p {
-      font-size: 18px;
-    }
+    .hero h1 { font-size: 40px; margin-bottom: 16px; }
+    .hero p { font-size: 18px; }
 
     section {
       padding: 60px 40px;
@@ -86,13 +76,9 @@
       margin: auto;
     }
 
-    h2 {
-      color: var(--primary);
-      margin-bottom: 32px;
-      font-size: 32px;
-    }
+    h2 { color: var(--primary); margin-bottom: 32px; font-size: 32px; }
 
-    /* PROJECTS */
+    /* GRID */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -100,7 +86,7 @@
     }
 
     .card {
-      background: var(--light);
+      background: white;
       border-radius: 12px;
       padding: 20px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.08);
@@ -113,21 +99,13 @@
       object-fit: cover;
       border-radius: 8px;
       margin-bottom: 12px;
-    }
-
-    .card h3 {
-      margin-bottom: 10px;
-    }
-
-    .card p {
-      font-size: 14px;
-      margin-bottom: 6px;
+      cursor: pointer;
     }
 
     /* DOWNLOADS */
     .downloads a {
       display: inline-block;
-      margin-right: 20px;
+      margin-right: 16px;
       margin-bottom: 10px;
       padding: 12px 20px;
       background: var(--primary);
@@ -137,10 +115,7 @@
     }
 
     /* CONTACT */
-    .contact p {
-      margin-bottom: 10px;
-      font-size: 16px;
-    }
+    .contact p { margin-bottom: 10px; font-size: 16px; }
 
     /* FOOTER */
     footer {
@@ -148,18 +123,43 @@
       color: white;
       padding: 30px 40px;
       text-align: center;
-      margin-top: 60px;
     }
 
-    footer img {
-      height: 50px;
-      margin-bottom: 12px;
+    footer img { height: 50px; margin-bottom: 12px; }
+
+    /* LIGHTBOX */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+    }
+
+    /* WHATSAPP FLOAT */
+    .whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25D366;
+      color: white;
+      padding: 14px 16px;
+      border-radius: 50px;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 3000;
     }
 
     @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 28px;
-      }
+      .hero h1 { font-size: 28px; }
     }
   </style>
 </head>
@@ -169,71 +169,61 @@
 <header>
   <img src="images/logo.png" alt="Bolide Logo">
   <nav>
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
     <a href="#projects">Projects</a>
     <a href="#downloads">Downloads</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
 
-<section class="hero">
+<section id="home" class="hero">
   <div class="hero-content">
     <h1>Bolide Infrastructure Solutions Limited</h1>
-    <p>
-      We Build Better Futures. A Zambian-owned and operated multi-disciplinary
-      construction and steel infrastructure company delivering reliable,
-      compliant, and cost-effective solutions across Zambia.
-    </p>
+    <p>We Build Better Futures. A Zambian-owned construction and infrastructure company delivering compliant and cost-effective solutions across Zambia.</p>
   </div>
+</section>
+
+<section id="services">
+  <h2>Our Services</h2>
+  <ul>
+    <li>Structural Steel Fabrication & Erection</li>
+    <li>Perimeter Security & Fencing</li>
+    <li>Industrial & Warehouse Construction</li>
+    <li>Civil & Road Infrastructure Works</li>
+  </ul>
 </section>
 
 <section id="projects">
   <h2>Selected Project Experience</h2>
 
   <div class="grid">
-
     <div class="card">
-      <img src="images/steel.JPG" class="card-img" alt="Structural Steel">
+      <img src="images/steel.JPG" class="card-img" onclick="openLightbox(this.src)">
       <h3>Structural Steel Fabrication & Erection</h3>
-      <p><strong>Client Type:</strong> Institutional / Industrial</p>
-      <p><strong>Scope:</strong> Fabrication, supply, and erection of steel frameworks.</p>
-      <p><strong>Outcome:</strong> Delivered within programme and compliant with SABS standards.</p>
     </div>
 
     <div class="card">
-      <img src="images/fencing.JPG" class="card-img" alt="Perimeter Security">
-      <h3>Perimeter Security & Fencing Works</h3>
-      <p><strong>Client Type:</strong> Commercial / Industrial</p>
-      <p><strong>Scope:</strong> Clear view fencing, razor wire, gates, access control.</p>
-      <p><strong>Outcome:</strong> Improved site security with durable solutions.</p>
+      <img src="images/fencing.JPG" class="card-img" onclick="openLightbox(this.src)">
+      <h3>Perimeter Security & Fencing</h3>
     </div>
 
     <div class="card">
-      <img src="images/warehouse.JPG" class="card-img" alt="Warehouse">
+      <img src="images/warehouse.JPG" class="card-img" onclick="openLightbox(this.src)">
       <h3>Industrial & Warehouse Infrastructure</h3>
-      <p><strong>Client Type:</strong> Industrial / Logistics</p>
-      <p><strong>Scope:</strong> Internal and external industrial works.</p>
-      <p><strong>Outcome:</strong> Secure and efficient operational facilities.</p>
     </div>
 
     <div class="card">
-      <img src="images/civil.JPG" class="card-img" alt="Civil Works">
+      <img src="images/civil.JPG" class="card-img" onclick="openLightbox(this.src)">
       <h3>Civil & Road Infrastructure Works</h3>
-      <p><strong>Client Type:</strong> Public & Private Sector</p>
-      <p><strong>Scope:</strong> Earthworks, foundations, drainage, concrete works.</p>
-      <p><strong>Outcome:</strong> Durable civil infrastructure delivered to specification.</p>
     </div>
-
   </div>
 </section>
 
 <section id="downloads" class="downloads">
   <h2>Downloads</h2>
-  <a href="Bolide_Infrastructure_Capability_Statement.pdf" target="_blank">
-    Capability Statement
-  </a>
-  <a href="Bolide-Company-Profile.pdf" target="_blank">
-    Company Profile
-  </a>
+  <a href="Bolide_Infrastructure_Capability_Statement.pdf" target="_blank">Capability Statement</a>
+  <a href="Bolide-Company-Profile.pdf" target="_blank">Company Profile</a>
 </section>
 
 <section id="contact" class="contact">
@@ -244,10 +234,27 @@
 </section>
 
 <footer>
-  <img src="images/logo.png" alt="Bolide Logo">
+  <img src="images/logo.png">
   <p>© 2026 Bolide Infrastructure Solutions Limited</p>
 </footer>
 
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img">
+</div>
+
+<!-- WhatsApp Button -->
+<a class="whatsapp" href="https://wa.me/260966855207" target="_blank">💬 WhatsApp</a>
+
+<script>
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').style.display = 'flex';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').style.display = 'none';
+  }
+</script>
+
 </body>
 </html>
-
