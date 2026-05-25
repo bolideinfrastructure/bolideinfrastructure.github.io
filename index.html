@@ -42,12 +42,9 @@
   --font-display: 'Barlow Condensed', sans-serif;
   --font-body: 'Barlow', sans-serif;
 }
-
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body { font-family: var(--font-body); background: #fff; color: #222; line-height: 1.7; }
-
-/* HEADER */
 header {
   position: sticky; top: 0; z-index: 1000;
   background: rgba(255,255,255,0.97);
@@ -70,7 +67,6 @@ header {
 .nav-links a:hover { color: var(--primary); background: #fff4f0; }
 .nav-links .cta-nav { background: var(--primary); color: #fff; padding: 8px 18px; }
 .nav-links .cta-nav:hover { background: var(--primary-dark); color: #fff; }
-
 .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
 .hamburger span { width: 24px; height: 2px; background: #111; border-radius: 2px; }
 .mobile-menu {
@@ -85,8 +81,6 @@ header {
 }
 .mobile-menu a:last-child { border-bottom: none; }
 .mobile-menu.open { display: flex; }
-
-/* HERO */
 .hero {
   background: url('images/clearview.JPG') center/cover no-repeat;
   position: relative; min-height: 92vh;
@@ -128,34 +122,18 @@ header {
 .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
 .btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.6); }
 .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
-
-/* STATS BAR */
 .stats-bar { background: var(--navy); padding: 28px 24px; }
 .stats-inner {
   max-width: 1200px; margin: auto;
   display: grid; grid-template-columns: repeat(4, 1fr);
   gap: 20px; text-align: center;
 }
-.stat-num {
-  font-family: var(--font-display); font-size: 42px;
-  font-weight: 800; color: var(--primary); line-height: 1;
-}
-.stat-label {
-  font-size: 12px; color: rgba(255,255,255,0.6);
-  letter-spacing: 1.5px; text-transform: uppercase; margin-top: 4px;
-}
-
-/* CLIENTS */
+.stat-num { font-family: var(--font-display); font-size: 42px; font-weight: 800; color: var(--primary); line-height: 1; }
+.stat-label { font-size: 12px; color: rgba(255,255,255,0.6); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 4px; }
 .clients { background: #f7f7f7; padding: 36px 24px; border-bottom: 1px solid #eee; }
 .clients-inner { max-width: 1200px; margin: auto; }
-.clients-label {
-  text-align: center; font-family: var(--font-display); font-size: 12px;
-  letter-spacing: 2px; text-transform: uppercase; color: #999; margin-bottom: 22px;
-}
-.clients-grid {
-  display: flex; flex-wrap: wrap;
-  justify-content: center; align-items: center; gap: 10px 14px;
-}
+.clients-label { text-align: center; font-family: var(--font-display); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #999; margin-bottom: 22px; }
+.clients-grid { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px 14px; }
 .client-badge {
   background: #fff; border: 1px solid #e0e0e0; border-radius: 6px;
   padding: 9px 18px; font-family: var(--font-display);
@@ -163,273 +141,93 @@ header {
   white-space: nowrap; transition: border-color 0.2s, box-shadow 0.2s;
 }
 .client-badge:hover { border-color: var(--primary); box-shadow: 0 2px 10px rgba(240,90,40,0.12); }
-
-/* GENERAL */
 section { padding: 80px 24px; }
 .container { max-width: 1200px; margin: auto; }
-.section-label {
-  font-family: var(--font-display); font-size: 12px; font-weight: 700;
-  letter-spacing: 3px; text-transform: uppercase; color: var(--primary); margin-bottom: 10px;
-}
-h2 {
-  font-family: var(--font-display); font-size: clamp(30px, 4vw, 44px);
-  font-weight: 800; color: var(--navy); letter-spacing: -0.5px;
-  line-height: 1.1; margin-bottom: 20px;
-}
-
-/* ABOUT */
-.about-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 60px; align-items: center;
-}
+.section-label { font-family: var(--font-display); font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--primary); margin-bottom: 10px; }
+h2 { font-family: var(--font-display); font-size: clamp(30px, 4vw, 44px); font-weight: 800; color: var(--navy); letter-spacing: -0.5px; line-height: 1.1; margin-bottom: 20px; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
 .about-text p { color: var(--mid); margin-bottom: 16px; font-size: 16px; }
 .about-creds { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
-.cred-item {
-  display: flex; align-items: center; gap: 12px;
-  background: #fff4f0; border-left: 4px solid var(--primary);
-  padding: 12px 16px; border-radius: 0 6px 6px 0;
-}
+.cred-item { display: flex; align-items: center; gap: 12px; background: #fff4f0; border-left: 4px solid var(--primary); padding: 12px 16px; border-radius: 0 6px 6px 0; }
 .cred-icon { font-size: 20px; }
 .cred-text { font-family: var(--font-display); font-weight: 600; font-size: 15px; color: var(--navy); }
 .about-image img { width: 100%; border-radius: 8px; object-fit: cover; height: 440px; }
-
-/* SERVICES */
 .services { background: var(--light); }
-.services-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 24px; margin-top: 10px;
-}
-.service-card {
-  background: #fff; border-radius: 8px; overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-  transition: transform 0.25s, box-shadow 0.25s;
-  border-top: 4px solid var(--primary);
-}
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 10px; }
+.service-card { background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.06); transition: transform 0.25s, box-shadow 0.25s; border-top: 4px solid var(--primary); }
 .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.12); }
 .service-card img { width: 100%; height: 180px; object-fit: cover; }
 .service-content { padding: 20px; }
-.service-content h3 {
-  font-family: var(--font-display); font-weight: 700;
-  font-size: 20px; color: var(--navy); margin-bottom: 8px;
-}
+.service-content h3 { font-family: var(--font-display); font-weight: 700; font-size: 20px; color: var(--navy); margin-bottom: 8px; }
 .service-content p { font-size: 14px; color: var(--mid); }
-
-/* PROJECTS */
 .projects-section { background: var(--light); }
 .projects-intro { color: var(--mid); margin-bottom: 32px; font-size: 16px; max-width: 700px; }
-
 .filter-bar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
-.filter-btn {
-  padding: 8px 18px; border-radius: 20px; border: 2px solid #ddd;
-  background: #fff; font-family: var(--font-display); font-weight: 600;
-  font-size: 14px; cursor: pointer; color: #555; transition: all 0.2s;
-}
-.filter-btn:hover, .filter-btn.active {
-  background: var(--primary); color: #fff; border-color: var(--primary);
-}
-
-.proj-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 24px;
-}
-.proj-card {
-  background: #fff; border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
-  overflow: hidden; transition: transform 0.2s, box-shadow 0.2s;
-  border-top: 4px solid var(--primary); cursor: pointer;
-}
+.filter-btn { padding: 8px 18px; border-radius: 20px; border: 2px solid #ddd; background: #fff; font-family: var(--font-display); font-weight: 600; font-size: 14px; cursor: pointer; color: #555; transition: all 0.2s; }
+.filter-btn:hover, .filter-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+.proj-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+.proj-card { background: #fff; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.07); overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; border-top: 4px solid var(--primary); cursor: pointer; }
 .proj-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,0.13); }
 .proj-card-body { padding: 20px 22px 22px; }
-.proj-sector {
-  font-family: var(--font-display); font-size: 11px; font-weight: 700;
-  letter-spacing: 2px; text-transform: uppercase; color: var(--primary); margin-bottom: 4px;
-}
-.proj-card h3 {
-  font-family: var(--font-display); font-weight: 700;
-  font-size: 18px; color: var(--navy); margin-bottom: 6px; line-height: 1.2;
-}
+.proj-sector { font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--primary); margin-bottom: 4px; }
+.proj-card h3 { font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--navy); margin-bottom: 6px; line-height: 1.2; }
 .proj-client { font-size: 13px; color: #777; margin-bottom: 10px; }
 .proj-desc { font-size: 14px; color: var(--mid); margin-bottom: 14px; line-height: 1.5; }
-.proj-footer {
-  display: flex; justify-content: space-between; align-items: center;
-  flex-wrap: wrap; gap: 8px; padding-top: 12px;
-  border-top: 1px solid #f0f0f0;
-}
-.proj-value {
-  font-family: var(--font-display); font-weight: 700;
-  font-size: 16px; color: var(--navy);
-}
+.proj-footer { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; padding-top: 12px; border-top: 1px solid #f0f0f0; }
+.proj-value { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--navy); }
 .proj-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-.proj-tag {
-  font-size: 11px; font-weight: 600; padding: 3px 10px;
-  border-radius: 20px; background: #f0f0f0; color: #555;
-}
+.proj-tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; background: #f0f0f0; color: #555; }
 .proj-tag.role { background: #fff4f0; color: var(--primary); }
-
-/* PROJECT PHOTO GALLERY */
-.proj-gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
-  margin-bottom: 14px;
-}
-.proj-gallery img {
-  width: 100%; height: 70px;
-  object-fit: cover; border-radius: 4px;
-  cursor: pointer; transition: opacity 0.2s, transform 0.2s;
-}
+.proj-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 14px; }
+.proj-gallery img { width: 100%; height: 70px; object-fit: cover; border-radius: 4px; cursor: pointer; transition: opacity 0.2s, transform 0.2s; }
 .proj-gallery img:hover { opacity: 0.85; transform: scale(1.03); }
-
-/* TESTIMONIALS */
 .testimonials { background: var(--navy); }
 .testimonials h2 { color: #fff; }
 .testimonials .section-label { color: var(--primary); }
-.testi-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px; margin-top: 10px;
-}
-.testi-card {
-  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 8px; padding: 28px; border-left: 4px solid var(--primary);
-}
-.testi-quote {
-  font-size: 15px; color: rgba(255,255,255,0.82);
-  font-style: italic; line-height: 1.7; margin-bottom: 20px;
-}
+.testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 10px; }
+.testi-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 28px; border-left: 4px solid var(--primary); }
+.testi-quote { font-size: 15px; color: rgba(255,255,255,0.82); font-style: italic; line-height: 1.7; margin-bottom: 20px; }
 .testi-author { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: #fff; }
 .testi-company { font-size: 13px; color: var(--primary); margin-top: 2px; }
-
-/* DOWNLOADS */
 .downloads-grid { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 10px; }
-.download-btn {
-  display: flex; align-items: center; gap: 10px;
-  padding: 16px 24px; background: var(--primary); color: #fff;
-  border-radius: 6px; text-decoration: none;
-  font-family: var(--font-display); font-weight: 700; font-size: 16px;
-  transition: background 0.2s, transform 0.2s;
-}
+.download-btn { display: flex; align-items: center; gap: 10px; padding: 16px 24px; background: var(--primary); color: #fff; border-radius: 6px; text-decoration: none; font-family: var(--font-display); font-weight: 700; font-size: 16px; transition: background 0.2s, transform 0.2s; }
 .download-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
-
-/* CONTACT */
 .contact { background: var(--light); }
-.contact-grid {
-  display: grid; grid-template-columns: 1fr 1.4fr;
-  gap: 50px; align-items: start;
-}
-.contact-info h3 {
-  font-family: var(--font-display); font-size: 22px;
-  font-weight: 700; color: var(--navy); margin-bottom: 20px;
-}
+.contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 50px; align-items: start; }
+.contact-info h3 { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--navy); margin-bottom: 20px; }
 .contact-item { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 20px; }
-.contact-item-icon {
-  width: 42px; height: 42px; background: #fff4f0; border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px; flex-shrink: 0;
-}
+.contact-item-icon { width: 42px; height: 42px; background: #fff4f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
 .contact-item-text strong { display: block; font-size: 12px; color: #999; text-transform: uppercase; letter-spacing: 1px; }
-.contact-item-text a, .contact-item-text span {
-  font-size: 16px; color: var(--navy); font-weight: 500; text-decoration: none;
-}
+.contact-item-text a, .contact-item-text span { font-size: 16px; color: var(--navy); font-weight: 500; text-decoration: none; }
 .contact-item-text a:hover { color: var(--primary); }
 .contact-form { background: #fff; border-radius: 8px; padding: 32px; box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
-.contact-form h3 {
-  font-family: var(--font-display); font-size: 22px;
-  font-weight: 700; color: var(--navy); margin-bottom: 20px;
-}
+.contact-form h3 { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--navy); margin-bottom: 20px; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.contact-form input,
-.contact-form select,
-.contact-form textarea {
-  width: 100%; padding: 12px 14px;
-  border: 1.5px solid #ddd; border-radius: 6px;
-  font-family: var(--font-body); font-size: 15px;
-  margin-bottom: 14px; transition: border-color 0.2s; color: #222;
-}
-.contact-form input:focus,
-.contact-form select:focus,
-.contact-form textarea:focus { outline: none; border-color: var(--primary); }
-.contact-form button {
-  width: 100%; background: var(--primary); color: #fff; padding: 14px;
-  border: none; border-radius: 6px; font-family: var(--font-display);
-  font-weight: 700; font-size: 17px; cursor: pointer; transition: background 0.2s;
-}
+.contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 12px 14px; border: 1.5px solid #ddd; border-radius: 6px; font-family: var(--font-body); font-size: 15px; margin-bottom: 14px; transition: border-color 0.2s; color: #222; }
+.contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { outline: none; border-color: var(--primary); }
+.contact-form button { width: 100%; background: var(--primary); color: #fff; padding: 14px; border: none; border-radius: 6px; font-family: var(--font-display); font-weight: 700; font-size: 17px; cursor: pointer; transition: background 0.2s; }
 .contact-form button:hover { background: var(--primary-dark); }
-
-/* FOOTER */
 footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
-.footer-inner {
-  max-width: 1200px; margin: auto;
-  display: grid; grid-template-columns: 1.5fr 1fr 1fr;
-  gap: 40px; margin-bottom: 40px;
-}
+.footer-inner { max-width: 1200px; margin: auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
 .footer-brand img { height: 52px; margin-bottom: 14px; display: block; }
 .footer-brand p { font-size: 14px; color: #888; max-width: 280px; }
-.footer-col h4 {
-  font-family: var(--font-display); font-weight: 700; font-size: 13px;
-  letter-spacing: 1.5px; text-transform: uppercase; color: #fff; margin-bottom: 14px;
-}
-.footer-col a {
-  display: block; color: #888; text-decoration: none;
-  font-size: 14px; margin-bottom: 8px; transition: color 0.2s;
-}
+.footer-col h4 { font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; margin-bottom: 14px; }
+.footer-col a { display: block; color: #888; text-decoration: none; font-size: 14px; margin-bottom: 8px; transition: color 0.2s; }
 .footer-col a:hover { color: var(--primary); }
-.footer-bottom {
-  max-width: 1200px; margin: auto; border-top: 1px solid #222;
-  padding-top: 24px; display: flex; justify-content: space-between;
-  align-items: center; flex-wrap: wrap; gap: 10px;
-}
+.footer-bottom { max-width: 1200px; margin: auto; border-top: 1px solid #222; padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
 .footer-bottom p { font-size: 13px; color: #666; }
-
-/* WHATSAPP */
-.whatsapp {
-  position: fixed; bottom: 24px; right: 24px;
-  background: #25d366; color: #fff; padding: 14px 20px; border-radius: 50px;
-  font-family: var(--font-display); font-weight: 700; font-size: 15px;
-  text-decoration: none; z-index: 3000;
-  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
-  display: flex; align-items: center; gap: 8px;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
+.whatsapp { position: fixed; bottom: 24px; right: 24px; background: #25d366; color: #fff; padding: 14px 20px; border-radius: 50px; font-family: var(--font-display); font-weight: 700; font-size: 15px; text-decoration: none; z-index: 3000; box-shadow: 0 4px 20px rgba(37,211,102,0.4); display: flex; align-items: center; gap: 8px; transition: transform 0.2s, box-shadow 0.2s; }
 .whatsapp:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,0.5); }
-
-/* LIGHTBOX */
-.lightbox {
-  display: none; position: fixed; inset: 0;
-  background: rgba(0,0,0,0.92); justify-content: center;
-  align-items: center; z-index: 4000;
-}
+.lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); justify-content: center; align-items: center; z-index: 4000; }
 .lightbox img { max-width: 90%; max-height: 88vh; border-radius: 4px; }
-.lightbox-close {
-  position: absolute; top: 20px; right: 28px;
-  color: #fff; font-size: 40px; cursor: pointer; line-height: 1;
-}
-
-/* RESPONSIVE */
-@media(max-width: 900px) {
-  .about-grid { grid-template-columns: 1fr; }
-  .about-image img { height: 300px; }
-  .contact-grid { grid-template-columns: 1fr; }
-  .footer-inner { grid-template-columns: 1fr 1fr; }
-  .stats-inner { grid-template-columns: repeat(2, 1fr); }
-}
-@media(max-width: 768px) {
-  .nav-links { display: none; }
-  .hamburger { display: flex; }
-  .footer-inner { grid-template-columns: 1fr; }
-  .form-row { grid-template-columns: 1fr; }
-  .hero { min-height: 80vh; }
-}
-@media(max-width: 480px) {
-  .hero-buttons { flex-direction: column; }
-  .footer-bottom { flex-direction: column; text-align: center; }
-}
+.lightbox-close { position: absolute; top: 20px; right: 28px; color: #fff; font-size: 40px; cursor: pointer; line-height: 1; }
+@media(max-width: 900px) { .about-grid { grid-template-columns: 1fr; } .about-image img { height: 300px; } .contact-grid { grid-template-columns: 1fr; } .footer-inner { grid-template-columns: 1fr 1fr; } .stats-inner { grid-template-columns: repeat(2, 1fr); } }
+@media(max-width: 768px) { .nav-links { display: none; } .hamburger { display: flex; } .footer-inner { grid-template-columns: 1fr; } .form-row { grid-template-columns: 1fr; } .hero { min-height: 80vh; } }
+@media(max-width: 480px) { .hero-buttons { flex-direction: column; } .footer-bottom { flex-direction: column; text-align: center; } }
 </style>
 </head>
-
 <body>
 
-<!-- HEADER -->
 <header>
   <div class="nav">
     <img src="images/logo.png" alt="Bolide Infrastructure Solutions">
@@ -440,9 +238,7 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
       <a href="#downloads">Downloads</a>
       <a href="#contact" class="cta-nav">Get a Quote</a>
     </nav>
-    <div class="hamburger" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </div>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
   </div>
   <div class="mobile-menu" id="mobileMenu">
     <a href="#about" onclick="toggleMenu()">About</a>
@@ -453,12 +249,11 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-tag">NCC Registered · Grade 5 · Lusaka, Zambia</div>
+    <div class="hero-tag">NCC Registered &middot; Grade 5 &middot; Lusaka, Zambia</div>
     <h1>We Build<br><span>Better Futures</span></h1>
-    <p class="hero-sub">Zambian-owned construction company delivering structural steel, perimeter security, civil works and industrial infrastructure — on time, on spec.</p>
+    <p class="hero-sub">Zambian-owned construction company delivering structural steel, perimeter security, civil works and industrial infrastructure &mdash; on time, on spec.</p>
     <div class="hero-buttons">
       <a href="#contact" class="btn btn-primary">Get a Quote</a>
       <a href="#projects" class="btn btn-outline">View Our Work</a>
@@ -466,29 +261,15 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
   </div>
 </section>
 
-<!-- STATS BAR -->
 <div class="stats-bar">
   <div class="stats-inner">
-    <div>
-      <div class="stat-num">14+</div>
-      <div class="stat-label">Projects Delivered</div>
-    </div>
-    <div>
-      <div class="stat-num">2</div>
-      <div class="stat-label">Years Operating</div>
-    </div>
-    <div>
-      <div class="stat-num">ZMW 9M+</div>
-      <div class="stat-label">Contract Value</div>
-    </div>
-    <div>
-      <div class="stat-num">7+</div>
-      <div class="stat-label">Sectors Served</div>
-    </div>
+    <div><div class="stat-num">14+</div><div class="stat-label">Projects Delivered</div></div>
+    <div><div class="stat-num">2</div><div class="stat-label">Years Operating</div></div>
+    <div><div class="stat-num">ZMW 9M+</div><div class="stat-label">Contract Value</div></div>
+    <div><div class="stat-num">7+</div><div class="stat-label">Sectors Served</div></div>
   </div>
 </div>
 
-<!-- CLIENTS STRIP -->
 <div class="clients">
   <div class="clients-inner">
     <p class="clients-label">Trusted by leading organisations across Zambia</p>
@@ -509,33 +290,20 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
   </div>
 </div>
 
-<!-- ABOUT -->
 <section id="about">
   <div class="container">
     <div class="about-grid">
       <div class="about-text">
         <div class="section-label">About Bolide</div>
         <h2>Built on Experience.<br>Driven by Results.</h2>
-        <p>Bolide Infrastructure Solutions Limited (BIS) is a Zambian-owned and operated construction company incorporated in November 2023, led by Hamachila Muzandu — a construction and logistics professional with over 12 years of industry experience spanning structural steel, project management, and infrastructure delivery.</p>
-        <p>In just over two years of operation, we have delivered projects for government institutions, multinational contractors, mining companies, commercial organisations and private clients — across Lusaka, the Copperbelt, Southern Province and beyond.</p>
+        <p>Bolide Infrastructure Solutions Limited (BIS) is a Zambian-owned and operated construction company incorporated in November 2023, led by Hamachila Muzandu &mdash; a construction and logistics professional with over 12 years of industry experience spanning structural steel, project management, and infrastructure delivery.</p>
+        <p>In just over two years of operation, we have delivered projects for government institutions, multinational contractors, mining companies, commercial organisations and private clients &mdash; across Lusaka, the Copperbelt, Southern Province and beyond.</p>
         <p>We combine technical capability with deep local knowledge and international-standard materials sourced and accredited through our suppliers in South Africa.</p>
         <div class="about-creds">
-          <div class="cred-item">
-            <span class="cred-icon">&#127959;&#65039;</span>
-            <span class="cred-text">NCC Registered Contractor — Grade 5, Category C</span>
-          </div>
-          <div class="cred-item">
-            <span class="cred-icon">&#9989;</span>
-            <span class="cred-text">BestFence Accredited Distributor &amp; Installer</span>
-          </div>
-          <div class="cred-item">
-            <span class="cred-icon">&#128297;</span>
-            <span class="cred-text">NJR Steel Exports — Authorised Distributor for Zambia</span>
-          </div>
-          <div class="cred-item">
-            <span class="cred-icon">&#128203;</span>
-            <span class="cred-text">PACRA Registered · Reg. No. 120230059016</span>
-          </div>
+          <div class="cred-item"><span class="cred-icon">&#127959;</span><span class="cred-text">NCC Registered Contractor &mdash; Grade 5, Category C</span></div>
+          <div class="cred-item"><span class="cred-icon">&#9989;</span><span class="cred-text">BestFence Accredited Distributor &amp; Installer</span></div>
+          <div class="cred-item"><span class="cred-icon">&#128297;</span><span class="cred-text">NJR Steel Exports &mdash; Authorised Distributor for Zambia</span></div>
+          <div class="cred-item"><span class="cred-icon">&#128203;</span><span class="cred-text">PACRA Registered &middot; Reg. No. 120230059016</span></div>
         </div>
       </div>
       <div class="about-image">
@@ -545,7 +313,6 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
   </div>
 </section>
 
-<!-- SERVICES -->
 <section id="services" class="services">
   <div class="container">
     <div class="section-label">What We Do</div>
@@ -553,43 +320,29 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
     <div class="services-grid">
       <div class="service-card">
         <img src="images/steel.JPG" alt="Structural Steel" loading="lazy">
-        <div class="service-content">
-          <h3>Structural Steel Fabrication &amp; Erection</h3>
-          <p>Design, fabrication, supply and on-site erection of steel frameworks for warehouses, industrial buildings and commercial developments.</p>
-        </div>
+        <div class="service-content"><h3>Structural Steel Fabrication &amp; Erection</h3><p>Design, fabrication, supply and on-site erection of steel frameworks for warehouses, industrial buildings and commercial developments.</p></div>
       </div>
       <div class="service-card">
         <img src="images/fencing.JPG" alt="Perimeter Fencing" loading="lazy">
-        <div class="service-content">
-          <h3>Perimeter Security &amp; Fencing</h3>
-          <p>Clear-view fencing, diamond mesh, game fencing, razor wire, gates and access control for industrial, commercial, agricultural and government sites.</p>
-        </div>
+        <div class="service-content"><h3>Perimeter Security &amp; Fencing</h3><p>Clear-view fencing, diamond mesh, game fencing, razor wire, gates and access control for industrial, commercial, agricultural and government sites.</p></div>
       </div>
       <div class="service-card">
         <img src="images/warehouse.JPG" alt="Industrial Construction" loading="lazy">
-        <div class="service-content">
-          <h3>Industrial &amp; Warehouse Infrastructure</h3>
-          <p>End-to-end construction of functional industrial and warehouse facilities, including internal partitioning and structural installations.</p>
-        </div>
+        <div class="service-content"><h3>Industrial &amp; Warehouse Infrastructure</h3><p>End-to-end construction of functional industrial and warehouse facilities, including internal partitioning and structural installations.</p></div>
       </div>
       <div class="service-card">
         <img src="images/mazabuka.JPG" alt="Civil Works" loading="lazy">
-        <div class="service-content">
-          <h3>Civil &amp; General Building Works</h3>
-          <p>Foundations, earthworks, concrete works, drainage, roofing, paving, interior finishes and general building for residential, commercial and agricultural clients.</p>
-        </div>
+        <div class="service-content"><h3>Civil &amp; General Building Works</h3><p>Foundations, earthworks, concrete works, drainage, roofing, paving, interior finishes and general building for residential, commercial and agricultural clients.</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects" class="projects-section">
   <div class="container">
     <div class="section-label">Track Record</div>
     <h2>Project Experience</h2>
     <p class="projects-intro">14 completed projects since 2023 across government, mining, industrial, agricultural, healthcare and residential sectors.</p>
-
     <div class="filter-bar">
       <button class="filter-btn active" onclick="filterProjects('all', this)">All</button>
       <button class="filter-btn" onclick="filterProjects('government', this)">Government</button>
@@ -603,295 +356,317 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
 
       <!-- 1. Trademark Africa OSBP -->
       <div class="proj-card" data-sector="government" onclick="openLightbox('images/NakondeOS1.jpeg')">
-        <img src="images/NakondeOS1.jpeg" alt="Nakonde OSBP Border Security Fence" loading="lazy" style="width:100%; height:220px; object-fit:cover;">
+        <img src="images/NakondeOS1.jpeg" alt="Nakonde OSBP Border Security Fence" loading="lazy" style="width:100%;height:220px;object-fit:cover;">
         <div class="proj-card-body">
-          <div class="proj-sector">Government · Border Infrastructure</div>
-          <h3>Nakonde OSBP — Zambia/Tanzania Border Security Fence</h3>
-          <p class="proj-client">Trademark Africa · Ministry of Finance &amp; National Planning</p>
+          <div class="proj-sector">Government &middot; Border Infrastructure</div>
+          <h3>Nakonde OSBP &mdash; Zambia/Tanzania Border Security Fence</h3>
+          <p class="proj-client">Trademark Africa &middot; Ministry of Finance &amp; National Planning</p>
           <p class="proj-desc">Supply and installation of 306m clear-view perimeter security fence at the Nakonde One Stop Border Post, Muchinga Province. Completed in 10 days.</p>
           <div class="proj-gallery">
-            <img src="images/NakondeOS1.jpeg" onclick="event.stopPropagation(); openLightbox('images/NakondeOS1.jpeg')" alt="Nakonde border fence 1">
-            <img src="images/NakondeOS2.jpeg" onclick="event.stopPropagation(); openLightbox('images/NakondeOS2.jpeg')" alt="Nakonde border fence 2">
-            <img src="images/NakondeOS3.jpg" onclick="event.stopPropagation(); openLightbox('images/NakondeOS3.jpg')" alt="Nakonde border fence 3">
-            <img src="images/NakondeOS4.jpg" onclick="event.stopPropagation(); openLightbox('images/NakondeOS4.jpg')" alt="Nakonde border fence 4">
-            <img src="images/NakondeOS5.jpg" onclick="event.stopPropagation(); openLightbox('images/NakondeOS5.jpg')" alt="Nakonde border fence 5">
-            <img src="images/NakondeOS6.jpeg" onclick="event.stopPropagation(); openLightbox('images/NakondeOS6.jpeg')" alt="Nakonde border fence 6">
-            <img src="images/NakondeOS7.jpeg" onclick="event.stopPropagation(); openLightbox('images/NakondeOS7.jpeg')" alt="Nakonde border fence 7">
-            <img src="images/NakondeOS8.jpeg" onclick="event.stopPropagation(); openLightbox('images/NakondeOS8.jpeg')" alt="Nakonde border fence 8">
+            <img src="images/NakondeOS1.jpeg" onclick="event.stopPropagation();openLightbox('images/NakondeOS1.jpeg')" alt="Nakonde 1">
+            <img src="images/NakondeOS2.jpeg" onclick="event.stopPropagation();openLightbox('images/NakondeOS2.jpeg')" alt="Nakonde 2">
+            <img src="images/NakondeOS3.jpg" onclick="event.stopPropagation();openLightbox('images/NakondeOS3.jpg')" alt="Nakonde 3">
+            <img src="images/NakondeOS4.jpg" onclick="event.stopPropagation();openLightbox('images/NakondeOS4.jpg')" alt="Nakonde 4">
+            <img src="images/NakondeOS5.jpg" onclick="event.stopPropagation();openLightbox('images/NakondeOS5.jpg')" alt="Nakonde 5">
+            <img src="images/NakondeOS6.jpeg" onclick="event.stopPropagation();openLightbox('images/NakondeOS6.jpeg')" alt="Nakonde 6">
+            <img src="images/NakondeOS7.jpeg" onclick="event.stopPropagation();openLightbox('images/NakondeOS7.jpeg')" alt="Nakonde 7">
+            <img src="images/NakondeOS8.jpeg" onclick="event.stopPropagation();openLightbox('images/NakondeOS8.jpeg')" alt="Nakonde 8">
           </div>
           <div class="proj-footer">
             <span class="proj-value">USD 30,000</span>
-            <div class="proj-tags">
-              <span class="proj-tag">2026</span>
-              <span class="proj-tag role">Main Contractor</span>
-            </div>
+            <div class="proj-tags"><span class="proj-tag">2026</span><span class="proj-tag role">Main Contractor</span></div>
           </div>
         </div>
       </div>
 
-      <!-- 2. Bhuku Farm Mazabuka -->
+      <!-- 2. Bhuku Farm -->
       <div class="proj-card" data-sector="agricultural" onclick="openLightbox('images/Bhuku6.jpeg')">
-        <img src="images/Bhuku6.jpeg" alt="Bhuku Family Farm Operations Complex Mazabuka" loading="lazy" style="width:100%; height:220px; object-fit:cover;">
+        <img src="images/Bhuku6.jpeg" alt="Bhuku Family Farm Operations Complex Mazabuka" loading="lazy" style="width:100%;height:220px;object-fit:cover;">
         <div class="proj-card-body">
           <div class="proj-sector">Agricultural</div>
-          <h3>Bhuku Family Farm — Operations Complex, Mazabuka</h3>
+          <h3>Bhuku Family Farm &mdash; Operations Complex, Mazabuka</h3>
           <p class="proj-client">Bhuku Family Farm</p>
           <p class="proj-desc">Design, supply and build of farm storage, chemical storage, double-storey office block and vehicle implement area across 4 sections. Duration: 6 months.</p>
           <div class="proj-gallery">
-            <img src="images/Bhuku.jpeg" onclick="event.stopPropagation(); openLightbox('images/Bhuku.jpeg')" alt="Bhuku Farm site 1">
-            <img src="images/Bhuku2.jpeg" onclick="event.stopPropagation(); openLightbox('images/Bhuku2.jpeg')" alt="Bhuku Farm site 2">
-            <img src="images/Bhuku3.jpeg" onclick="event.stopPropagation(); openLightbox('images/Bhuku3.jpeg')" alt="Bhuku Farm site 3">
-            <img src="images/Bhuku4.jpeg" onclick="event.stopPropagation(); openLightbox('images/Bhuku4.jpeg')" alt="Bhuku Farm site 4">
-            <img src="images/Bhuku5.jpeg" onclick="event.stopPropagation(); openLightbox('images/Bhuku5.jpeg')" alt="Bhuku Farm site 5">
-            <img src="images/Bhuku6.jpeg" onclick="event.stopPropagation(); openLightbox('images/Bhuku6.jpeg')" alt="Bhuku Farm site 6">
-            <img src="images/Bhuku7.jpeg" onclick="event.stopPropagation(); openLightbox('images/Bhuku7.jpeg')" alt="Bhuku Farm site 7">
-            <img src="images/Bhuku8.jpeg" onclick="event.stopPropagation(); openLightbox('images/Bhuku8.jpeg')" alt="Bhuku Farm site 8">
-            <img src="images/Bhuku9.jpeg" onclick="event.stopPropagation(); openLightbox('images/Bhuku9.jpeg')" alt="Bhuku Farm site 9">
-            <img src="images/Bhuku10.jpeg" onclick="event.stopPropagation(); openLightbox('images/Bhuku10.jpeg')" alt="Bhuku Farm site 10">
-            <img src="images/Bhuku11.jpeg" onclick="event.stopPropagation(); openLightbox('images/Bhuku11.jpeg')" alt="Bhuku Farm site 11">
-            <img src="images/Bhuku12.jpeg" onclick="event.stopPropagation(); openLightbox('images/Bhuku12.jpeg')" alt="Bhuku Farm site 12">
-            <img src="images/Bhuku13.jpeg" onclick="event.stopPropagation(); openLightbox('images/Bhuku13.jpeg')" alt="Bhuku Farm site 13">
+            <img src="images/Bhuku.jpeg" onclick="event.stopPropagation();openLightbox('images/Bhuku.jpeg')" alt="Bhuku 1">
+            <img src="images/Bhuku2.jpeg" onclick="event.stopPropagation();openLightbox('images/Bhuku2.jpeg')" alt="Bhuku 2">
+            <img src="images/Bhuku3.jpeg" onclick="event.stopPropagation();openLightbox('images/Bhuku3.jpeg')" alt="Bhuku 3">
+            <img src="images/Bhuku4.jpeg" onclick="event.stopPropagation();openLightbox('images/Bhuku4.jpeg')" alt="Bhuku 4">
+            <img src="images/Bhuku5.jpeg" onclick="event.stopPropagation();openLightbox('images/Bhuku5.jpeg')" alt="Bhuku 5">
+            <img src="images/Bhuku6.jpeg" onclick="event.stopPropagation();openLightbox('images/Bhuku6.jpeg')" alt="Bhuku 6">
+            <img src="images/Bhuku7.jpeg" onclick="event.stopPropagation();openLightbox('images/Bhuku7.jpeg')" alt="Bhuku 7">
+            <img src="images/Bhuku8.jpeg" onclick="event.stopPropagation();openLightbox('images/Bhuku8.jpeg')" alt="Bhuku 8">
+            <img src="images/Bhuku9.jpeg" onclick="event.stopPropagation();openLightbox('images/Bhuku9.jpeg')" alt="Bhuku 9">
+            <img src="images/Bhuku10.jpeg" onclick="event.stopPropagation();openLightbox('images/Bhuku10.jpeg')" alt="Bhuku 10">
+            <img src="images/Bhuku11.jpeg" onclick="event.stopPropagation();openLightbox('images/Bhuku11.jpeg')" alt="Bhuku 11">
+            <img src="images/Bhuku12.jpeg" onclick="event.stopPropagation();openLightbox('images/Bhuku12.jpeg')" alt="Bhuku 12">
+            <img src="images/Bhuku13.jpeg" onclick="event.stopPropagation();openLightbox('images/Bhuku13.jpeg')" alt="Bhuku 13">
           </div>
           <div class="proj-footer">
             <span class="proj-value">ZMW 1,990,645</span>
-            <div class="proj-tags">
-              <span class="proj-tag">2025&#x2013;2026</span>
-              <span class="proj-tag role">Main Contractor</span>
-            </div>
+            <div class="proj-tags"><span class="proj-tag">2025&ndash;2026</span><span class="proj-tag role">Main Contractor</span></div>
           </div>
         </div>
       </div>
 
       <!-- 3. Lumwana Mine -->
       <div class="proj-card" data-sector="mining" onclick="openLightbox('images/Lumwana1.jpeg')">
-        <img src="images/Lumwana1.jpeg" alt="Lumwana Mine Sports Court Fencing" loading="lazy" style="width:100%; height:220px; object-fit:cover;">
+        <img src="images/Lumwana1.jpeg" alt="Lumwana Mine Sports Court Fencing" loading="lazy" style="width:100%;height:220px;object-fit:cover;">
         <div class="proj-card-body">
           <div class="proj-sector">Mining</div>
-          <h3>Lumwana Mine — Sports Court Fencing, North-Western Province</h3>
+          <h3>Lumwana Mine &mdash; Sports Court Fencing, North-Western Province</h3>
           <p class="proj-client">Stefanutti Stocks</p>
           <p class="proj-desc">4m high diamond fencing enclosure covering 174m for basketball and tennis courts at Lumwana Mine. Duration: 2 months.</p>
           <div class="proj-gallery">
-            <img src="images/Lumwana1.jpeg" onclick="event.stopPropagation(); openLightbox('images/Lumwana1.jpeg')" alt="Lumwana Mine fencing 1">
-            <img src="images/Lumwana2.jpeg" onclick="event.stopPropagation(); openLightbox('images/Lumwana2.jpeg')" alt="Lumwana Mine fencing 2">
-            <img src="images/Lumwana3.jpeg" onclick="event.stopPropagation(); openLightbox('images/Lumwana3.jpeg')" alt="Lumwana Mine fencing 3">
-            <img src="images/Lumwana4.jpeg" onclick="event.stopPropagation(); openLightbox('images/Lumwana4.jpeg')" alt="Lumwana Mine fencing 4">
-            <img src="images/Lumwana5.jpeg" onclick="event.stopPropagation(); openLightbox('images/Lumwana5.jpeg')" alt="Lumwana Mine fencing 5">
+            <img src="images/Lumwana1.jpeg" onclick="event.stopPropagation();openLightbox('images/Lumwana1.jpeg')" alt="Lumwana 1">
+            <img src="images/Lumwana2.jpeg" onclick="event.stopPropagation();openLightbox('images/Lumwana2.jpeg')" alt="Lumwana 2">
+            <img src="images/Lumwana3.jpeg" onclick="event.stopPropagation();openLightbox('images/Lumwana3.jpeg')" alt="Lumwana 3">
+            <img src="images/Lumwana4.jpeg" onclick="event.stopPropagation();openLightbox('images/Lumwana4.jpeg')" alt="Lumwana 4">
+            <img src="images/Lumwana5.jpeg" onclick="event.stopPropagation();openLightbox('images/Lumwana5.jpeg')" alt="Lumwana 5">
           </div>
           <div class="proj-footer">
             <span class="proj-value">USD 13,525</span>
-            <div class="proj-tags">
-              <span class="proj-tag">2025</span>
-              <span class="proj-tag role">Fencing Sub-Contractor</span>
-            </div>
+            <div class="proj-tags"><span class="proj-tag">2025</span><span class="proj-tag role">Fencing Sub-Contractor</span></div>
           </div>
         </div>
       </div>
 
       <!-- 4. Zambia Sugar -->
       <div class="proj-card" data-sector="industrial" onclick="openLightbox('images/Maz1.jpeg')">
-        <img src="images/Maz1.jpeg" alt="Zambia Sugar Site Office Fencing Mazabuka" loading="lazy" style="width:100%; height:220px; object-fit:cover;">
+        <img src="images/Maz1.jpeg" alt="Zambia Sugar Site Office Fencing Mazabuka" loading="lazy" style="width:100%;height:220px;object-fit:cover;">
         <div class="proj-card-body">
-          <div class="proj-sector">Industrial · Agro-Processing</div>
-          <h3>Zambia Sugar — Site Office Fencing, Mazabuka</h3>
+          <div class="proj-sector">Industrial &middot; Agro-Processing</div>
+          <h3>Zambia Sugar &mdash; Site Office Fencing, Mazabuka</h3>
           <p class="proj-client">Stefanutti Stocks</p>
           <p class="proj-desc">2.4m high perimeter fencing covering 41m for the Zambia Sugar site office, Mazabuka. Completed in 7 days.</p>
           <div class="proj-gallery">
-            <img src="images/Maz1.jpeg" onclick="event.stopPropagation(); openLightbox('images/Maz1.jpeg')" alt="Zambia Sugar fencing 1">
-            <img src="images/Maz2.jpeg" onclick="event.stopPropagation(); openLightbox('images/Maz2.jpeg')" alt="Zambia Sugar fencing 2">
-            <img src="images/Maz3.jpeg" onclick="event.stopPropagation(); openLightbox('images/Maz3.jpeg')" alt="Zambia Sugar fencing 3">
-            <img src="images/Maz4.jpeg" onclick="event.stopPropagation(); openLightbox('images/Maz4.jpeg')" alt="Zambia Sugar fencing 4">
+            <img src="images/Maz1.jpeg" onclick="event.stopPropagation();openLightbox('images/Maz1.jpeg')" alt="Zambia Sugar 1">
+            <img src="images/Maz2.jpeg" onclick="event.stopPropagation();openLightbox('images/Maz2.jpeg')" alt="Zambia Sugar 2">
+            <img src="images/Maz3.jpeg" onclick="event.stopPropagation();openLightbox('images/Maz3.jpeg')" alt="Zambia Sugar 3">
+            <img src="images/Maz4.jpeg" onclick="event.stopPropagation();openLightbox('images/Maz4.jpeg')" alt="Zambia Sugar 4">
           </div>
           <div class="proj-footer">
             <span class="proj-value">ZMW 41,979</span>
-            <div class="proj-tags">
-              <span class="proj-tag">2025</span>
-              <span class="proj-tag role">Fencing Sub-Contractor</span>
-            </div>
+            <div class="proj-tags"><span class="proj-tag">2025</span><span class="proj-tag role">Fencing Sub-Contractor</span></div>
           </div>
         </div>
       </div>
 
-      <!-- 5. Cheelo Farm Game Fencing -->
-      <div class="proj-card" data-sector="agricultural" onclick="openLightbox('images/fencing.JPG')">
+      <!-- 5. Cheelo Farm -->
+      <div class="proj-card" data-sector="agricultural" onclick="openLightbox('images/cheelo1.jpeg')">
+        <img src="images/cheelo1.jpeg" alt="Cheelo Farm Game Fencing Ndola" loading="lazy" style="width:100%;height:220px;object-fit:cover;">
         <div class="proj-card-body">
           <div class="proj-sector">Agricultural</div>
-          <h3>Cheelo Farm — Game Fencing 2,500m, Ndola</h3>
+          <h3>Cheelo Farm &mdash; Game Fencing 2,500m, Ndola</h3>
           <p class="proj-client">Chipo Cheelo</p>
           <p class="proj-desc">Supply and installation of 2,500m game fencing with one gate for a large farm in Ndola. Duration: 33 days.</p>
+          <div class="proj-gallery">
+            <img src="images/cheelo1.jpeg" onclick="event.stopPropagation();openLightbox('images/cheelo1.jpeg')" alt="Cheelo Farm 1">
+            <img src="images/cheelo2.jpeg" onclick="event.stopPropagation();openLightbox('images/cheelo2.jpeg')" alt="Cheelo Farm 2">
+            <img src="images/cheelo3.jpeg" onclick="event.stopPropagation();openLightbox('images/cheelo3.jpeg')" alt="Cheelo Farm 3">
+            <img src="images/cheelo4.jpeg" onclick="event.stopPropagation();openLightbox('images/cheelo4.jpeg')" alt="Cheelo Farm 4">
+          </div>
           <div class="proj-footer">
             <span class="proj-value">ZMW 300,025</span>
-            <div class="proj-tags">
-              <span class="proj-tag">2025</span>
-              <span class="proj-tag role">Fencing Contractor</span>
-            </div>
+            <div class="proj-tags"><span class="proj-tag">2025</span><span class="proj-tag role">Fencing Contractor</span></div>
           </div>
         </div>
       </div>
 
       <!-- 6. Dr Nsokolo -->
       <div class="proj-card" data-sector="residential" onclick="openLightbox('images/balustrade1.jpg.jpeg')">
-        <img src="images/balustrade1.jpg.jpeg" alt="Dr Nsokolo Residence Glass Balustrades" loading="lazy" style="width:100%; height:220px; object-fit:cover;">
+        <img src="images/balustrade1.jpg.jpeg" alt="Dr Nsokolo Residence Glass Balustrades" loading="lazy" style="width:100%;height:220px;object-fit:cover;">
         <div class="proj-card-body">
           <div class="proj-sector">Residential</div>
-          <h3>Dr. Nsokolo Residence — Glass Balustrades &amp; Marble Flooring, Lusaka</h3>
+          <h3>Dr. Nsokolo Residence &mdash; Glass Balustrades &amp; Marble Flooring, Lusaka</h3>
           <p class="proj-client">Dr. Nsokolo</p>
           <p class="proj-desc">Supply and installation of glass handrailing and balustrades for balcony and staircase, plus marble flooring for staircase and landing.</p>
           <div class="proj-gallery">
-            <img src="images/balustrade1.jpg.jpeg" onclick="event.stopPropagation(); openLightbox('images/balustrade1.jpg.jpeg')" alt="Balcony glass balustrade night">
-            <img src="images/balustrade2.jpg.jpeg" onclick="event.stopPropagation(); openLightbox('images/balustrade2.jpg.jpeg')" alt="Stainless steel stair railing">
-            <img src="images/balustrade3.jpg.jpeg" onclick="event.stopPropagation(); openLightbox('images/balustrade3.jpg.jpeg')" alt="Balcony railing night">
-            <img src="images/balustrade4.jpg.jpeg" onclick="event.stopPropagation(); openLightbox('images/balustrade4.jpg.jpeg')" alt="Glass panels close up">
-            <img src="images/balustrade5.jpg.jpeg" onclick="event.stopPropagation(); openLightbox('images/balustrade5.jpg.jpeg')" alt="LED staircase">
+            <img src="images/balustrade1.jpg.jpeg" onclick="event.stopPropagation();openLightbox('images/balustrade1.jpg.jpeg')" alt="Balustrade 1">
+            <img src="images/balustrade2.jpg.jpeg" onclick="event.stopPropagation();openLightbox('images/balustrade2.jpg.jpeg')" alt="Balustrade 2">
+            <img src="images/balustrade3.jpg.jpeg" onclick="event.stopPropagation();openLightbox('images/balustrade3.jpg.jpeg')" alt="Balustrade 3">
+            <img src="images/balustrade4.jpg.jpeg" onclick="event.stopPropagation();openLightbox('images/balustrade4.jpg.jpeg')" alt="Balustrade 4">
+            <img src="images/balustrade5.jpg.jpeg" onclick="event.stopPropagation();openLightbox('images/balustrade5.jpg.jpeg')" alt="Balustrade 5">
           </div>
           <div class="proj-footer">
             <span class="proj-value">ZMW 177,580</span>
-            <div class="proj-tags">
-              <span class="proj-tag">2025</span>
-              <span class="proj-tag role">Contractor</span>
-            </div>
+            <div class="proj-tags"><span class="proj-tag">2025</span><span class="proj-tag role">Contractor</span></div>
           </div>
         </div>
       </div>
 
       <!-- 7. New Kasama Residence -->
-      <div class="proj-card" data-sector="residential" onclick="openLightbox('images/balustrade7.jpg.jpeg')">
-        <img src="images/balustrade9.jpg.jpeg" alt="New Kasama Residence Glass Balustrades" loading="lazy" style="width:100%; height:220px; object-fit:cover;">
+      <div class="proj-card" data-sector="residential" onclick="openLightbox('images/balustrade9.jpg.jpeg')">
+        <img src="images/balustrade9.jpg.jpeg" alt="New Kasama Residence Glass Balustrades" loading="lazy" style="width:100%;height:220px;object-fit:cover;">
         <div class="proj-card-body">
           <div class="proj-sector">Residential</div>
-          <h3>Private Residence — Glass Balustrades &amp; Staircase, New Kasama, Lusaka</h3>
+          <h3>Private Residence &mdash; Glass Balustrades &amp; Staircase, New Kasama, Lusaka</h3>
           <p class="proj-client">Private Client</p>
           <p class="proj-desc">Supply and installation of premium glass balustrades and stainless steel handrailing for balcony, staircase and landing at a high-end residential property in New Kasama.</p>
           <div class="proj-gallery">
-            <img src="images/balustrade6.jpg.jpeg" onclick="event.stopPropagation(); openLightbox('images/balustrade6.jpg.jpeg')" alt="Staircase glass balustrade">
-            <img src="images/balustrade7.jpg.jpeg" onclick="event.stopPropagation(); openLightbox('images/balustrade7.jpg.jpeg')" alt="LED staircase">
-            <img src="images/balustrade8.jpg.jpeg" onclick="event.stopPropagation(); openLightbox('images/balustrade8.jpg.jpeg')" alt="Staircase overhead view">
-            <img src="images/balustrade9.jpg.jpeg" onclick="event.stopPropagation(); openLightbox('images/balustrade9.jpg.jpeg')" alt="Night exterior balcony">
+            <img src="images/balustrade6.jpg.jpeg" onclick="event.stopPropagation();openLightbox('images/balustrade6.jpg.jpeg')" alt="New Kasama 1">
+            <img src="images/balustrade7.jpg.jpeg" onclick="event.stopPropagation();openLightbox('images/balustrade7.jpg.jpeg')" alt="New Kasama 2">
+            <img src="images/balustrade8.jpg.jpeg" onclick="event.stopPropagation();openLightbox('images/balustrade8.jpg.jpeg')" alt="New Kasama 3">
+            <img src="images/balustrade9.jpg.jpeg" onclick="event.stopPropagation();openLightbox('images/balustrade9.jpg.jpeg')" alt="New Kasama 4">
           </div>
           <div class="proj-footer">
             <span class="proj-value">Confidential</span>
-            <div class="proj-tags">
-              <span class="proj-tag">2025</span>
-              <span class="proj-tag role">Contractor</span>
-            </div>
+            <div class="proj-tags"><span class="proj-tag">2025</span><span class="proj-tag role">Contractor</span></div>
           </div>
         </div>
       </div>
 
       <!-- 8. Zambian Breweries -->
-      <div class="proj-card" data-sector="industrial" onclick="openLightbox('images/fencing.JPG')">
+      <div class="proj-card" data-sector="industrial" onclick="openLightbox('images/ZB1.jpeg')">
+        <img src="images/ZB1.jpeg" alt="Zambian Breweries Perimeter Fencing Lusaka" loading="lazy" style="width:100%;height:220px;object-fit:cover;">
         <div class="proj-card-body">
           <div class="proj-sector">Industrial</div>
-          <h3>Zambian Breweries HQ — Perimeter Fencing, Lusaka</h3>
+          <h3>Zambian Breweries HQ &mdash; Perimeter Fencing, Lusaka</h3>
           <p class="proj-client">Shamrock Ltd / Zambian Breweries</p>
           <p class="proj-desc">64m clear-view fencing and gates for Zambian Breweries' main production facility, Lusaka Industrial Area. Duration: 10 days.</p>
+          <div class="proj-gallery">
+            <img src="images/ZB1.jpeg" onclick="event.stopPropagation();openLightbox('images/ZB1.jpeg')" alt="ZB 1">
+            <img src="images/ZB2.jpeg" onclick="event.stopPropagation();openLightbox('images/ZB2.jpeg')" alt="ZB 2">
+            <img src="images/ZB3.jpeg" onclick="event.stopPropagation();openLightbox('images/ZB3.jpeg')" alt="ZB 3">
+            <img src="images/ZB4.jpeg" onclick="event.stopPropagation();openLightbox('images/ZB4.jpeg')" alt="ZB 4">
+            <img src="images/ZB5.jpeg" onclick="event.stopPropagation();openLightbox('images/ZB5.jpeg')" alt="ZB 5">
+            <img src="images/ZB6.jpeg" onclick="event.stopPropagation();openLightbox('images/ZB6.jpeg')" alt="ZB 6">
+            <img src="images/ZB7.jpeg" onclick="event.stopPropagation();openLightbox('images/ZB7.jpeg')" alt="ZB 7">
+          </div>
           <div class="proj-footer">
             <span class="proj-value">ZMW 85,900</span>
-            <div class="proj-tags">
-              <span class="proj-tag">2024</span>
-              <span class="proj-tag role">Fencing Sub-Contractor</span>
-            </div>
+            <div class="proj-tags"><span class="proj-tag">2024</span><span class="proj-tag role">Fencing Sub-Contractor</span></div>
           </div>
         </div>
       </div>
 
-      <!-- 9. Simon Mwansa Airport -->
-      <div class="proj-card" data-sector="government" onclick="openLightbox('images/warehouse.JPG')">
+      <!-- 9. Simon Mwansa Airport / ZEGA -->
+      <div class="proj-card" data-sector="government" onclick="openLightbox('images/Zega1.jpg')">
+        <img src="images/Zega1.jpg" alt="Simon Mwansa Kapwepwe Airport ZEGA Fencing" loading="lazy" style="width:100%;height:220px;object-fit:cover;">
         <div class="proj-card-body">
-          <div class="proj-sector">Government · Aviation</div>
+          <div class="proj-sector">Government &middot; Aviation</div>
           <h3>Simon Mwansa Kapwepwe International Airport, Ndola</h3>
           <p class="proj-client">Nsachi Engineering / ZEGA Ltd</p>
           <p class="proj-desc">Supply and installation of 135m clear-view fencing and gates for the ZEGA warehouse partition at Ndola International Airport. Duration: 15 days.</p>
+          <div class="proj-gallery">
+            <img src="images/Zega1.jpg" onclick="event.stopPropagation();openLightbox('images/Zega1.jpg')" alt="Zega 1">
+            <img src="images/Zega2.jpg" onclick="event.stopPropagation();openLightbox('images/Zega2.jpg')" alt="Zega 2">
+            <img src="images/Zega3.jpg" onclick="event.stopPropagation();openLightbox('images/Zega3.jpg')" alt="Zega 3">
+            <img src="images/Zega4.jpg" onclick="event.stopPropagation();openLightbox('images/Zega4.jpg')" alt="Zega 4">
+            <img src="images/Zega5.jpg" onclick="event.stopPropagation();openLightbox('images/Zega5.jpg')" alt="Zega 5">
+            <img src="images/Zega6.jpg" onclick="event.stopPropagation();openLightbox('images/Zega6.jpg')" alt="Zega 6">
+            <img src="images/Zega7.jpg" onclick="event.stopPropagation();openLightbox('images/Zega7.jpg')" alt="Zega 7">
+          </div>
           <div class="proj-footer">
             <span class="proj-value">ZMW 160,799</span>
-            <div class="proj-tags">
-              <span class="proj-tag">2024</span>
-              <span class="proj-tag role">Fencing Sub-Contractor</span>
-            </div>
+            <div class="proj-tags"><span class="proj-tag">2024</span><span class="proj-tag role">Fencing Sub-Contractor</span></div>
           </div>
         </div>
       </div>
 
       <!-- 10. ISL Dog House -->
-      <div class="proj-card" data-sector="residential" onclick="openLightbox('images/steel.JPG')">
+      <div class="proj-card" data-sector="residential" onclick="openLightbox('images/Dog1.jpeg')">
+        <img src="images/Dog1.jpeg" alt="ISL Custom Steel Dog House Kabulonga" loading="lazy" style="width:100%;height:220px;object-fit:cover;">
         <div class="proj-card-body">
-          <div class="proj-sector">Residential · Custom Fabrication</div>
-          <h3>ISL Principal's Residence — Custom Steel Dog House, Kabulonga</h3>
+          <div class="proj-sector">Residential &middot; Custom Fabrication</div>
+          <h3>ISL Principal's Residence &mdash; Custom Steel Dog House, Kabulonga</h3>
           <p class="proj-client">Cre-Eight Projects Ltd</p>
           <p class="proj-desc">Custom fabrication of a 1.7m &times; 2m &times; 2m steel and timber dog house. Duration: 5 days.</p>
+          <div class="proj-gallery">
+            <img src="images/Dog1.jpeg" onclick="event.stopPropagation();openLightbox('images/Dog1.jpeg')" alt="Dog House 1">
+            <img src="images/Dog2.jpeg" onclick="event.stopPropagation();openLightbox('images/Dog2.jpeg')" alt="Dog House 2">
+            <img src="images/Dog3.jpeg" onclick="event.stopPropagation();openLightbox('images/Dog3.jpeg')" alt="Dog House 3">
+            <img src="images/Dog4.jpeg" onclick="event.stopPropagation();openLightbox('images/Dog4.jpeg')" alt="Dog House 4">
+          </div>
           <div class="proj-footer">
             <span class="proj-value">ZMW 21,950</span>
-            <div class="proj-tags">
-              <span class="proj-tag">2024</span>
-              <span class="proj-tag role">Fabrication</span>
-            </div>
+            <div class="proj-tags"><span class="proj-tag">2024</span><span class="proj-tag role">Fabrication</span></div>
           </div>
         </div>
       </div>
 
       <!-- 11. Mary Begg Clinic -->
-      <div class="proj-card" data-sector="residential" onclick="openLightbox('images/fencing.JPG')">
+      <div class="proj-card" data-sector="residential" onclick="openLightbox('images/mb1.jpg')">
+        <img src="images/mb1.jpg" alt="Mary Begg Clinic Fencing Woodlands Lusaka" loading="lazy" style="width:100%;height:220px;object-fit:cover;">
         <div class="proj-card-body">
-          <div class="proj-sector">Healthcare · Commercial</div>
-          <h3>Mary Begg Clinic — Fencing &amp; Gates, Woodlands, Lusaka</h3>
+          <div class="proj-sector">Healthcare &middot; Commercial</div>
+          <h3>Mary Begg Clinic &mdash; Fencing &amp; Gates, Woodlands, Lusaka</h3>
           <p class="proj-client">Mr. Simwaba</p>
           <p class="proj-desc">Supply and installation of clear-view fencing and 2 gates for Mary Begg Clinic, Woodlands, Lusaka. Duration: 12 days.</p>
+          <div class="proj-gallery">
+            <img src="images/mb1.jpg" onclick="event.stopPropagation();openLightbox('images/mb1.jpg')" alt="Mary Begg 1">
+            <img src="images/mb2.jpg" onclick="event.stopPropagation();openLightbox('images/mb2.jpg')" alt="Mary Begg 2">
+            <img src="images/mb3.jpg" onclick="event.stopPropagation();openLightbox('images/mb3.jpg')" alt="Mary Begg 3">
+            <img src="images/mb4.jpg" onclick="event.stopPropagation();openLightbox('images/mb4.jpg')" alt="Mary Begg 4">
+          </div>
           <div class="proj-footer">
             <span class="proj-value">ZMW 67,700</span>
-            <div class="proj-tags">
-              <span class="proj-tag">2023</span>
-              <span class="proj-tag role">Fencing Contractor</span>
-            </div>
+            <div class="proj-tags"><span class="proj-tag">2023</span><span class="proj-tag role">Fencing Contractor</span></div>
           </div>
         </div>
       </div>
 
       <!-- 12. ISL Internal Fencing -->
-      <div class="proj-card" data-sector="residential" onclick="openLightbox('images/fencing.JPG')">
+      <div class="proj-card" data-sector="residential" onclick="openLightbox('images/Islsc1.jpg')">
+        <img src="images/Islsc1.jpg" alt="ISL Internal Fencing School Lusaka" loading="lazy" style="width:100%;height:220px;object-fit:cover;">
         <div class="proj-card-body">
-          <div class="proj-sector">Residential · Commercial</div>
-          <h3>ISL Internal Fencing — 173m, Lusaka</h3>
+          <div class="proj-sector">Residential &middot; Commercial</div>
+          <h3>ISL Internal Fencing &mdash; 173m, Lusaka</h3>
           <p class="proj-client">Cre-Eight Projects Ltd</p>
           <p class="proj-desc">Supply and installation of 173m clear-view fencing and gates for ISL internal perimeter. Duration: 18 days.</p>
+          <div class="proj-gallery">
+            <img src="images/Islsc.jpg" onclick="event.stopPropagation();openLightbox('images/Islsc.jpg')" alt="ISL SC 1">
+            <img src="images/Islsc1.jpg" onclick="event.stopPropagation();openLightbox('images/Islsc1.jpg')" alt="ISL SC 2">
+            <img src="images/Islsc2.jpg" onclick="event.stopPropagation();openLightbox('images/Islsc2.jpg')" alt="ISL SC 3">
+            <img src="images/Islsc3.jpg" onclick="event.stopPropagation();openLightbox('images/Islsc3.jpg')" alt="ISL SC 4">
+            <img src="images/Islsc4.jpg" onclick="event.stopPropagation();openLightbox('images/Islsc4.jpg')" alt="ISL SC 5">
+            <img src="images/Islsc5.jpg" onclick="event.stopPropagation();openLightbox('images/Islsc5.jpg')" alt="ISL SC 6">
+          </div>
           <div class="proj-footer">
             <span class="proj-value">ZMW 205,073</span>
-            <div class="proj-tags">
-              <span class="proj-tag">2023</span>
-              <span class="proj-tag role">Fencing Sub-Contractor</span>
-            </div>
+            <div class="proj-tags"><span class="proj-tag">2023</span><span class="proj-tag role">Fencing Sub-Contractor</span></div>
           </div>
         </div>
       </div>
 
       <!-- 13. ZAMREN Head Office -->
-      <div class="proj-card" data-sector="industrial" onclick="openLightbox('images/fencing.JPG')">
+      <div class="proj-card" data-sector="industrial" onclick="openLightbox('images/Zamren1.jpg')">
+        <img src="images/Zamren1.jpg" alt="ZAMREN Head Office Perimeter Fencing Lusaka" loading="lazy" style="width:100%;height:220px;object-fit:cover;">
         <div class="proj-card-body">
-          <div class="proj-sector">Telecoms · Commercial</div>
-          <h3>ZAMREN Head Office — Perimeter Fencing, Lusaka</h3>
+          <div class="proj-sector">Telecoms &middot; Commercial</div>
+          <h3>ZAMREN Head Office &mdash; Perimeter Fencing, Lusaka</h3>
           <p class="proj-client">Timco Investments Ltd</p>
           <p class="proj-desc">160m clear-view fencing and gates for the ZAMREN Head Office perimeter, Lusaka. Duration: 18 days.</p>
+          <div class="proj-gallery">
+            <img src="images/Zamren1.jpg" onclick="event.stopPropagation();openLightbox('images/Zamren1.jpg')" alt="ZAMREN 1">
+            <img src="images/Zamren2.jpg" onclick="event.stopPropagation();openLightbox('images/Zamren2.jpg')" alt="ZAMREN 2">
+            <img src="images/Zamren3.jpg" onclick="event.stopPropagation();openLightbox('images/Zamren3.jpg')" alt="ZAMREN 3">
+            <img src="images/Zamren5.jpg" onclick="event.stopPropagation();openLightbox('images/Zamren5.jpg')" alt="ZAMREN 4">
+            <img src="images/Zamren6.jpg" onclick="event.stopPropagation();openLightbox('images/Zamren6.jpg')" alt="ZAMREN 5">
+            <img src="images/Zamren7.jpg" onclick="event.stopPropagation();openLightbox('images/Zamren7.jpg')" alt="ZAMREN 6">
+          </div>
           <div class="proj-footer">
             <span class="proj-value">ZMW 200,421</span>
-            <div class="proj-tags">
-              <span class="proj-tag">2023</span>
-              <span class="proj-tag role">Fencing Sub-Contractor</span>
-            </div>
+            <div class="proj-tags"><span class="proj-tag">2023</span><span class="proj-tag role">Fencing Sub-Contractor</span></div>
           </div>
         </div>
       </div>
 
       <!-- 14. ISL Flats Pool Fencing -->
-      <div class="proj-card" data-sector="residential" onclick="openLightbox('images/fencing.JPG')">
+      <div class="proj-card" data-sector="residential" onclick="openLightbox('images/Islpool1.jpg')">
+        <img src="images/Islpool1.jpg" alt="ISL Flats Pool Fencing Lusaka" loading="lazy" style="width:100%;height:220px;object-fit:cover;">
         <div class="proj-card-body">
           <div class="proj-sector">Residential</div>
-          <h3>ISL Flats — Pool Fencing, Lusaka</h3>
+          <h3>ISL Flats &mdash; Pool Fencing, Lusaka</h3>
           <p class="proj-client">Cre-Eight Projects Ltd</p>
           <p class="proj-desc">56m clear-view fencing and gates for the swimming pool perimeter at ISL residential flats. Duration: 7 days.</p>
+          <div class="proj-gallery">
+            <img src="images/Islpool1.jpg" onclick="event.stopPropagation();openLightbox('images/Islpool1.jpg')" alt="ISL Pool 1">
+            <img src="images/Islpool2.jpg" onclick="event.stopPropagation();openLightbox('images/Islpool2.jpg')" alt="ISL Pool 2">
+          </div>
           <div class="proj-footer">
             <span class="proj-value">ZMW 57,985</span>
-            <div class="proj-tags">
-              <span class="proj-tag">2023</span>
-              <span class="proj-tag role">Fencing Sub-Contractor</span>
-            </div>
+            <div class="proj-tags"><span class="proj-tag">2023</span><span class="proj-tag role">Fencing Sub-Contractor</span></div>
           </div>
         </div>
       </div>
@@ -900,7 +675,6 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
 <section class="testimonials">
   <div class="container">
     <div class="section-label">What Clients Say</div>
@@ -908,7 +682,7 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
     <div class="testi-grid">
       <div class="testi-card">
         <p class="testi-quote">"Based on Bolide Infrastructure Solutions Limited's exceptional performance, I have no reservation in recommending them for the supply, delivery and installation of clear view fencing, gates and general construction works."</p>
-        <div class="testi-author">Wonder Chinda <span style="color:#aaa; font-size:13px; font-weight:400;">&#x271D; Rest in Peace</span></div>
+        <div class="testi-author">Wonder Chinda <span style="color:#aaa;font-size:13px;font-weight:400;">&#x271D; Rest in Peace</span></div>
         <div class="testi-company">Director, Cre-Eight Projects Ltd</div>
       </div>
       <div class="testi-card">
@@ -919,30 +693,24 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
       <div class="testi-card">
         <p class="testi-quote">"This is to certify that Bolide Infrastructure Solutions Limited successfully completed the supply and installation of the security fence at Nakonde One Stop Border Post in accordance with the agreed specifications. The works were completed to a satisfactory standard and handed over in good condition."</p>
         <div class="testi-author">Killian Bboloka, Site Engineer</div>
-        <div class="testi-company">Trademark Africa · Ministry of Finance &amp; National Planning</div>
+        <div class="testi-company">Trademark Africa &middot; Ministry of Finance &amp; National Planning</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- DOWNLOADS -->
 <section id="downloads">
   <div class="container">
     <div class="section-label">Documents</div>
     <h2>Downloads</h2>
-    <p style="color:#666; margin-bottom:24px; font-size:16px;">Download our official company documents for tender submissions and prequalification requirements.</p>
+    <p style="color:#666;margin-bottom:24px;font-size:16px;">Download our official company documents for tender submissions and prequalification requirements.</p>
     <div class="downloads-grid">
-      <a href="Bolide_Infrastructure_Capability_Statement.pdf" target="_blank" class="download-btn">
-        <span>&#128196;</span> Capability Statement
-      </a>
-      <a href="Bolide-Company-Profile.pdf" target="_blank" class="download-btn">
-        <span>&#128203;</span> Company Profile
-      </a>
+      <a href="Bolide_Infrastructure_Capability_Statement.pdf" target="_blank" class="download-btn"><span>&#128196;</span> Capability Statement</a>
+      <a href="Bolide-Company-Profile.pdf" target="_blank" class="download-btn"><span>&#128203;</span> Company Profile</a>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact" class="contact">
   <div class="container">
     <div class="section-label">Get In Touch</div>
@@ -952,34 +720,21 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
         <h3>Reach Us Directly</h3>
         <div class="contact-item">
           <div class="contact-item-icon">&#128222;</div>
-          <div class="contact-item-text">
-            <strong>Phone / WhatsApp</strong>
-            <a href="tel:+260966855207">+260 966 855 207</a>
-          </div>
+          <div class="contact-item-text"><strong>Phone / WhatsApp</strong><a href="tel:+260966855207">+260 966 855 207</a></div>
         </div>
         <div class="contact-item">
-          <div class="contact-item-icon">&#9993;&#65039;</div>
-          <div class="contact-item-text">
-            <strong>Email</strong>
-            <a href="mailto:info@bolideinfrastructure.com">info@bolideinfrastructure.com</a>
-          </div>
+          <div class="contact-item-icon">&#9993;</div>
+          <div class="contact-item-text"><strong>Email</strong><a href="mailto:info@bolideinfrastructure.com">info@bolideinfrastructure.com</a></div>
         </div>
         <div class="contact-item">
           <div class="contact-item-icon">&#128205;</div>
-          <div class="contact-item-text">
-            <strong>Location</strong>
-            <span>Lusaka, Zambia</span>
-          </div>
+          <div class="contact-item-text"><strong>Location</strong><span>Lusaka, Zambia</span></div>
         </div>
         <div class="contact-item">
           <div class="contact-item-icon">&#128336;</div>
-          <div class="contact-item-text">
-            <strong>Response Time</strong>
-            <span>Within 24 hours</span>
-          </div>
+          <div class="contact-item-text"><strong>Response Time</strong><span>Within 24 hours</span></div>
         </div>
       </div>
-
       <div class="contact-form">
         <h3>Send an Enquiry</h3>
         <form action="https://api.web3forms.com/submit" method="POST">
@@ -1008,7 +763,6 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
@@ -1037,12 +791,8 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
   </div>
 </footer>
 
-<!-- WHATSAPP -->
-<a class="whatsapp" href="https://wa.me/260966855207" target="_blank">
-  <span>&#128172;</span> WhatsApp Us
-</a>
+<a class="whatsapp" href="https://wa.me/260966855207" target="_blank"><span>&#128172;</span> WhatsApp Us</a>
 
-<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <span class="lightbox-close">&times;</span>
   <img id="lightbox-img" alt="Project photo">
@@ -1050,28 +800,23 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
 
 <script>
 function openLightbox(src){
-  document.getElementById('lightbox-img').src = src;
-  document.getElementById('lightbox').style.display = 'flex';
-  document.body.style.overflow = 'hidden';
+  document.getElementById('lightbox-img').src=src;
+  document.getElementById('lightbox').style.display='flex';
+  document.body.style.overflow='hidden';
 }
 function closeLightbox(){
-  document.getElementById('lightbox').style.display = 'none';
-  document.body.style.overflow = '';
+  document.getElementById('lightbox').style.display='none';
+  document.body.style.overflow='';
 }
-document.addEventListener('keydown', function(e){
-  if(e.key === 'Escape') closeLightbox();
-});
-function toggleMenu(){
-  document.getElementById('mobileMenu').classList.toggle('open');
-}
-function filterProjects(sector, btn){
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+function filterProjects(sector,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  document.querySelectorAll('.proj-card').forEach(card => {
-    card.style.display = (sector === 'all' || card.dataset.sector === sector) ? 'block' : 'none';
+  document.querySelectorAll('.proj-card').forEach(card=>{
+    card.style.display=(sector==='all'||card.dataset.sector===sector)?'block':'none';
   });
 }
 </script>
-
 </body>
 </html>
