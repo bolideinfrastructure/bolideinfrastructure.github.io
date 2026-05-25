@@ -3,360 +3,985 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Bolide Infrastructure Solutions Limited | Construction & Steel Infrastructure Zambia</title>
 
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8J5SPG2P55">
-</script>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8J5SPG2P55"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-8J5SPG2P55');
 </script>
-  
-<meta name="description" content="Bolide Infrastructure Solutions Limited is a Zambian-owned construction company delivering steel fabrication, fencing, industrial and civil infrastructure projects across Zambia.">
-<meta name="keywords" content="Bolide Infrastructure, Construction Zambia, Steel Fabrication, Fencing, Civil Works, Industrial Infrastructure">
+
+<!-- SEO -->
+<meta name="description" content="Bolide Infrastructure Solutions Limited — Zambian-owned construction company delivering structural steel fabrication, perimeter security fencing, civil works and industrial infrastructure across Zambia. NCC Grade 5 registered. BestFence accredited.">
+<meta name="keywords" content="construction company Zambia, steel fabrication Lusaka, fencing contractor Zambia, clear view fencing Zambia, civil works Lusaka, structural steel Zambia, NCC registered contractor, Bolide Infrastructure">
 <meta name="author" content="Bolide Infrastructure Solutions Limited">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Bolide Infrastructure Solutions Limited">
+<meta property="og:description" content="Zambian-owned construction company delivering steel fabrication, fencing and civil infrastructure across Zambia.">
+<meta property="og:image" content="https://bolideinfrastructure.com/images/logo.png">
+<meta property="og:url" content="https://bolideinfrastructure.com">
+<meta property="og:type" content="website">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --primary:#f05a28;
-  --dark:#111;
-  --light:#f9f9f9;
+  --primary: #f05a28;
+  --primary-dark: #c94818;
+  --navy: #0d1b2a;
+  --dark: #111;
+  --mid: #555;
+  --light: #f7f7f7;
+  --white: #fff;
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body: 'Barlow', sans-serif;
 }
 
-* { box-sizing:border-box; margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; }
-body { background:#fff; color:#222; line-height:1.6; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: #fff; color: #222; line-height: 1.7; }
 
 /* HEADER */
 header {
-  position:sticky; top:0; z-index:1000;
-  background:#fff;
-  border-bottom:3px solid var(--primary);
+  position: sticky; top: 0; z-index: 1000;
+  background: rgba(255,255,255,0.97);
+  border-bottom: 3px solid var(--primary);
+  backdrop-filter: blur(6px);
 }
 .nav {
-  max-width:1200px; margin:auto;
-  display:flex; justify-content:space-between; align-items:center;
-  padding:12px 20px;
+  max-width: 1200px; margin: auto;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 24px;
 }
-.nav img { height:45px; }
-.nav a {
-  margin-left:20px;
-  text-decoration:none;
-  color:#000;
-  font-weight:600;
+.nav img { height: 44px; }
+.nav-links { display: flex; align-items: center; gap: 8px; }
+.nav-links a {
+  padding: 8px 14px; text-decoration: none; color: #111;
+  font-family: var(--font-display); font-weight: 600; font-size: 15px;
+  letter-spacing: 0.3px; border-radius: 4px;
+  transition: color 0.2s, background 0.2s;
 }
-.nav a:hover { color:var(--primary); }
+.nav-links a:hover { color: var(--primary); background: #fff4f0; }
+.nav-links .cta-nav { background: var(--primary); color: #fff; padding: 8px 18px; }
+.nav-links .cta-nav:hover { background: var(--primary-dark); color: #fff; }
+
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+.hamburger span { width: 24px; height: 2px; background: #111; border-radius: 2px; }
+.mobile-menu {
+  display: none; flex-direction: column;
+  background: #fff; padding: 16px 24px 20px;
+  border-top: 1px solid #eee;
+}
+.mobile-menu a {
+  padding: 12px 0; text-decoration: none; color: #111;
+  font-family: var(--font-display); font-weight: 600; font-size: 17px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.mobile-menu a:last-child { border-bottom: none; }
+.mobile-menu.open { display: flex; }
 
 /* HERO */
 .hero {
-  background:url('images/clearview.JPG') center/cover no-repeat;
-  position:relative;
+  background: url('images/clearview.JPG') center/cover no-repeat;
+  position: relative; min-height: 92vh;
+  display: flex; align-items: center;
 }
-
 .hero::after {
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.25);
-  z-index:1;
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(13,27,42,0.85) 0%, rgba(13,27,42,0.55) 60%, rgba(240,90,40,0.15) 100%);
 }
-
 .hero-content {
-  position:relative;
-  z-index:2;
-  max-width:1200px;
-  margin:auto;
-  padding:120px 20px;
+  position: relative; z-index: 2;
+  max-width: 1200px; margin: auto; padding: 80px 24px;
 }
-
+.hero-tag {
+  display: inline-block; background: var(--primary); color: #fff;
+  font-family: var(--font-display); font-size: 13px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 2px; margin-bottom: 20px;
+}
 .hero-content h1 {
-  color:#ff6a00;
-  opacity:1 !important;
-  filter:none !important;
-  text-shadow:0 2px 6px rgba(0,0,0,0.35);
+  font-family: var(--font-display); font-size: clamp(42px, 7vw, 80px);
+  font-weight: 800; color: #fff; line-height: 1.05;
+  letter-spacing: -1px; max-width: 750px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.3); margin-bottom: 20px;
+}
+.hero-content h1 span { color: var(--primary); }
+.hero-sub {
+  color: rgba(255,255,255,0.88); font-size: 18px;
+  max-width: 560px; margin-bottom: 36px;
+}
+.hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn {
+  display: inline-block; text-decoration: none;
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 16px; letter-spacing: 0.5px;
+  padding: 14px 28px; border-radius: 4px; transition: all 0.2s;
+}
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+.btn-outline { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.6); }
+.btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+
+/* STATS BAR */
+.stats-bar { background: var(--navy); padding: 28px 24px; }
+.stats-inner {
+  max-width: 1200px; margin: auto;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 20px; text-align: center;
+}
+.stat-num {
+  font-family: var(--font-display); font-size: 42px;
+  font-weight: 800; color: var(--primary); line-height: 1;
+}
+.stat-label {
+  font-size: 12px; color: rgba(255,255,255,0.6);
+  letter-spacing: 1.5px; text-transform: uppercase; margin-top: 4px;
 }
 
-.hero-content p {
-  color:#ffffff;
-  opacity:1 !important;
+/* CLIENTS */
+.clients { background: #f7f7f7; padding: 36px 24px; border-bottom: 1px solid #eee; }
+.clients-inner { max-width: 1200px; margin: auto; }
+.clients-label {
+  text-align: center; font-family: var(--font-display); font-size: 12px;
+  letter-spacing: 2px; text-transform: uppercase; color: #999; margin-bottom: 22px;
 }
+.clients-grid {
+  display: flex; flex-wrap: wrap;
+  justify-content: center; align-items: center; gap: 10px 14px;
+}
+.client-badge {
+  background: #fff; border: 1px solid #e0e0e0; border-radius: 6px;
+  padding: 9px 18px; font-family: var(--font-display);
+  font-weight: 700; font-size: 13px; color: var(--navy);
+  white-space: nowrap; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.client-badge:hover { border-color: var(--primary); box-shadow: 0 2px 10px rgba(240,90,40,0.12); }
 
-
-/* SECTIONS */
-section { padding:80px 20px; }
-.container { max-width:1200px; margin:auto; }
-h2 { color:var(--primary); font-size:32px; margin-bottom:30px; }
+/* GENERAL */
+section { padding: 80px 24px; }
+.container { max-width: 1200px; margin: auto; }
+.section-label {
+  font-family: var(--font-display); font-size: 12px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase; color: var(--primary); margin-bottom: 10px;
+}
+h2 {
+  font-family: var(--font-display); font-size: clamp(30px, 4vw, 44px);
+  font-weight: 800; color: var(--navy); letter-spacing: -0.5px;
+  line-height: 1.1; margin-bottom: 20px;
+}
 
 /* ABOUT */
-.about p { max-width:900px; margin-bottom:18px; }
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 60px; align-items: center;
+}
+.about-text p { color: var(--mid); margin-bottom: 16px; font-size: 16px; }
+.about-creds { display: flex; flex-direction: column; gap: 12px; margin-top: 28px; }
+.cred-item {
+  display: flex; align-items: center; gap: 12px;
+  background: #fff4f0; border-left: 4px solid var(--primary);
+  padding: 12px 16px; border-radius: 0 6px 6px 0;
+}
+.cred-icon { font-size: 20px; }
+.cred-text { font-family: var(--font-display); font-weight: 600; font-size: 15px; color: var(--navy); }
+.about-image img { width: 100%; border-radius: 8px; object-fit: cover; height: 440px; }
 
-/* PROJECT GRID */
-.grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:30px;
+/* SERVICES */
+.services { background: var(--light); }
+.services-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px; margin-top: 10px;
 }
-.card {
-  background:#fff;
-  border-radius:12px;
-  overflow:hidden;
-  box-shadow:0 10px 25px rgba(0,0,0,0.08);
-  border-left:6px solid var(--primary);
-  cursor:pointer;
+.service-card {
+  background: #fff; border-radius: 8px; overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  transition: transform 0.25s, box-shadow 0.25s;
+  border-top: 4px solid var(--primary);
 }
-.card img {
-  width:100%;
-  height:200px;
-  object-fit:cover;
+.service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.12); }
+.service-card img { width: 100%; height: 180px; object-fit: cover; }
+.service-content { padding: 20px; }
+.service-content h3 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 20px; color: var(--navy); margin-bottom: 8px;
 }
-.card-content { padding:20px; }
-.card h3 { margin-bottom:10px; }
-.card p { font-size:14px; }
+.service-content p { font-size: 14px; color: var(--mid); }
 
-/* LIGHTBOX */
-.lightbox {
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.9);
-  justify-content:center;
-  align-items:center;
-  z-index:2000;
+/* PROJECTS */
+.projects-section { background: var(--light); }
+.projects-intro { color: var(--mid); margin-bottom: 32px; font-size: 16px; max-width: 700px; }
+
+.filter-bar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+.filter-btn {
+  padding: 8px 18px; border-radius: 20px; border: 2px solid #ddd;
+  background: #fff; font-family: var(--font-display); font-weight: 600;
+  font-size: 14px; cursor: pointer; color: #555; transition: all 0.2s;
 }
-.lightbox img {
-  max-width:90%;
-  max-height:90%;
+.filter-btn:hover, .filter-btn.active {
+  background: var(--primary); color: #fff; border-color: var(--primary);
 }
+
+.proj-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+.proj-card {
+  background: #fff; border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  overflow: hidden; transition: transform 0.2s, box-shadow 0.2s;
+  border-top: 4px solid var(--primary); cursor: pointer;
+}
+.proj-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(0,0,0,0.13); }
+.proj-card-body { padding: 20px 22px 22px; }
+.proj-sector {
+  font-family: var(--font-display); font-size: 11px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--primary); margin-bottom: 4px;
+}
+.proj-card h3 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 18px; color: var(--navy); margin-bottom: 6px; line-height: 1.2;
+}
+.proj-client { font-size: 13px; color: #777; margin-bottom: 10px; }
+.proj-desc { font-size: 14px; color: var(--mid); margin-bottom: 14px; line-height: 1.5; }
+.proj-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 8px; padding-top: 12px;
+  border-top: 1px solid #f0f0f0;
+}
+.proj-value {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 16px; color: var(--navy);
+}
+.proj-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.proj-tag {
+  font-size: 11px; font-weight: 600; padding: 3px 10px;
+  border-radius: 20px; background: #f0f0f0; color: #555;
+}
+.proj-tag.role { background: #fff4f0; color: var(--primary); }
+
+/* TESTIMONIALS */
+.testimonials { background: var(--navy); }
+.testimonials h2 { color: #fff; }
+.testimonials .section-label { color: var(--primary); }
+.testi-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px; margin-top: 10px;
+}
+.testi-card {
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px; padding: 28px; border-left: 4px solid var(--primary);
+}
+.testi-quote {
+  font-size: 15px; color: rgba(255,255,255,0.82);
+  font-style: italic; line-height: 1.7; margin-bottom: 20px;
+}
+.testi-author { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: #fff; }
+.testi-company { font-size: 13px; color: var(--primary); margin-top: 2px; }
 
 /* DOWNLOADS */
-.downloads a {
-  display:inline-block;
-  margin:10px 15px 0 0;
-  padding:14px 20px;
-  background:var(--primary);
-  color:#fff;
-  border-radius:8px;
-  text-decoration:none;
-  font-weight:bold;
+.downloads-grid { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 10px; }
+.download-btn {
+  display: flex; align-items: center; gap: 10px;
+  padding: 16px 24px; background: var(--primary); color: #fff;
+  border-radius: 6px; text-decoration: none;
+  font-family: var(--font-display); font-weight: 700; font-size: 16px;
+  transition: background 0.2s, transform 0.2s;
 }
+.download-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
 
 /* CONTACT */
+.contact { background: var(--light); }
 .contact-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:40px;
+  display: grid; grid-template-columns: 1fr 1.4fr;
+  gap: 50px; align-items: start;
 }
-.contact form input,
-.contact form textarea {
-  width:100%;
-  padding:12px;
-  margin-bottom:15px;
-  border-radius:6px;
-  border:1px solid #ccc;
+.contact-info h3 {
+  font-family: var(--font-display); font-size: 22px;
+  font-weight: 700; color: var(--navy); margin-bottom: 20px;
 }
-.contact form button {
-  background:var(--primary);
-  color:#fff;
-  padding:14px;
-  border:none;
-  border-radius:6px;
-  font-weight:bold;
-  cursor:pointer;
+.contact-item { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 20px; }
+.contact-item-icon {
+  width: 42px; height: 42px; background: #fff4f0; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; flex-shrink: 0;
 }
-.contact form button:hover { opacity:0.9; }
+.contact-item-text strong { display: block; font-size: 12px; color: #999; text-transform: uppercase; letter-spacing: 1px; }
+.contact-item-text a, .contact-item-text span {
+  font-size: 16px; color: var(--navy); font-weight: 500; text-decoration: none;
+}
+.contact-item-text a:hover { color: var(--primary); }
+.contact-form { background: #fff; border-radius: 8px; padding: 32px; box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+.contact-form h3 {
+  font-family: var(--font-display); font-size: 22px;
+  font-weight: 700; color: var(--navy); margin-bottom: 20px;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%; padding: 12px 14px;
+  border: 1.5px solid #ddd; border-radius: 6px;
+  font-family: var(--font-body); font-size: 15px;
+  margin-bottom: 14px; transition: border-color 0.2s; color: #222;
+}
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus { outline: none; border-color: var(--primary); }
+.contact-form button {
+  width: 100%; background: var(--primary); color: #fff; padding: 14px;
+  border: none; border-radius: 6px; font-family: var(--font-display);
+  font-weight: 700; font-size: 17px; cursor: pointer; transition: background 0.2s;
+}
+.contact-form button:hover { background: var(--primary-dark); }
 
 /* FOOTER */
-footer {
-  background:#111;
-  color:#ccc;
-  text-align:center;
-  padding:40px 20px;
+footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
+.footer-inner {
+  max-width: 1200px; margin: auto;
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 40px; margin-bottom: 40px;
 }
-footer img { height:60px; margin-bottom:15px; }
+.footer-brand img { height: 52px; margin-bottom: 14px; display: block; }
+.footer-brand p { font-size: 14px; color: #888; max-width: 280px; }
+.footer-col h4 {
+  font-family: var(--font-display); font-weight: 700; font-size: 13px;
+  letter-spacing: 1.5px; text-transform: uppercase; color: #fff; margin-bottom: 14px;
+}
+.footer-col a {
+  display: block; color: #888; text-decoration: none;
+  font-size: 14px; margin-bottom: 8px; transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--primary); }
+.footer-bottom {
+  max-width: 1200px; margin: auto; border-top: 1px solid #222;
+  padding-top: 24px; display: flex; justify-content: space-between;
+  align-items: center; flex-wrap: wrap; gap: 10px;
+}
+.footer-bottom p { font-size: 13px; color: #666; }
 
 /* WHATSAPP */
 .whatsapp {
-  position:fixed;
-  bottom:20px; right:20px;
-  background:#25d366;
-  color:#fff;
-  padding:14px 18px;
-  border-radius:50px;
-  font-weight:bold;
-  text-decoration:none;
-  z-index:3000;
+  position: fixed; bottom: 24px; right: 24px;
+  background: #25d366; color: #fff; padding: 14px 20px; border-radius: 50px;
+  font-family: var(--font-display); font-weight: 700; font-size: 15px;
+  text-decoration: none; z-index: 3000;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  display: flex; align-items: center; gap: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.whatsapp:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,0.5); }
+
+/* LIGHTBOX */
+.lightbox {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.92); justify-content: center;
+  align-items: center; z-index: 4000;
+}
+.lightbox img { max-width: 90%; max-height: 88vh; border-radius: 4px; }
+.lightbox-close {
+  position: absolute; top: 20px; right: 28px;
+  color: #fff; font-size: 40px; cursor: pointer; line-height: 1;
 }
 
-/* MOBILE */
-@media(max-width:768px){
-  .hero h1 { font-size:32px; }
-  .contact-grid { grid-template-columns:1fr; }
+/* RESPONSIVE */
+@media(max-width: 900px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .about-image img { height: 300px; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+}
+@media(max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero { min-height: 80vh; }
+}
+@media(max-width: 480px) {
+  .hero-buttons { flex-direction: column; }
+  .footer-bottom { flex-direction: column; text-align: center; }
 }
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
 <header>
   <div class="nav">
-    <img src="images/logo.png">
-    <div>
+    <img src="images/logo.png" alt="Bolide Infrastructure Solutions">
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
       <a href="#projects">Projects</a>
       <a href="#downloads">Downloads</a>
-      <a href="#contact">Contact</a>
+      <a href="#contact" class="cta-nav">Get a Quote</a>
+    </nav>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
     </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" onclick="toggleMenu()">About</a>
+    <a href="#services" onclick="toggleMenu()">Services</a>
+    <a href="#projects" onclick="toggleMenu()">Projects</a>
+    <a href="#downloads" onclick="toggleMenu()">Downloads</a>
+    <a href="#contact" onclick="toggleMenu()">Get a Quote</a>
   </div>
 </header>
 
+<!-- HERO -->
 <section class="hero">
   <div class="hero-content">
-    <h1>Bolide Infrastructure Solutions Limited</h1>
-    <p class="hero-line hero-line-1">
-  We Build Better Futures.
-</p>
-
-<p class="hero-line hero-line-2">
-  A Zambian-owned construction company delivering compliant, cost-effective solutions.
-</p>
-
-  </div>
-</section>
-
-<section class="about">
-  <div class="container">
-    <h2>About Us</h2>
-    <p>
-Bolide Infrastructure Solutions Limited (BIS) is a Zambian-owned and operated construction company delivering integrated infrastructure solutions across the country.
-We serve a diverse client base that includes government institutions, commercial and industrial organisations, as well as private and domestic clients.
-Our core capabilities span civil works, structural steel fabrication, perimeter security, industrial facilities, and general building works.
-We combine technical expertise with practical project delivery to ensure quality, compliance, and cost-effective outcomes.
-From large-scale infrastructure projects to domestic developments, we are committed to building durable solutions that support long-term growth.
-</p>
-    <p>Our operations are guided by strong safety culture, quality management systems, and efficient project execution.</p>
-  </div>
-</section>
-
-<section id="projects">
-  <div class="container">
-    <h2>Selected Project Experience</h2>
-    <div class="grid">
-
-      <div class="card" onclick="openLightbox('images/steel.JPG')">
-        <img src="images/steel.JPG" loading="lazy">
-        <div class="card-content">
-          <h3>Structural Steel Fabrication</h3>
-          <p>
-We provide end-to-end structural steel fabrication and erection services for industrial and commercial developments.
-Our scope includes detailing, fabrication, supply, and on-site erection of steel frameworks.
-Projects are executed in strict accordance with approved drawings and engineering specifications.
-We ensure quality control at every stage, from workshop fabrication to final installation.
-Our steel solutions deliver strength, durability, and long-term structural performance.
-</p>
-        </div>
-      </div>
-
-      <div class="card" onclick="openLightbox('images/fencing.JPG')">
-        <img src="images/fencing.JPG" loading="lazy">
-        <div class="card-content">
-          <h3>Perimeter Security & Fencing</h3>
-         <p>
-We deliver robust perimeter security solutions tailored for industrial, commercial, and institutional sites.
-Our works include clear-view fencing, razor wire systems, gates, and controlled access installations.
-Each installation is designed to enhance site security without compromising visibility.
-We use durable, low-maintenance materials suited for harsh operational environments.
-The result is improved access control and long-term site protection.
-</p>
-        </div>
-      </div>
-
-      <div class="card" onclick="openLightbox('images/warehouse.JPG')">
-        <img src="images/warehouse.JPG" loading="lazy">
-        <div class="card-content">
-          <h3>Industrial & Warehouse Infrastructure</h3>
-         <p>
-We construct functional industrial and warehouse facilities designed for operational efficiency.
-Our services cover both internal and external industrial works, including structural installations.
-Projects are executed with careful consideration of workflow, space utilisation, and safety.
-We work closely with clients to meet operational and logistical requirements.
-The outcome is secure, efficient, and scalable industrial infrastructure.
-</p>
-        </div>
-      </div>
-
-      <div class="card" onclick="openLightbox('images/mazabuka.JPG')">
-        <img src="images/mazabuka.JPG" loading="lazy">
-        <div class="card-content">
-          <h3>Civil & Road Infrastructure</h3>
-         <p>
-We deliver comprehensive civil and road infrastructure works for public and private sector clients.
-Our scope includes earthworks, foundations, drainage systems, and concrete works.
-Each project is executed in line with engineering designs and statutory requirements.
-We focus on durability, proper site preparation, and long-term performance.
-Our civil works support sustainable and reliable infrastructure development.
-</p>
-        </div>
-      </div>
-
+    <div class="hero-tag">NCC Registered · Grade 5 · Lusaka, Zambia</div>
+    <h1>We Build<br><span>Better Futures</span></h1>
+    <p class="hero-sub">Zambian-owned construction company delivering structural steel, perimeter security, civil works and industrial infrastructure — on time, on spec.</p>
+    <div class="hero-buttons">
+      <a href="#contact" class="btn btn-primary">Get a Quote</a>
+      <a href="#projects" class="btn btn-outline">View Our Work</a>
     </div>
   </div>
 </section>
 
-<section id="downloads" class="downloads">
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div>
+      <div class="stat-num">13+</div>
+      <div class="stat-label">Projects Delivered</div>
+    </div>
+    <div>
+      <div class="stat-num">2</div>
+      <div class="stat-label">Years Operating</div>
+    </div>
+    <div>
+      <div class="stat-num">ZMW 9M+</div>
+      <div class="stat-label">Contract Value</div>
+    </div>
+    <div>
+      <div class="stat-num">7+</div>
+      <div class="stat-label">Sectors Served</div>
+    </div>
+  </div>
+</div>
+
+<!-- CLIENTS STRIP -->
+<div class="clients">
+  <div class="clients-inner">
+    <p class="clients-label">Trusted by leading organisations across Zambia</p>
+    <div class="clients-grid">
+      <div class="client-badge">Trademark Africa</div>
+      <div class="client-badge">Ministry of Finance</div>
+      <div class="client-badge">Stefanutti Stocks</div>
+      <div class="client-badge">Zambian Breweries</div>
+      <div class="client-badge">Infratel Zambia</div>
+      <div class="client-badge">Lumwana Mine</div>
+      <div class="client-badge">Zambia Sugar</div>
+      <div class="client-badge">ZAMREN</div>
+      <div class="client-badge">Simon Mwansa Kapwepwe Airport</div>
+      <div class="client-badge">Bhuku Family Farm</div>
+      <div class="client-badge">Mary Begg Clinic</div>
+      <div class="client-badge">Cre-Eight Projects</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
   <div class="container">
-    <h2>Downloads</h2>
-    <a href="Bolide_Infrastructure_Capability_Statement.pdf" target="_blank">Capability Statement</a>
-    <a href="Bolide-Company-Profile.pdf" target="_blank">Company Profile</a>
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-label">About Bolide</div>
+        <h2>Built on Experience.<br>Driven by Results.</h2>
+        <p>Bolide Infrastructure Solutions Limited (BIS) is a Zambian-owned and operated construction company incorporated in November 2023, led by Hamachila Muzandu — a construction and logistics professional with over 12 years of industry experience spanning structural steel, project management, and infrastructure delivery.</p>
+        <p>In just over two years of operation, we have delivered projects for government institutions, multinational contractors, mining companies, commercial organisations and private clients — across Lusaka, the Copperbelt, Southern Province and beyond.</p>
+        <p>We combine technical capability with deep local knowledge and international-standard materials sourced and accredited through our suppliers in South Africa.</p>
+        <div class="about-creds">
+          <div class="cred-item">
+            <span class="cred-icon">🏗️</span>
+            <span class="cred-text">NCC Registered Contractor — Grade 5, Category C</span>
+          </div>
+          <div class="cred-item">
+            <span class="cred-icon">✅</span>
+            <span class="cred-text">BestFence Accredited Distributor & Installer</span>
+          </div>
+          <div class="cred-item">
+            <span class="cred-icon">🔩</span>
+            <span class="cred-text">NJR Steel Exports — Authorised Distributor for Zambia</span>
+          </div>
+          <div class="cred-item">
+            <span class="cred-icon">📋</span>
+            <span class="cred-text">PACRA Registered · Reg. No. 120230059016</span>
+          </div>
+        </div>
+      </div>
+      <div class="about-image">
+        <img src="images/warehouse.JPG" alt="Bolide Infrastructure construction site">
+      </div>
+    </div>
   </div>
 </section>
 
+<!-- SERVICES -->
+<section id="services" class="services">
+  <div class="container">
+    <div class="section-label">What We Do</div>
+    <h2>Our Core Services</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="images/steel.JPG" alt="Structural Steel" loading="lazy">
+        <div class="service-content">
+          <h3>Structural Steel Fabrication & Erection</h3>
+          <p>Design, fabrication, supply and on-site erection of steel frameworks for warehouses, industrial buildings and commercial developments.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <img src="images/fencing.JPG" alt="Perimeter Fencing" loading="lazy">
+        <div class="service-content">
+          <h3>Perimeter Security & Fencing</h3>
+          <p>Clear-view fencing, diamond mesh, game fencing, razor wire, gates and access control for industrial, commercial, agricultural and government sites.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <img src="images/warehouse.JPG" alt="Industrial Construction" loading="lazy">
+        <div class="service-content">
+          <h3>Industrial & Warehouse Infrastructure</h3>
+          <p>End-to-end construction of functional industrial and warehouse facilities, including internal partitioning and structural installations.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <img src="images/mazabuka.JPG" alt="Civil Works" loading="lazy">
+        <div class="service-content">
+          <h3>Civil & General Building Works</h3>
+          <p>Foundations, earthworks, concrete works, drainage, roofing, paving, interior finishes and general building for residential, commercial and agricultural clients.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="projects-section">
+  <div class="container">
+    <div class="section-label">Track Record</div>
+    <h2>Project Experience</h2>
+    <p class="projects-intro">13 completed projects since 2023 across government, mining, industrial, agricultural, healthcare and residential sectors.</p>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterProjects('all', this)">All</button>
+      <button class="filter-btn" onclick="filterProjects('government', this)">Government</button>
+      <button class="filter-btn" onclick="filterProjects('mining', this)">Mining</button>
+      <button class="filter-btn" onclick="filterProjects('industrial', this)">Industrial</button>
+      <button class="filter-btn" onclick="filterProjects('agricultural', this)">Agricultural</button>
+      <button class="filter-btn" onclick="filterProjects('residential', this)">Residential</button>
+    </div>
+
+    <div class="proj-grid" id="projGrid">
+
+      <!-- 1. Trademark Africa OSBP -->
+      <div class="proj-card" data-sector="government" onclick="openLightbox('images/clearview.JPG')">
+        <div class="proj-card-body">
+          <div class="proj-sector">Government · Border Infrastructure</div>
+          <h3>Nakonde OSBP — Zambia/Tanzania Border Security Fence</h3>
+          <p class="proj-client">Trademark Africa · Ministry of Finance & National Planning</p>
+          <p class="proj-desc">Supply and installation of 306m clear-view perimeter security fence at the Nakonde One Stop Border Post, Muchinga Province. Completed in 10 days.</p>
+          <div class="proj-footer">
+            <span class="proj-value">USD 30,000</span>
+            <div class="proj-tags">
+              <span class="proj-tag">2026</span>
+              <span class="proj-tag role">Main Contractor</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Bhuku Farm Mazabuka -->
+      <div class="proj-card" data-sector="agricultural" onclick="openLightbox('images/mazabuka.JPG')">
+        <div class="proj-card-body">
+          <div class="proj-sector">Agricultural</div>
+          <h3>Bhuku Family Farm — Operations Complex, Mazabuka</h3>
+          <p class="proj-client">Bhuku Family Farm</p>
+          <p class="proj-desc">Design, supply and build of farm storage, chemical storage, double-storey office block and vehicle implement area across 4 sections. Duration: 6 months.</p>
+          <div class="proj-footer">
+            <span class="proj-value">ZMW 1,990,645</span>
+            <div class="proj-tags">
+              <span class="proj-tag">2025–2026</span>
+              <span class="proj-tag role">Main Contractor</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Lumwana Mine -->
+      <div class="proj-card" data-sector="mining" onclick="openLightbox('images/fencing.JPG')">
+        <div class="proj-card-body">
+          <div class="proj-sector">Mining</div>
+          <h3>Lumwana Mine — Sports Court Fencing, North-Western Province</h3>
+          <p class="proj-client">Stefanutti Stocks</p>
+          <p class="proj-desc">4m high diamond fencing enclosure covering 174m for basketball and tennis courts at Lumwana Mine. Duration: 2 months.</p>
+          <div class="proj-footer">
+            <span class="proj-value">USD 13,525</span>
+            <div class="proj-tags">
+              <span class="proj-tag">2025</span>
+              <span class="proj-tag role">Fencing Sub-Contractor</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Zambia Sugar -->
+      <div class="proj-card" data-sector="industrial" onclick="openLightbox('images/fencing.JPG')">
+        <div class="proj-card-body">
+          <div class="proj-sector">Industrial · Agro-Processing</div>
+          <h3>Zambia Sugar — Site Office Fencing, Mazabuka</h3>
+          <p class="proj-client">Stefanutti Stocks</p>
+          <p class="proj-desc">2.4m high perimeter fencing covering 41m for the Zambia Sugar site office, Mazabuka. Completed in 7 days.</p>
+          <div class="proj-footer">
+            <span class="proj-value">ZMW 41,979</span>
+            <div class="proj-tags">
+              <span class="proj-tag">2025</span>
+              <span class="proj-tag role">Fencing Sub-Contractor</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Cheelo Farm Game Fencing -->
+      <div class="proj-card" data-sector="agricultural" onclick="openLightbox('images/fencing.JPG')">
+        <div class="proj-card-body">
+          <div class="proj-sector">Agricultural</div>
+          <h3>Cheelo Farm — Game Fencing 2,500m, Ndola</h3>
+          <p class="proj-client">Chipo Cheelo</p>
+          <p class="proj-desc">Supply and installation of 2,500m game fencing with one gate for a large farm in Ndola. Duration: 33 days.</p>
+          <div class="proj-footer">
+            <span class="proj-value">ZMW 300,025</span>
+            <div class="proj-tags">
+              <span class="proj-tag">2025</span>
+              <span class="proj-tag role">Fencing Contractor</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Dr Nsokolo -->
+      <div class="proj-card" data-sector="residential" onclick="openLightbox('images/steel.JPG')">
+        <div class="proj-card-body">
+          <div class="proj-sector">Residential</div>
+          <h3>Dr. Nsokolo Residence — Glass Balustrades & Marble Flooring, Lusaka</h3>
+          <p class="proj-client">Dr. Nsokolo</p>
+          <p class="proj-desc">Supply and installation of glass handrailing and balustrades for balcony and staircase, plus marble flooring for staircase and landing.</p>
+          <div class="proj-footer">
+            <span class="proj-value">ZMW 177,580</span>
+            <div class="proj-tags">
+              <span class="proj-tag">2025</span>
+              <span class="proj-tag role">Contractor</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Zambian Breweries -->
+      <div class="proj-card" data-sector="industrial" onclick="openLightbox('images/fencing.JPG')">
+        <div class="proj-card-body">
+          <div class="proj-sector">Industrial</div>
+          <h3>Zambian Breweries HQ — Perimeter Fencing, Lusaka</h3>
+          <p class="proj-client">Shamrock Ltd / Zambian Breweries</p>
+          <p class="proj-desc">64m clear-view fencing and gates for Zambian Breweries' main production facility, Lusaka Industrial Area. Duration: 10 days.</p>
+          <div class="proj-footer">
+            <span class="proj-value">ZMW 85,900</span>
+            <div class="proj-tags">
+              <span class="proj-tag">2024</span>
+              <span class="proj-tag role">Fencing Sub-Contractor</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Simon Mwansa Airport -->
+      <div class="proj-card" data-sector="government" onclick="openLightbox('images/warehouse.JPG')">
+        <div class="proj-card-body">
+          <div class="proj-sector">Government · Aviation</div>
+          <h3>Simon Mwansa Kapwepwe International Airport, Ndola</h3>
+          <p class="proj-client">Nsachi Engineering / ZEGA Ltd</p>
+          <p class="proj-desc">Supply and installation of 135m clear-view fencing and gates for the ZEGA warehouse partition at Ndola International Airport. Duration: 15 days.</p>
+          <div class="proj-footer">
+            <span class="proj-value">ZMW 160,799</span>
+            <div class="proj-tags">
+              <span class="proj-tag">2024</span>
+              <span class="proj-tag role">Fencing Sub-Contractor</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. ISL Dog House -->
+      <div class="proj-card" data-sector="residential" onclick="openLightbox('images/steel.JPG')">
+        <div class="proj-card-body">
+          <div class="proj-sector">Residential · Custom Fabrication</div>
+          <h3>ISL Principal's Residence — Custom Steel Dog House, Kabulonga</h3>
+          <p class="proj-client">Cre-Eight Projects Ltd</p>
+          <p class="proj-desc">Custom fabrication of a 1.7m × 2m × 2m steel and timber dog house. Duration: 5 days.</p>
+          <div class="proj-footer">
+            <span class="proj-value">ZMW 21,950</span>
+            <div class="proj-tags">
+              <span class="proj-tag">2024</span>
+              <span class="proj-tag role">Fabrication</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. Mary Begg Clinic -->
+      <div class="proj-card" data-sector="residential" onclick="openLightbox('images/fencing.JPG')">
+        <div class="proj-card-body">
+          <div class="proj-sector">Healthcare · Commercial</div>
+          <h3>Mary Begg Clinic — Fencing & Gates, Woodlands, Lusaka</h3>
+          <p class="proj-client">Mr. Simwaba</p>
+          <p class="proj-desc">Supply and installation of clear-view fencing and 2 gates for Mary Begg Clinic, Woodlands, Lusaka. Duration: 12 days.</p>
+          <div class="proj-footer">
+            <span class="proj-value">ZMW 67,700</span>
+            <div class="proj-tags">
+              <span class="proj-tag">2023</span>
+              <span class="proj-tag role">Fencing Contractor</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11. ISL Internal Fencing -->
+      <div class="proj-card" data-sector="residential" onclick="openLightbox('images/fencing.JPG')">
+        <div class="proj-card-body">
+          <div class="proj-sector">Residential · Commercial</div>
+          <h3>ISL Internal Fencing — 173m, Lusaka</h3>
+          <p class="proj-client">Cre-Eight Projects Ltd</p>
+          <p class="proj-desc">Supply and installation of 173m clear-view fencing and gates for ISL internal perimeter. Duration: 18 days.</p>
+          <div class="proj-footer">
+            <span class="proj-value">ZMW 205,073</span>
+            <div class="proj-tags">
+              <span class="proj-tag">2023</span>
+              <span class="proj-tag role">Fencing Sub-Contractor</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12. ZAMREN Head Office -->
+      <div class="proj-card" data-sector="industrial" onclick="openLightbox('images/fencing.JPG')">
+        <div class="proj-card-body">
+          <div class="proj-sector">Telecoms · Commercial</div>
+          <h3>ZAMREN Head Office — Perimeter Fencing, Lusaka</h3>
+          <p class="proj-client">Timco Investments Ltd</p>
+          <p class="proj-desc">160m clear-view fencing and gates for the ZAMREN Head Office perimeter, Lusaka. Duration: 18 days.</p>
+          <div class="proj-footer">
+            <span class="proj-value">ZMW 200,421</span>
+            <div class="proj-tags">
+              <span class="proj-tag">2023</span>
+              <span class="proj-tag role">Fencing Sub-Contractor</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 13. ISL Flats Pool Fencing -->
+      <div class="proj-card" data-sector="residential" onclick="openLightbox('images/fencing.JPG')">
+        <div class="proj-card-body">
+          <div class="proj-sector">Residential</div>
+          <h3>ISL Flats — Pool Fencing, Lusaka</h3>
+          <p class="proj-client">Cre-Eight Projects Ltd</p>
+          <p class="proj-desc">56m clear-view fencing and gates for the swimming pool perimeter at ISL residential flats. Duration: 7 days.</p>
+          <div class="proj-footer">
+            <span class="proj-value">ZMW 57,985</span>
+            <div class="proj-tags">
+              <span class="proj-tag">2023</span>
+              <span class="proj-tag role">Fencing Sub-Contractor</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end proj-grid -->
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <div class="section-label">What Clients Say</div>
+    <h2>Recommended by Industry Leaders</h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <p class="testi-quote">"Based on Bolide Infrastructure Solutions Limited's exceptional performance, I have no reservation in recommending them for the supply, delivery and installation of clear view fencing, gates and general construction works."</p>
+        <div class="testi-author">Wonder Chinda</div>
+        <div class="testi-company">Director, Cre-Eight Projects Ltd</div>
+      </div>
+      <div class="testi-card">
+        <p class="testi-quote">"Dale Steel Infrastructure sub-contracted Bolide to supply and install clear view fencing for five Infratel mast sites and roof top cladding steel for Park Inn Hotel. Based on their exceptional performance, I have no reservation in recommending them."</p>
+        <div class="testi-author">Hamuzala Muzandu</div>
+        <div class="testi-company">Director, Dale Steel Infrastructure Ltd</div>
+      </div>
+      <div class="testi-card">
+        <p class="testi-quote">"This is to certify that Bolide Infrastructure Solutions Limited successfully completed the supply and installation of the security fence at Nakonde One Stop Border Post in accordance with the agreed specifications. The works were completed to a satisfactory standard and handed over in good condition."</p>
+        <div class="testi-author">Killian Bboloka, Site Engineer</div>
+        <div class="testi-company">Trademark Africa · Ministry of Finance & National Planning</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOADS -->
+<section id="downloads">
+  <div class="container">
+    <div class="section-label">Documents</div>
+    <h2>Downloads</h2>
+    <p style="color:#666; margin-bottom:24px; font-size:16px;">Download our official company documents for tender submissions and prequalification requirements.</p>
+    <div class="downloads-grid">
+      <a href="Bolide_Infrastructure_Capability_Statement.pdf" target="_blank" class="download-btn">
+        <span>📄</span> Capability Statement
+      </a>
+      <a href="Bolide-Company-Profile.pdf" target="_blank" class="download-btn">
+        <span>📋</span> Company Profile
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
 <section id="contact" class="contact">
   <div class="container">
-    <h2>Contact Us</h2>
-
+    <div class="section-label">Get In Touch</div>
+    <h2>Request a Quote</h2>
     <div class="contact-grid">
-      <div>
-        <p><strong>Phone / WhatsApp:</strong> +260 966 855 207</p>
-        <p><strong>Email:</strong> info@bolideinfrastructure.com</p>
-        <p><strong>Location:</strong> Lusaka, Zambia</p>
+      <div class="contact-info">
+        <h3>Reach Us Directly</h3>
+        <div class="contact-item">
+          <div class="contact-item-icon">📞</div>
+          <div class="contact-item-text">
+            <strong>Phone / WhatsApp</strong>
+            <a href="tel:+260966855207">+260 966 855 207</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">✉️</div>
+          <div class="contact-item-text">
+            <strong>Email</strong>
+            <a href="mailto:info@bolideinfrastructure.com">info@bolideinfrastructure.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">📍</div>
+          <div class="contact-item-text">
+            <strong>Location</strong>
+            <span>Lusaka, Zambia</span>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">🕐</div>
+          <div class="contact-item-text">
+            <strong>Response Time</strong>
+            <span>Within 24 hours</span>
+          </div>
+        </div>
       </div>
 
-      <!-- WORKING FORM -->
-      <form action="https://formsubmit.co/info@bolideinfrastructure.com" method="POST">
-        <input type="hidden" name="_subject" value="Website Enquiry - Bolide Infrastructure">
-        <input type="hidden" name="_captcha" value="false">
-
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-
-        <button type="submit">Send Message</button>
-      </form>
+      <div class="contact-form">
+        <h3>Send an Enquiry</h3>
+        <form action="https://formsubmit.co/info@bolideinfrastructure.com" method="POST">
+          <input type="hidden" name="_subject" value="Website Enquiry - Bolide Infrastructure">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://bolideinfrastructure.com#contact">
+          <div class="form-row">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="tel" name="phone" placeholder="Phone Number">
+          </div>
+          <input type="email" name="email" placeholder="Email Address" required>
+          <select name="service">
+            <option value="" disabled selected>Type of Service Required</option>
+            <option>Structural Steel Fabrication & Erection</option>
+            <option>Perimeter Security & Fencing</option>
+            <option>Industrial / Warehouse Construction</option>
+            <option>Civil & General Building Works</option>
+            <option>Agricultural Infrastructure</option>
+            <option>Other</option>
+          </select>
+          <textarea name="message" rows="4" placeholder="Describe your project or requirements" required></textarea>
+          <button type="submit">Send Enquiry →</button>
+        </form>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <img src="images/logo.png">
-  <p>© 2026 Bolide Infrastructure Solutions Limited</p>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <img src="images/logo.png" alt="Bolide Infrastructure">
+      <p>Zambian-owned construction company delivering quality infrastructure solutions across Zambia.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="#services">Structural Steel</a>
+      <a href="#services">Perimeter Fencing</a>
+      <a href="#services">Industrial Construction</a>
+      <a href="#services">Civil Works</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#about">About Us</a>
+      <a href="#projects">Projects</a>
+      <a href="#downloads">Downloads</a>
+      <a href="#contact">Contact</a>
+      <a href="https://www.facebook.com/bolideinfrastructuresolutions" target="_blank">Facebook</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Bolide Infrastructure Solutions Limited · PACRA Reg. 120230059016 · NCC Grade 5, Category C</p>
+    <p style="color:#555;">Lusaka, Zambia</p>
+  </div>
 </footer>
 
-<a class="whatsapp" href="https://wa.me/260966855207" target="_blank">WhatsApp Us</a>
+<!-- WHATSAPP -->
+<a class="whatsapp" href="https://wa.me/260966855207" target="_blank">
+  <span>💬</span> WhatsApp Us
+</a>
 
+<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <img id="lightbox-img">
+  <span class="lightbox-close">×</span>
+  <img id="lightbox-img" alt="Project photo">
 </div>
 
 <script>
 function openLightbox(src){
   document.getElementById('lightbox-img').src = src;
   document.getElementById('lightbox').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
 }
 function closeLightbox(){
   document.getElementById('lightbox').style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') closeLightbox();
+});
+function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+function filterProjects(sector, btn){
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.proj-card').forEach(card => {
+    card.style.display = (sector === 'all' || card.dataset.sector === sector) ? 'block' : 'none';
+  });
 }
 </script>
 
