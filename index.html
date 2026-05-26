@@ -181,6 +181,82 @@ h2 { font-family: var(--font-display); font-size: clamp(30px, 4vw, 44px); font-w
 .proj-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 14px; }
 .proj-gallery img { width: 100%; height: 70px; object-fit: cover; border-radius: 4px; cursor: pointer; transition: opacity 0.2s, transform 0.2s; }
 .proj-gallery img:hover { opacity: 0.85; transform: scale(1.03); }
+
+/* ── TEAM SECTION ── */
+.team-section { background: #fff; }
+.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 10px; }
+.team-card {
+  border-radius: 10px; overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: transform 0.25s, box-shadow 0.25s;
+  border-top: 4px solid var(--primary);
+  background: #fff;
+}
+.team-card:hover { transform: translateY(-4px); box-shadow: 0 14px 36px rgba(0,0,0,0.13); }
+.team-photo {
+  width: 100%; height: 280px; object-fit: cover; object-position: top;
+  display: block; background: #e8ecef;
+}
+.team-photo-placeholder {
+  width: 100%; height: 280px;
+  background: linear-gradient(135deg, #e8ecef 0%, #d0d6dc 100%);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  color: #aaa; font-size: 48px;
+}
+.team-photo-placeholder span { font-family: var(--font-display); font-size: 13px; color: #bbb; margin-top: 8px; letter-spacing: 1px; }
+.team-info { padding: 22px 24px 26px; }
+.team-role {
+  font-family: var(--font-display); font-size: 11px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--primary); margin-bottom: 4px;
+}
+.team-info h3 {
+  font-family: var(--font-display); font-weight: 800; font-size: 22px;
+  color: var(--navy); margin-bottom: 10px; line-height: 1.1;
+}
+.team-info p { font-size: 14px; color: var(--mid); line-height: 1.65; }
+.team-quals {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px;
+}
+.team-qual {
+  font-size: 11px; font-weight: 600; padding: 4px 10px;
+  border-radius: 20px; background: #fff4f0; color: var(--primary);
+  border: 1px solid #ffd5c5;
+}
+
+/* ── PHOTO GALLERY SECTION ── */
+.gallery-section { background: var(--light); }
+.gallery-intro { color: var(--mid); font-size: 16px; max-width: 700px; margin-bottom: 32px; }
+.gallery-filter-bar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+.gallery-item {
+  position: relative; overflow: hidden; border-radius: 8px;
+  cursor: pointer; aspect-ratio: 4/3;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+}
+.gallery-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.35s ease;
+  display: block;
+}
+.gallery-item:hover img { transform: scale(1.07); }
+.gallery-item-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(13,27,42,0.7) 0%, transparent 60%);
+  opacity: 0; transition: opacity 0.3s;
+  display: flex; align-items: flex-end; padding: 14px;
+}
+.gallery-item:hover .gallery-item-overlay { opacity: 1; }
+.gallery-item-label {
+  font-family: var(--font-display); font-weight: 700; font-size: 13px;
+  color: #fff; letter-spacing: 0.5px;
+}
+
 .testimonials { background: var(--navy); }
 .testimonials h2 { color: #fff; }
 .testimonials .section-label { color: var(--primary); }
@@ -221,9 +297,26 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
 .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); justify-content: center; align-items: center; z-index: 4000; }
 .lightbox img { max-width: 90%; max-height: 88vh; border-radius: 4px; }
 .lightbox-close { position: absolute; top: 20px; right: 28px; color: #fff; font-size: 40px; cursor: pointer; line-height: 1; }
-@media(max-width: 900px) { .about-grid { grid-template-columns: 1fr; } .about-image img { height: 300px; } .contact-grid { grid-template-columns: 1fr; } .footer-inner { grid-template-columns: 1fr 1fr; } .stats-inner { grid-template-columns: repeat(2, 1fr); } }
-@media(max-width: 768px) { .nav-links { display: none; } .hamburger { display: flex; } .footer-inner { grid-template-columns: 1fr; } .form-row { grid-template-columns: 1fr; } .hero { min-height: 80vh; } }
-@media(max-width: 480px) { .hero-buttons { flex-direction: column; } .footer-bottom { flex-direction: column; text-align: center; } }
+@media(max-width: 900px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .about-image img { height: 300px; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  .team-grid { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero { min-height: 80vh; }
+  .team-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
+}
+@media(max-width: 480px) {
+  .hero-buttons { flex-direction: column; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+}
 </style>
 </head>
 <body>
@@ -235,6 +328,8 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#projects">Projects</a>
+      <a href="#team">Team</a>
+      <a href="#gallery">Gallery</a>
       <a href="#downloads">Downloads</a>
       <a href="#contact" class="cta-nav">Get a Quote</a>
     </nav>
@@ -244,6 +339,8 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
     <a href="#about" onclick="toggleMenu()">About</a>
     <a href="#services" onclick="toggleMenu()">Services</a>
     <a href="#projects" onclick="toggleMenu()">Projects</a>
+    <a href="#team" onclick="toggleMenu()">Team</a>
+    <a href="#gallery" onclick="toggleMenu()">Gallery</a>
     <a href="#downloads" onclick="toggleMenu()">Downloads</a>
     <a href="#contact" onclick="toggleMenu()">Get a Quote</a>
   </div>
@@ -296,7 +393,7 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
       <div class="about-text">
         <div class="section-label">About Bolide</div>
         <h2>Built on Experience.<br>Driven by Results.</h2>
-        <p>Bolide Infrastructure Solutions Limited (BIS) is a Zambian-owned and operated construction company incorporated in November 2023, with a leadership team bringing over 12 years of industry experience spanning structural steel, project management, and infrastructure delivery.</p>
+        <p>Bolide Infrastructure Solutions Limited (BIS) is a Zambian-owned and operated construction company incorporated in November 2023, with a leadership team bringing over 15 years of industry experience spanning structural steel, project management, and infrastructure delivery.</p>
         <p>In just over two years of operation, we have delivered projects for government institutions, multinational contractors, mining companies, commercial organisations and private clients &mdash; across Lusaka, the Copperbelt, Southern Province and beyond.</p>
         <p>We combine technical capability with deep local knowledge and international-standard materials sourced and accredited through our suppliers in South Africa.</p>
         <div class="about-creds">
@@ -540,7 +637,7 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
         </div>
       </div>
 
-      <!-- 9. Simon Mwansa Airport / ZEGA -->
+      <!-- 9. Simon Mwansa Airport -->
       <div class="proj-card" data-sector="government" onclick="openLightbox('images/Zega1.jpg')">
         <img src="images/Zega1.jpg" alt="Simon Mwansa Kapwepwe Airport ZEGA Fencing" loading="lazy" style="width:100%;height:220px;object-fit:cover;">
         <div class="proj-card-body">
@@ -675,6 +772,158 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
   </div>
 </section>
 
+<!-- ══════════════════════════════════════════
+     TEAM SECTION
+══════════════════════════════════════════ -->
+<section id="team" class="team-section">
+  <div class="container">
+    <div class="section-label">The People Behind Bolide</div>
+    <h2>Meet Our Leadership Team</h2>
+    <div class="team-grid">
+
+      <!-- Hamachila Muzandu -->
+      <div class="team-card">
+        <img src="images/HAMACHILA.jpg" alt="Hamachila Muzandu" class="team-photo" loading="lazy">
+        <div class="team-info">
+          <div class="team-role">Managing Director &amp; Founder</div>
+          <h3>Hamachila Muzandu</h3>
+          <p>15+ years of experience across steel manufacturing, logistics, sales and construction management. Career built at Aveng Steeledale, Nshimbi Steel and Dale Steel Infrastructure before founding Bolide in 2023. Leads all strategy, operations, project delivery and business development at Bolide.</p>
+          <div class="team-quals">
+            <span class="team-qual">BA Transport &amp; Logistics</span>
+            <span class="team-qual">Operations &amp; Strategy</span>
+            <span class="team-qual">Project Management</span>
+            <span class="team-qual">Steel &amp; Construction</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Esaya Mwanza -->
+      <div class="team-card">
+        <img src="images/ESAYA.jpg" alt="Esaya Mwanza" class="team-photo" loading="lazy">
+        <div class="team-info">
+          <div class="team-role">Director &mdash; Commercial</div>
+          <h3>Esaya Mwanza</h3>
+          <p>15+ years of proven success in sales, marketing and business development across multiple sectors. Drives Bolide's commercial strategy, client acquisition and key partnerships.</p>
+          <div class="team-quals">
+            <span class="team-qual">MBA &mdash; Project Management</span>
+            <span class="team-qual">Business Development</span>
+            <span class="team-qual">Commercial Strategy</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- David Nyirenda -->
+      <div class="team-card">
+        <img src="images/DAVID.png" alt="David Nyirenda" class="team-photo" loading="lazy">
+        <div class="team-info">
+          <div class="team-role">Operations Officer</div>
+          <h3>David Nyirenda</h3>
+          <p>Qualified plumber with over a decade of operational experience across plumbing, factory supervision, stores management and logistics. Certified First Aider. Ensures every Bolide project runs safely, on schedule and to specification on the ground.</p>
+          <div class="team-quals">
+            <span class="team-qual">Qualified Plumber</span>
+            <span class="team-qual">Operations &amp; Logistics</span>
+            <span class="team-qual">First Aider Certified</span>
+            <span class="team-qual">Site Supervision</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     PHOTO GALLERY SECTION
+══════════════════════════════════════════ -->
+<section id="gallery" class="gallery-section">
+  <div class="container">
+    <div class="section-label">Our Work in Pictures</div>
+    <h2>Photo Gallery</h2>
+    <p class="gallery-intro">A selection of photos from across our project portfolio &mdash; fencing, steel fabrication, civil works and more.</p>
+
+    <div class="gallery-grid">
+
+      <div class="gallery-item" onclick="openLightbox('images/NakondeOS1.jpeg')">
+        <img src="images/NakondeOS1.jpeg" alt="Nakonde Border Fence" loading="lazy">
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Nakonde Border Post</span></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('images/NakondeOS6.jpeg')">
+        <img src="images/NakondeOS6.jpeg" alt="Nakonde Border Post" loading="lazy">
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Nakonde Border Post</span></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('images/Bhuku6.jpeg')">
+        <img src="images/Bhuku6.jpeg" alt="Bhuku Farm Complex" loading="lazy">
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Bhuku Farm, Mazabuka</span></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('images/Bhuku3.jpeg')">
+        <img src="images/Bhuku3.jpeg" alt="Bhuku Farm" loading="lazy">
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Bhuku Farm, Mazabuka</span></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('images/Lumwana1.jpeg')">
+        <img src="images/Lumwana1.jpeg" alt="Lumwana Mine" loading="lazy">
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Lumwana Mine</span></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('images/Lumwana3.jpeg')">
+        <img src="images/Lumwana3.jpeg" alt="Lumwana Mine Courts" loading="lazy">
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Lumwana Mine</span></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('images/ZB1.jpeg')">
+        <img src="images/ZB1.jpeg" alt="Zambian Breweries" loading="lazy">
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Zambian Breweries</span></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('images/Zega1.jpg')">
+        <img src="images/Zega1.jpg" alt="Ndola Airport" loading="lazy">
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Simon Mwansa Airport</span></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('images/Maz1.jpeg')">
+        <img src="images/Maz1.jpeg" alt="Zambia Sugar" loading="lazy">
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Zambia Sugar, Mazabuka</span></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('images/cheelo1.jpeg')">
+        <img src="images/cheelo1.jpeg" alt="Cheelo Farm" loading="lazy">
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Cheelo Farm, Ndola</span></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('images/balustrade7.jpg.jpeg')">
+        <img src="images/balustrade7.jpg.jpeg" alt="Glass Balustrades" loading="lazy">
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Glass Balustrades &amp; Staircases</span></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('images/balustrade9.jpg.jpeg')">
+        <img src="images/balustrade9.jpg.jpeg" alt="New Kasama Residence" loading="lazy">
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Residential — New Kasama</span></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('images/Zamren1.jpg')">
+        <img src="images/Zamren1.jpg" alt="ZAMREN Head Office" loading="lazy">
+        <div class="gallery-item-overlay"><span class="gallery-item-label">ZAMREN Head Office</span></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('images/Islsc1.jpg')">
+        <img src="images/Islsc1.jpg" alt="ISL Fencing" loading="lazy">
+        <div class="gallery-item-overlay"><span class="gallery-item-label">ISL Internal Fencing</span></div>
+      </div>
+
+      <div class="gallery-item" onclick="openLightbox('images/mb1.jpeg')">
+        <img src="images/mb1.jpeg" alt="Mary Begg Clinic" loading="lazy">
+        <div class="gallery-item-overlay"><span class="gallery-item-label">Mary Begg Clinic</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <section class="testimonials">
   <div class="container">
     <div class="section-label">What Clients Say</div>
@@ -779,7 +1028,9 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
     <div class="footer-col">
       <h4>Company</h4>
       <a href="#about">About Us</a>
+      <a href="#team">Our Team</a>
       <a href="#projects">Projects</a>
+      <a href="#gallery">Gallery</a>
       <a href="#downloads">Downloads</a>
       <a href="#contact">Contact</a>
       <a href="https://www.facebook.com/bolideinfra" target="_blank">Facebook</a>
