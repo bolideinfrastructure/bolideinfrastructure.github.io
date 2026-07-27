@@ -84,9 +84,9 @@ header {
 }
 .social-row svg { width: 17px; height: 17px; transition: fill 0.2s ease; }
 .social-row.onLight a { background: var(--light); border: 1px solid #e5e5e5; }
-.social-row.onLight svg { fill: var(--navy); }
+.social-row.onLight svg { fill: var(--navy); stroke: var(--navy); }
 .social-row.onLight a:hover { background: var(--primary); transform: translateY(-2px); }
-.social-row.onLight a:hover svg { fill: #fff; }
+.social-row.onLight a:hover svg { fill: #fff; stroke: #fff; }
 .mobile-menu-social { margin-top: 14px; padding-top: 14px; border-top: 1px solid #f0f0f0; }
 .mobile-menu-social a { width: 40px; height: 40px; }
 .hero {
@@ -245,9 +245,9 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
 .footer-col a { display: block; color: #888; text-decoration: none; font-size: 14px; margin-bottom: 8px; transition: color 0.2s; }
 .footer-col a:hover { color: var(--primary); }
 .social-row.onDark a { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.16); }
-.social-row.onDark svg { fill: #ccc; }
+.social-row.onDark svg { fill: #ccc; stroke: #ccc; }
 .social-row.onDark a:hover { background: var(--primary); transform: translateY(-2px); }
-.social-row.onDark a:hover svg { fill: #fff; }
+.social-row.onDark a:hover svg { fill: #fff; stroke: #fff; }
 .footer-social { margin-top: 16px; }
 .footer-bottom { max-width: 1200px; margin: auto; border-top: 1px solid #222; padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
 .footer-bottom p { font-size: 13px; color: #666; }
@@ -306,6 +306,7 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
   ],
   "sameAs": [
     "https://www.facebook.com/bolideinfra",
+    "https://www.instagram.com/bolideinfrastructuresolutions",
     "https://www.linkedin.com/company/bolide-infrastructure-solutions-limited",
     "https://www.tiktok.com/@bolide.infrastruct"
   ],
@@ -391,6 +392,7 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
     </nav>
     <div class="social-row onLight header-social">
       <a href="https://www.facebook.com/bolideinfra/" target="_blank" rel="noopener" aria-label="Bolide on Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7H7.9V12h2.6V9.8c0-2.6 1.5-4 3.9-4 1.1 0 2.3.2 2.3.2v2.5h-1.3c-1.3 0-1.7.8-1.7 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg></a>
+      <a href="https://www.instagram.com/bolideinfrastructuresolutions/" target="_blank" rel="noopener" aria-label="Bolide on Instagram"><svg viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="5" fill="none" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke-width="2"/><circle cx="17.3" cy="6.3" r="1.15"/></svg></a>
       <a href="https://www.linkedin.com/company/bolide-infrastructure-solutions-limited/" target="_blank" rel="noopener" aria-label="Bolide on LinkedIn"><svg viewBox="0 0 24 24"><path d="M6.94 8.5H3.56V21h3.38V8.5zM5.25 3a1.95 1.95 0 1 0 0 3.9 1.95 1.95 0 0 0 0-3.9zM21 21h-3.38v-6.4c0-1.53-.03-3.5-2.13-3.5-2.13 0-2.46 1.66-2.46 3.38V21H9.66V8.5h3.24v1.7h.05c.45-.85 1.56-1.75 3.2-1.75 3.42 0 4.05 2.25 4.05 5.17V21z"/></svg></a>
       <a href="https://www.tiktok.com/@bolide.infrastruct" target="_blank" rel="noopener" aria-label="Bolide on TikTok"><svg viewBox="0 0 24 24"><path d="M16.5 3c.3 2 1.6 3.7 3.5 4.3v3a7.1 7.1 0 0 1-3.5-1v6.9a5.9 5.9 0 1 1-5.9-5.9c.3 0 .6 0 .9.1v3.1a2.8 2.8 0 1 0 2 2.7V3h3z"/></svg></a>
     </div>
@@ -407,6 +409,7 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
     <a href="#contact" onclick="toggleMenu()">Get a Quote</a>
     <div class="social-row onLight mobile-menu-social">
       <a href="https://www.facebook.com/bolideinfra/" target="_blank" rel="noopener" aria-label="Bolide on Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7H7.9V12h2.6V9.8c0-2.6 1.5-4 3.9-4 1.1 0 2.3.2 2.3.2v2.5h-1.3c-1.3 0-1.7.8-1.7 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg></a>
+      <a href="https://www.instagram.com/bolideinfrastructuresolutions/" target="_blank" rel="noopener" aria-label="Bolide on Instagram"><svg viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="5" fill="none" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke-width="2"/><circle cx="17.3" cy="6.3" r="1.15"/></svg></a>
       <a href="https://www.linkedin.com/company/bolide-infrastructure-solutions-limited/" target="_blank" rel="noopener" aria-label="Bolide on LinkedIn"><svg viewBox="0 0 24 24"><path d="M6.94 8.5H3.56V21h3.38V8.5zM5.25 3a1.95 1.95 0 1 0 0 3.9 1.95 1.95 0 0 0 0-3.9zM21 21h-3.38v-6.4c0-1.53-.03-3.5-2.13-3.5-2.13 0-2.46 1.66-2.46 3.38V21H9.66V8.5h3.24v1.7h.05c.45-.85 1.56-1.75 3.2-1.75 3.42 0 4.05 2.25 4.05 5.17V21z"/></svg></a>
       <a href="https://www.tiktok.com/@bolide.infrastruct" target="_blank" rel="noopener" aria-label="Bolide on TikTok"><svg viewBox="0 0 24 24"><path d="M16.5 3c.3 2 1.6 3.7 3.5 4.3v3a7.1 7.1 0 0 1-3.5-1v6.9a5.9 5.9 0 1 1-5.9-5.9c.3 0 .6 0 .9.1v3.1a2.8 2.8 0 1 0 2 2.7V3h3z"/></svg></a>
     </div>
@@ -877,13 +880,23 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
         </div>
       </div>
 
-      <div class="proj-card" data-sector="mining" onclick="openLightbox('images/ZB1.jpeg')">
-        <img src="images/ZB1.jpeg" alt="Kariba Minerals clear view fencing Lusaka" loading="lazy" style="width:100%;height:220px;object-fit:cover;background:#1a2a3a;">
+      <div class="proj-card" data-sector="mining" onclick="openLightbox('images/KaribaMinerals7.jpg')">
+        <img src="images/KaribaMinerals7.jpg" alt="Kariba Minerals clear view fencing Lusaka" loading="lazy" style="width:100%;height:220px;object-fit:cover;">
         <div class="proj-card-body">
           <div class="proj-sector">Mining &middot; Industrial</div>
           <h3>Kariba Minerals Limited &mdash; Clear View Fencing &amp; Gates, Lusaka</h3>
           <p class="proj-client">Kariba Minerals Limited &middot; Kakota Road, Lusaka</p>
           <p class="proj-desc">Installation of 60m clear-view perimeter fence with 2 swing gates and 1 sliding gate at Kariba Minerals Limited, Lusaka. Purchase Order No. 2362, dated 4 June 2026.</p>
+          <div class="proj-gallery">
+            <img src="images/KaribaMinerals1.jpg" onclick="event.stopPropagation();openLightbox('images/KaribaMinerals1.jpg')" alt="Kariba Minerals 1">
+            <img src="images/KaribaMinerals2.jpg" onclick="event.stopPropagation();openLightbox('images/KaribaMinerals2.jpg')" alt="Kariba Minerals 2">
+            <img src="images/KaribaMinerals3.jpg" onclick="event.stopPropagation();openLightbox('images/KaribaMinerals3.jpg')" alt="Kariba Minerals 3">
+            <img src="images/KaribaMinerals4.jpg" onclick="event.stopPropagation();openLightbox('images/KaribaMinerals4.jpg')" alt="Kariba Minerals 4">
+            <img src="images/KaribaMinerals5.jpg" onclick="event.stopPropagation();openLightbox('images/KaribaMinerals5.jpg')" alt="Kariba Minerals 5">
+            <img src="images/KaribaMinerals6.jpg" onclick="event.stopPropagation();openLightbox('images/KaribaMinerals6.jpg')" alt="Kariba Minerals 6">
+            <img src="images/KaribaMinerals7.jpg" onclick="event.stopPropagation();openLightbox('images/KaribaMinerals7.jpg')" alt="Kariba Minerals 7">
+            <img src="images/KaribaMinerals8.jpg" onclick="event.stopPropagation();openLightbox('images/KaribaMinerals8.jpg')" alt="Kariba Minerals 8">
+          </div>
           <div class="proj-footer">
             <span class="proj-value">ZMW 49,874.75</span>
             <div class="proj-tags"><span class="proj-tag">2026</span><span class="proj-tag role">Main Contractor</span></div>
@@ -1107,6 +1120,7 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
       <p>Zambian-owned construction company delivering quality infrastructure solutions across Zambia.</p>
       <div class="social-row onDark footer-social">
         <a href="https://www.facebook.com/bolideinfra/" target="_blank" rel="noopener" aria-label="Bolide on Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7H7.9V12h2.6V9.8c0-2.6 1.5-4 3.9-4 1.1 0 2.3.2 2.3.2v2.5h-1.3c-1.3 0-1.7.8-1.7 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12z"/></svg></a>
+        <a href="https://www.instagram.com/bolideinfrastructuresolutions/" target="_blank" rel="noopener" aria-label="Bolide on Instagram"><svg viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="5" fill="none" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke-width="2"/><circle cx="17.3" cy="6.3" r="1.15"/></svg></a>
         <a href="https://www.linkedin.com/company/bolide-infrastructure-solutions-limited/" target="_blank" rel="noopener" aria-label="Bolide on LinkedIn"><svg viewBox="0 0 24 24"><path d="M6.94 8.5H3.56V21h3.38V8.5zM5.25 3a1.95 1.95 0 1 0 0 3.9 1.95 1.95 0 0 0 0-3.9zM21 21h-3.38v-6.4c0-1.53-.03-3.5-2.13-3.5-2.13 0-2.46 1.66-2.46 3.38V21H9.66V8.5h3.24v1.7h.05c.45-.85 1.56-1.75 3.2-1.75 3.42 0 4.05 2.25 4.05 5.17V21z"/></svg></a>
         <a href="https://www.tiktok.com/@bolide.infrastruct" target="_blank" rel="noopener" aria-label="Bolide on TikTok"><svg viewBox="0 0 24 24"><path d="M16.5 3c.3 2 1.6 3.7 3.5 4.3v3a7.1 7.1 0 0 1-3.5-1v6.9a5.9 5.9 0 1 1-5.9-5.9c.3 0 .6 0 .9.1v3.1a2.8 2.8 0 1 0 2 2.7V3h3z"/></svg></a>
       </div>
