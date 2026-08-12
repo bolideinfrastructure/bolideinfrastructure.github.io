@@ -280,7 +280,7 @@ footer a { color: var(--primary); text-decoration: none; }
         <input type="number" id="drawings-value" placeholder="e.g. 500000" min="1">
         <div style="font-size:12px;color:var(--mid);margin-top:6px;">Use the total from a previous tab if you've already calculated a steel building or house build, or enter your own project value.</div>
       </div>
-      <div style="font-size:12px;color:var(--mid);margin-bottom:14px;">Structural design and drawings are prepared by our registered Structural Engineer at the standard professional fee, plus a coordination margin for administering the engagement. Independent of the construction quote — required before fabrication or building work begins.</div>
+      <div style="font-size:12px;color:var(--mid);margin-bottom:14px;">Structural design and drawings prepared by our registered Structural Engineer, priced against your construction value. Required before fabrication or building work begins.</div>
       <button class="calc-btn" onclick="calcDrawings()">Calculate Estimate</button>
     </div>
 
@@ -521,12 +521,12 @@ function calcDrawings(){
   var standardFee = value * DRAWINGS_FEE_PCT;
   var markup = standardFee * DRAWINGS_MARKUP;
   var total = standardFee + markup;
-  lastEstimate = { category: 'drawings', description: 'Structural Design & Drawings — Registered Structural Engineer', unit: 'lump sum', qty: 1, rate: total, total: total, notes: 'Standard professional engineering fee (' + (DRAWINGS_FEE_PCT*100) + '% of construction value) plus Bolide\'s coordination margin. Independent of the construction quote itself.' };
+  var effectivePct = (DRAWINGS_FEE_PCT * (1 + DRAWINGS_MARKUP) * 100).toFixed(2);
+  lastEstimate = { category: 'drawings', description: 'Structural Design & Drawings Fee', unit: 'lump sum', qty: 1, rate: total, total: total, notes: 'Professional structural engineering design and drawings, based on construction value. Required before fabrication or building work begins — independent of the construction quote itself.' };
   showResult(total, [
     ['Construction value', fmt(value)],
-    ['Standard engineering fee (' + (DRAWINGS_FEE_PCT*100) + '%)', fmt(standardFee)],
-    ['Bolide coordination margin (' + (DRAWINGS_MARKUP*100) + '%)', fmt(markup)]
-  ], 'Drawings & design estimate: construction value ' + fmt(value) + ', standard fee ' + fmt(standardFee) + ' + ' + fmt(markup) + ' coordination margin, total ' + fmt(total));
+    ['Design & drawings fee (' + effectivePct + '% of construction value)', fmt(total)]
+  ], 'Drawings & design estimate: construction value ' + fmt(value) + ', design & drawings fee ' + fmt(total));
 }
 
 function calcHouse(){
