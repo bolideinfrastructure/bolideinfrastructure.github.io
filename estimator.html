@@ -162,6 +162,31 @@ footer a { color: var(--primary); text-decoration: none; }
           </select>
         </div>
       </div>
+      <div class="field-row" id="fence-diamond-options" style="display:none;">
+        <div class="field-group">
+          <label>Height</label>
+          <select id="diamond-height">
+            <option value="1.8">1.8m</option>
+            <option value="2.0">2.0m</option>
+            <option value="2.4" selected>2.4m</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label>Wire Gauge</label>
+          <select id="diamond-gauge">
+            <option value="2">2mm</option>
+            <option value="2.5" selected>2.5mm</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-group" id="fence-game-options" style="display:none;">
+        <label>Pole Type</label>
+        <select id="game-pole-type">
+          <option value="eucalyptus">Treated Eucalyptus Poles</option>
+          <option value="concrete">Concrete Poles (2.4m, 70x70mm)</option>
+        </select>
+        <div style="font-size:12px;color:var(--mid);margin-top:6px;">150mm x 150mm mesh, 1.8m high — standard game/bonnox wire fence spec.</div>
+      </div>
       <div class="field-group">
         <label>Fence Length (metres)</label>
         <input type="number" id="fence-length" placeholder="e.g. 150" min="1">
@@ -336,6 +361,8 @@ function switchTab(tab, btn){
 document.getElementById('fence-type').addEventListener('change', function(){
   var v = this.value;
   document.getElementById('fence-clearview-options').style.display = (v==='ref254'||v==='ref359'||v==='ref577') ? 'grid' : 'none';
+  document.getElementById('fence-diamond-options').style.display = (v==='diamond') ? 'grid' : 'none';
+  document.getElementById('fence-game-options').style.display = (v==='game') ? 'block' : 'none';
 });
 
 document.getElementById('house-size').addEventListener('change', updateHouseArea);
@@ -350,8 +377,21 @@ var FENCE_RATES = {
   ref359: { 1.8: {galv:904.82, powder:1292.99}, 2.0: {galv:1099.20, powder:1406.05}, 2.4: {galv:1182.54, powder:1527.44} },
   ref577: { 1.8: {galv:1393.78, powder:1669.45}, 2.0: {galv:1525.07, powder:1835.14}, 2.4: {galv:1676.45, powder:2021.23} }
 };
-var DIAMOND_RATE = 360.14;
-var GAME_WIRE_RATE = 148.41;
+// Diamond mesh — K/m, all-in supply+install, from real KML job (BIS26.08.01: 2.4m/2.5mm/50mm confirmed at K379.09/m)
+// Other height/gauge combos scaled from SA market rates (Cashbuild, Pole Yard) for wire mass by gauge, calibrated to the one confirmed real rate.
+var DIAMOND_RATES = {
+  "1.8_2":   283.67,
+  "1.8_2.5": 328.47,
+  "2.0_2":   295.59,
+  "2.0_2.5": 345.30,
+  "2.4_2":   319.42,
+  "2.4_2.5": 379.09   // confirmed real rate, KML job
+};
+// Game/Bonnox wire — 150x150mm mesh, 1.8m high, K/m, from real Leopards Hill job (BIS26.04.02)
+var GAME_WIRE_RATES = {
+  eucalyptus: 138.81,  // confirmed real rate: mesh + eucalyptus poles + tying wire + installation
+  concrete: 162.10     // same job, eucalyptus poles (K95 each, ~1 per 3m) swapped for concrete poles (K165 each, 2.4m, 70x70mm), same spacing
+};
 
 var STEEL_RATE_LOCAL = 31.59;    // K/kg, UMZ-based, supply+fix erected (5% reduced from 33.25)
 var STEEL_RATE_IMPORTED = 45.60; // K/kg, SA-imported average, supply+fix erected (5% reduced from 48.00)
@@ -437,9 +477,15 @@ function calcFencing(){
 
   var rate, label;
   if(type === 'diamond'){
-    rate = DIAMOND_RATE; label = 'Diamond Mesh Fencing — supply and installation';
+    var dHeight = document.getElementById('diamond-height').value;
+    var dGauge = document.getElementById('diamond-gauge').value;
+    rate = DIAMOND_RATES[dHeight + '_' + dGauge];
+    label = 'Diamond Mesh Fencing, ' + dHeight + 'm high, ' + dGauge + 'mm wire, 50mm aperture — supply and installation';
   } else if(type === 'game'){
-    rate = GAME_WIRE_RATE; label = 'Game Wire / Field Fence — supply and installation';
+    var poleType = document.getElementById('game-pole-type').value;
+    rate = GAME_WIRE_RATES[poleType];
+    var poleLabel = poleType === 'concrete' ? 'Concrete poles (2.4m, 70x70mm)' : 'Treated eucalyptus poles';
+    label = 'Game/Bonnox Wire, 150x150mm mesh, 1.8m high, ' + poleLabel + ' — supply and installation';
   } else {
     var height = document.getElementById('fence-height').value;
     var finish = document.getElementById('fence-finish').value;
