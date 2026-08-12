@@ -348,11 +348,13 @@ var CIVIL_RATES = { block200: 228, block100: 190, concrete: 1900 }; // kept for 
 
 var HOUSE_AREAS = { bedsitter: 35, onebed: 55, twobed: 90, threebed: 150, fourbed: 220 };
 var HOUSE_LABELS = { bedsitter: 'Bedsitter', onebed: '1-Bedroom House', twobed: '2-Bedroom House', threebed: '3-Bedroom House', fourbed: '4-Bedroom House' };
-// K/m² construction-only rates, from Bolide Home Build Benchmarks (Rate Book Tab 7) — 5% reduced
+// K/m² construction-only rates — Entry-level pricing for market traction, validated against Break-Even Model (Rate Book Tab 10)
+// Steel building rates already clear break-even comfortably at the 5%-discounted rate — no change needed there.
+// House build rates below were RAISED from the naive 5%-discount because that undercut break-even once real-world risk buffers were included.
 var QUALITY_RATES = {
-  low: { rate: 5700, min: 4750, max: 6650, label: 'Low / Basic' },
-  medium: { rate: 8550, min: 6650, max: 10450, label: 'Medium / Standard' },
-  high: { rate: 16150, min: 14250, max: 18050, label: 'High / Premium' }
+  low: { rate: 5900, min: 5000, max: 7000, label: 'Low / Basic' },
+  medium: { rate: 9100, min: 7000, max: 11000, label: 'Medium / Standard' },
+  high: { rate: 17450, min: 15000, max: 19000, label: 'High / Premium' }
 };
 
 var HANDRAIL_RATES = { glass: 4195, stainless: 2250 }; // K/m, published starting rates (Bolide balustrade flyer, Aug 2026)
