@@ -253,19 +253,22 @@ footer a { color: var(--primary); text-decoration: none; }
     </div>
 
     <div class="lead-form" id="leadForm">
-      <h3>Get a Firm Quote for This</h3>
+      <h3>Get This in Writing</h3>
+      <button type="button" class="calc-btn" style="background:var(--navy); margin-bottom:16px;" onclick="generateProforma()">Generate Proforma Quote (PDF)</button>
+      <div style="font-size:12px;color:var(--mid);margin-bottom:18px;text-align:center;">Fill in your details below first — the proforma is built from them. Opens in a new tab; use your browser's Print &rarr; Save as PDF.</div>
       <form action="https://api.web3forms.com/submit" method="POST" id="quoteForm">
         <input type="hidden" name="access_key" value="f7a0bf26-b132-4f74-ae09-635808288f43">
         <input type="hidden" name="subject" value="Estimator Quote Request - Bolide Infrastructure">
         <input type="hidden" name="redirect" value="false">
         <input type="hidden" name="estimate_details" id="estimate-details-field">
         <div class="field-row">
-          <input type="text" name="name" placeholder="Your Name" required>
-          <input type="tel" name="phone" placeholder="Phone Number" required>
+          <input type="text" id="lead-name" name="name" placeholder="Your Name" required>
+          <input type="tel" id="lead-phone" name="phone" placeholder="Phone Number" required>
         </div>
-        <input type="email" name="email" placeholder="Email Address" required>
-        <textarea name="message" rows="3" placeholder="Any additional details about your project (location, timeline, etc.)"></textarea>
-        <button type="submit">Request Firm Quote &#8594;</button>
+        <input type="email" id="lead-email" name="email" placeholder="Email Address" required>
+        <input type="text" id="lead-company" name="company" placeholder="Company / Organisation (optional)">
+        <textarea name="message" id="lead-message" rows="3" placeholder="Any additional details about your project (location, timeline, etc.)"></textarea>
+        <button type="submit">Also Send Enquiry to Bolide &#8594;</button>
       </form>
     </div>
 
@@ -354,6 +357,8 @@ getLiveFx().then(function(rate){
 
 function fmt(n){ return 'K' + n.toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0}); }
 
+var lastEstimate = null; // structured record used to build the proforma
+
 function showResult(total, breakdownRows, detailsText){
   document.getElementById('resultValue').innerHTML = fmt(total) + ' <span>ZMW (indicative)</span>';
   var bd = document.getElementById('resultBreakdown');
@@ -376,17 +381,18 @@ function calcFencing(){
 
   var rate, label;
   if(type === 'diamond'){
-    rate = DIAMOND_RATE; label = 'Diamond Mesh Fencing';
+    rate = DIAMOND_RATE; label = 'Diamond Mesh Fencing — supply and installation';
   } else if(type === 'game'){
-    rate = GAME_WIRE_RATE; label = 'Game Wire / Field Fence';
+    rate = GAME_WIRE_RATE; label = 'Game Wire / Field Fence — supply and installation';
   } else {
     var height = document.getElementById('fence-height').value;
     var finish = document.getElementById('fence-finish').value;
     rate = FENCE_RATES[type][height][finish];
     var typeLabels = {ref254:'REF 254', ref359:'REF 359', ref577:'REF 577'};
-    label = typeLabels[type] + ' — ' + height + 'm ' + (finish==='galv'?'Galvanized':'Powder Coated');
+    label = typeLabels[type] + ' Clear-View Fence, ' + height + 'm, ' + (finish==='galv'?'Galvanized':'Powder Coated') + ' — supply and installation';
   }
   var total = rate * length;
+  lastEstimate = { description: label, unit: 'm', qty: length, rate: rate, total: total, notes: 'Includes material, installation and delivery within 50km of Lusaka.' };
   showResult(total, [
     ['Fence type', label],
     ['Length', length + ' m'],
@@ -408,6 +414,7 @@ function calcSteelBuilding(){
   var rateZmw = rateUsd * currentFx;
   var label = STEEL_BUILDING_LABELS[series];
   var total = rateZmw * area;
+  lastEstimate = { description: 'Engineered Steel Building — ' + label, unit: 'm² floor area', qty: area, rate: rateZmw, total: total, notes: 'Structural design, shop drawings, fabrication, surface protection (paint), supply and installation. Excludes foundations, concrete works, transport outside Lusaka, roofing/cladding upgrades, electrical/plumbing/other specialist works. Rate converted from $' + rateUsd + '/m² at today\'s exchange rate (1 USD = ' + fmt(currentFx) + ').' };
   showResult(total, [
     ['Building series', label],
     ['Floor area', area + ' m²'],
@@ -421,9 +428,11 @@ function calcSteel(){
   var kg = parseFloat(document.getElementById('steel-kg').value);
   if(!kg || kg <= 0){ alert('Please enter the estimated tonnage in kg.'); return; }
   var rate = source === 'local' ? STEEL_RATE_LOCAL : STEEL_RATE_IMPORTED;
+  var srcLabel = source==='local' ? 'Local (UMZ) Steel' : 'Imported (South Africa) Steel';
   var total = rate * kg;
+  lastEstimate = { description: 'Structural Steel Fabrication & Erection — ' + srcLabel, unit: 'kg', qty: kg, rate: rate, total: total, notes: 'Supply, fabrication and on-site erection. Exact tonnage to be confirmed from approved drawings.' };
   showResult(total, [
-    ['Steel source', source==='local' ? 'Local (UMZ)' : 'Imported (South Africa)'],
+    ['Steel source', srcLabel],
     ['Weight', kg.toLocaleString() + ' kg'],
     ['Rate per kg', fmt(rate)]
   ], 'Structural steel estimate: ' + (source==='local'?'Local UMZ':'Imported SA') + ', ' + kg + 'kg, rate ' + fmt(rate) + '/kg, total ' + fmt(total));
@@ -435,8 +444,9 @@ function calcCivil(){
   if(!area || area <= 0){ alert('Please enter the area or volume.'); return; }
   var rate = CIVIL_RATES[type];
   var unit = type === 'concrete' ? 'm³' : 'm²';
-  var labels = {block200:'Blockwork — 200mm wall', block100:'Blockwork — 100mm wall', concrete:'Reinforced Concrete'};
+  var labels = {block200:'Blockwork — 200mm wall', block100:'Blockwork — 100mm wall', concrete:'Reinforced Concrete (beams/columns/slabs)'};
   var total = rate * area;
+  lastEstimate = { description: labels[type], unit: unit, qty: area, rate: rate, total: total, notes: 'Supply and fix, cement mortar 1:4 (blockwork) or class 25/25N/mm² (concrete). Excludes formwork unless separately quoted.' };
   showResult(total, [
     ['Work type', labels[type]],
     [(type==='concrete'?'Volume':'Area'), area + ' ' + unit],
@@ -449,13 +459,101 @@ function calcHandrail(){
   var length = parseFloat(document.getElementById('handrail-length').value);
   if(!length || length <= 0){ alert('Please enter the length in metres.'); return; }
   var rate = HANDRAIL_RATES[type];
-  var label = type === 'glass' ? 'Glass Balustrade' : 'Stainless Steel Handrail';
+  var label = type === 'glass' ? 'Glass Balustrade (8mm toughened glass, stainless posts)' : '5-Line Stainless Steel Balustrade';
   var total = rate * length;
+  lastEstimate = { description: label + ' — supply and installation', unit: 'm', qty: length, rate: rate, total: total, notes: 'Supply, delivery and installation within Lusaka. Starting rate — final price depends on design and site conditions.' };
   showResult(total, [
     ['System', label],
     ['Length', length + ' m'],
     ['Rate per metre', fmt(rate)]
   ], 'Handrailing estimate: ' + label + ', ' + length + 'm, rate ' + fmt(rate) + '/m, total ' + fmt(total));
+}
+
+// ===== PROFORMA QUOTE GENERATOR =====
+function generateProforma(){
+  if(!lastEstimate){ alert('Please calculate an estimate first.'); return; }
+  var name = document.getElementById('lead-name').value.trim();
+  var phone = document.getElementById('lead-phone').value.trim();
+  var email = document.getElementById('lead-email').value.trim();
+  var company = document.getElementById('lead-company').value.trim();
+  if(!name){ alert('Please enter your name above so we can address the quote to you.'); document.getElementById('lead-name').focus(); return; }
+
+  var today = new Date();
+  var dateStr = today.toLocaleDateString('en-GB', {day:'2-digit', month:'2-digit', year:'numeric'});
+  var validUntil = new Date(today.getTime() + 7*24*60*60*1000).toLocaleDateString('en-GB', {day:'2-digit', month:'2-digit', year:'numeric'});
+  var quoteNum = 'BIS-EST-' + today.getFullYear() + String(today.getMonth()+1).padStart(2,'0') + String(today.getDate()).padStart(2,'0') + '-' + Math.floor(Math.random()*90+10);
+
+  var rateDisplay = lastEstimate.rate.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+  var totalDisplay = lastEstimate.total.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+  var qtyDisplay = lastEstimate.qty.toLocaleString('en-US');
+  var totalUsd = (lastEstimate.total / currentFx).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+
+  var html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Proforma Quote ' + quoteNum + '</title>' +
+  '<style>' +
+  '@page { margin: 20mm; }' +
+  'body{font-family:Arial,Helvetica,sans-serif;color:#222;font-size:13px;line-height:1.5;max-width:800px;margin:0 auto;padding:24px;}' +
+  '.header{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid #f05a28;padding-bottom:16px;margin-bottom:20px;}' +
+  '.brand{font-size:26px;font-weight:800;color:#0d1b2a;}' +
+  '.brand span{color:#f05a28;}' +
+  '.tagline{font-size:11px;color:#888;margin-top:2px;}' +
+  '.doctitle{font-size:20px;font-weight:800;color:#0d1b2a;text-align:right;}' +
+  '.meta{text-align:right;font-size:12px;color:#555;margin-top:6px;}' +
+  '.parties{display:flex;justify-content:space-between;margin-bottom:20px;gap:24px;}' +
+  '.parties div{width:48%;}' +
+  '.parties h4{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#f05a28;margin-bottom:6px;}' +
+  'table{width:100%;border-collapse:collapse;margin:16px 0;}' +
+  'th{background:#0d1b2a;color:#fff;text-align:left;padding:8px 10px;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;}' +
+  'td{padding:10px;border-bottom:1px solid #eee;font-size:13px;}' +
+  '.num{text-align:right;}' +
+  '.totals{margin-top:10px;width:280px;margin-left:auto;}' +
+  '.totals div{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #eee;}' +
+  '.totals .grand{font-weight:800;font-size:16px;color:#0d1b2a;border-bottom:none;border-top:2px solid #0d1b2a;padding-top:10px;}' +
+  '.notes{margin-top:24px;background:#f7f7f7;border-left:4px solid #f05a28;padding:12px 16px;font-size:12px;color:#555;}' +
+  '.terms{margin-top:24px;font-size:11px;color:#777;}' +
+  '.terms h4{font-size:11px;text-transform:uppercase;color:#0d1b2a;margin-bottom:6px;}' +
+  '.terms ol{padding-left:18px;}' +
+  '.terms li{margin-bottom:4px;}' +
+  '.banking{margin-top:20px;background:#0d1b2a;color:#fff;padding:16px;border-radius:6px;font-size:12px;}' +
+  '.banking h4{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#f05a28;margin-bottom:8px;}' +
+  '.banking-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px 20px;}' +
+  '.footer{margin-top:30px;text-align:center;font-size:11px;color:#999;border-top:1px solid #eee;padding-top:16px;}' +
+  '.printbar{text-align:center;margin-bottom:20px;}' +
+  '.printbar button{background:#f05a28;color:#fff;border:none;padding:10px 24px;border-radius:6px;font-weight:700;cursor:pointer;font-size:14px;}' +
+  '@media print { .printbar{display:none;} }' +
+  '</style></head><body>' +
+  '<div class="printbar"><button onclick="window.print()">Print / Save as PDF</button></div>' +
+  '<div class="header">' +
+    '<div><div class="brand">BOLIDE <span>INFRASTRUCTURE</span></div><div class="tagline">Providing cost-effective, on-time, quality construction solutions</div></div>' +
+    '<div><div class="doctitle">PROFORMA QUOTATION</div><div class="meta">No: ' + quoteNum + '<br>Date: ' + dateStr + '<br>Valid Until: ' + validUntil + '</div></div>' +
+  '</div>' +
+  '<div class="parties">' +
+    '<div><h4>Quoted To</h4>' + name + (company ? '<br>' + company : '') + (phone ? '<br>' + phone : '') + (email ? '<br>' + email : '') + '</div>' +
+    '<div><h4>Quoted By</h4>Bolide Infrastructure Solutions Limited<br>Plot 14, Lilayi Rd, Lusaka, Zambia<br>+260 966 855 207<br>info@bolideinfrastructure.com</div>' +
+  '</div>' +
+  '<table><thead><tr><th>Description</th><th>Unit</th><th class="num">Qty</th><th class="num">Rate (ZMW)</th><th class="num">Total (ZMW)</th></tr></thead><tbody>' +
+  '<tr><td>' + lastEstimate.description + '</td><td>' + lastEstimate.unit + '</td><td class="num">' + qtyDisplay + '</td><td class="num">' + rateDisplay + '</td><td class="num">' + totalDisplay + '</td></tr>' +
+  '</tbody></table>' +
+  '<div class="totals"><div class="grand"><span>Grand Total (ZMW)</span><span>K' + totalDisplay + '</span></div><div><span>Approx. (USD)</span><span>$' + totalUsd + '</span></div></div>' +
+  '<div class="notes"><strong>Notes:</strong> ' + lastEstimate.notes + '</div>' +
+  '<div class="terms"><h4>Terms &amp; Conditions</h4><ol>' +
+  '<li>This is a PROFORMA / INDICATIVE quotation generated from standard rates, not a firm priced quotation. Final pricing is confirmed after site measurement and review of exact specifications.</li>' +
+  '<li>Prices are valid for 7 days from the date of this document, subject to change due to material and labour cost movements.</li>' +
+  '<li>Transport outside a 50km radius of Lusaka is quoted separately.</li>' +
+  '<li>Payment terms: 50% advance, 50% on completion, unless otherwise agreed in writing.</li>' +
+  '<li>To convert this into a firm quotation, contact us with your exact site details and drawings where applicable.</li>' +
+  '</ol></div>' +
+  '<div class="banking"><h4>Banking Details</h4><div class="banking-grid">' +
+  '<div>Bank: FNB Bank Zambia</div><div>Branch: Makeni Junction (260016)</div>' +
+  '<div>Account Name: Bolide Infrastructure Solutions</div><div>Swift: FIRNZMLX</div>' +
+  '<div>Kwacha A/C: 63155026800</div><div>Reg No: 120230059016</div>' +
+  '<div>Dollar A/C: 63155028004</div><div>TPIN: 2002179884</div>' +
+  '</div></div>' +
+  '<div class="footer">Bolide Infrastructure Solutions Limited &middot; NCC Grade 5, Category C &middot; bolideinfrastructure.com</div>' +
+  '</body></html>';
+
+  var win = window.open('', '_blank');
+  win.document.write(html);
+  win.document.close();
 }
 </script>
 
