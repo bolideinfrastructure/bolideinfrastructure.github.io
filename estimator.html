@@ -128,7 +128,7 @@ footer a { color: var(--primary); text-decoration: none; }
     <div class="tabs" id="tabs">
       <button class="tab-btn active" data-tab="fencing" onclick="switchTab('fencing', this)">Fencing</button>
       <button class="tab-btn" data-tab="steel" onclick="switchTab('steel', this)">Structural Steel</button>
-      <button class="tab-btn" data-tab="civil" onclick="switchTab('civil', this)">Civil / Block Work</button>
+      <button class="tab-btn" data-tab="civil" onclick="switchTab('civil', this)">House Build</button>
       <button class="tab-btn" data-tab="handrail" onclick="switchTab('handrail', this)">Handrailing</button>
     </div>
 
@@ -212,21 +212,31 @@ footer a { color: var(--primary); text-decoration: none; }
       </div>
     </div>
 
-    <!-- CIVIL / BLOCK -->
+    <!-- HOUSE BUILD -->
     <div class="tab-panel" id="panel-civil" style="display:none;">
       <div class="field-group">
-        <label>Work Type</label>
-        <select id="civil-type">
-          <option value="block200">Blockwork — 200mm wall</option>
-          <option value="block100">Blockwork — 100mm wall</option>
-          <option value="concrete">Reinforced Concrete (beams/columns/slabs)</option>
+        <label>House Size</label>
+        <select id="house-size" onchange="updateHouseArea()">
+          <option value="bedsitter">Bedsitter (~35 m²)</option>
+          <option value="onebed">1-Bedroom (~55 m²)</option>
+          <option value="twobed">2-Bedroom (~90 m²)</option>
+          <option value="threebed" selected>3-Bedroom (~150 m²)</option>
+          <option value="fourbed">4-Bedroom (~220 m²)</option>
         </select>
       </div>
       <div class="field-group">
-        <label id="civil-area-label">Area (m²)</label>
-        <input type="number" id="civil-area" placeholder="e.g. 120" min="1">
+        <label>Finish Level</label>
+        <select id="house-quality">
+          <option value="low">Low / Basic — block walls, IBR roof, screed floors, standard doors/windows</option>
+          <option value="medium" selected>Medium / Standard — tiled floors, ceilings, standard kitchen &amp; bathroom fittings</option>
+          <option value="high">High / Premium — imported tiles, built-in cabinetry, solar, glass balustrades</option>
+        </select>
       </div>
-      <button class="calc-btn" onclick="calcCivil()">Calculate Estimate</button>
+      <div class="field-group">
+        <label>Floor Area (m²) <span style="font-weight:400;text-transform:none;color:var(--mid);">— adjust if you know your actual plan size</span></label>
+        <input type="number" id="house-area" min="1">
+      </div>
+      <button class="calc-btn" onclick="calcHouse()">Calculate Estimate</button>
     </div>
 
     <!-- HANDRAILING -->
@@ -299,10 +309,11 @@ document.getElementById('fence-type').addEventListener('change', function(){
   document.getElementById('fence-clearview-options').style.display = (v==='ref254'||v==='ref359'||v==='ref577') ? 'grid' : 'none';
 });
 
-document.getElementById('civil-type').addEventListener('change', function(){
-  var v = this.value;
-  document.getElementById('civil-area-label').textContent = (v==='concrete') ? 'Volume (m³)' : 'Area (m²)';
-});
+document.getElementById('house-size').addEventListener('change', updateHouseArea);
+
+function updateHouseArea(){
+  document.getElementById('house-area').value = HOUSE_AREAS[document.getElementById('house-size').value];
+}
 
 // ===== RATE TABLES (ZMW, client-ready, TOT applied) — from Bolide Rate Book, Aug 2026 =====
 var FENCE_RATES = {
@@ -316,7 +327,16 @@ var GAME_WIRE_RATE = 148.41;
 var STEEL_RATE_LOCAL = 33.25;    // K/kg, UMZ-based, supply+fix erected
 var STEEL_RATE_IMPORTED = 48.00; // K/kg, SA-imported average, supply+fix erected
 
-var CIVIL_RATES = { block200: 228, block100: 190, concrete: 1900 };
+var CIVIL_RATES = { block200: 228, block100: 190, concrete: 1900 }; // kept for reference elsewhere in rate book
+
+var HOUSE_AREAS = { bedsitter: 35, onebed: 55, twobed: 90, threebed: 150, fourbed: 220 };
+var HOUSE_LABELS = { bedsitter: 'Bedsitter', onebed: '1-Bedroom House', twobed: '2-Bedroom House', threebed: '3-Bedroom House', fourbed: '4-Bedroom House' };
+// K/m² construction-only rates, from Bolide Home Build Benchmarks (Rate Book Tab 7)
+var QUALITY_RATES = {
+  low: { rate: 6000, min: 5000, max: 7000, label: 'Low / Basic' },
+  medium: { rate: 9000, min: 7000, max: 11000, label: 'Medium / Standard' },
+  high: { rate: 17000, min: 15000, max: 19000, label: 'High / Premium' }
+};
 
 var HANDRAIL_RATES = { glass: 4195, stainless: 2250 }; // K/m, published starting rates (Bolide balustrade flyer, Aug 2026)
 
@@ -438,21 +458,26 @@ function calcSteel(){
   ], 'Structural steel estimate: ' + (source==='local'?'Local UMZ':'Imported SA') + ', ' + kg + 'kg, rate ' + fmt(rate) + '/kg, total ' + fmt(total));
 }
 
-function calcCivil(){
-  var type = document.getElementById('civil-type').value;
-  var area = parseFloat(document.getElementById('civil-area').value);
-  if(!area || area <= 0){ alert('Please enter the area or volume.'); return; }
-  var rate = CIVIL_RATES[type];
-  var unit = type === 'concrete' ? 'm³' : 'm²';
-  var labels = {block200:'Blockwork — 200mm wall', block100:'Blockwork — 100mm wall', concrete:'Reinforced Concrete (beams/columns/slabs)'};
-  var total = rate * area;
-  lastEstimate = { description: labels[type], unit: unit, qty: area, rate: rate, total: total, notes: 'Supply and fix, cement mortar 1:4 (blockwork) or class 25/25N/mm² (concrete). Excludes formwork unless separately quoted.' };
+function calcHouse(){
+  var size = document.getElementById('house-size').value;
+  var quality = document.getElementById('house-quality').value;
+  var area = parseFloat(document.getElementById('house-area').value);
+  if(!area || area <= 0){ alert('Please enter the floor area.'); return; }
+  var q = QUALITY_RATES[quality];
+  var total = q.rate * area;
+  var totalMin = q.min * area;
+  var totalMax = q.max * area;
+  var houseLabel = HOUSE_LABELS[size];
+  lastEstimate = { description: houseLabel + ' — ' + q.label + ' Finish (construction only)', unit: 'm²', qty: area, rate: q.rate, total: total, notes: 'Construction cost only — materials and labour to build. Excludes land, professional fees, and statutory approvals. Indicative range: ' + fmt(totalMin) + ' – ' + fmt(totalMax) + ' depending on final specification.' };
   showResult(total, [
-    ['Work type', labels[type]],
-    [(type==='concrete'?'Volume':'Area'), area + ' ' + unit],
-    ['Rate per ' + unit, fmt(rate)]
-  ], 'Civil/block estimate: ' + labels[type] + ', ' + area + unit + ', rate ' + fmt(rate) + '/' + unit + ', total ' + fmt(total));
+    ['House size', houseLabel + ' (' + area + ' m²)'],
+    ['Finish level', q.label],
+    ['Rate per m²', fmt(q.rate) + ' (typical)'],
+    ['Indicative range', fmt(totalMin) + ' – ' + fmt(totalMax)]
+  ], 'House build estimate: ' + houseLabel + ', ' + area + 'm², ' + q.label + ' finish, rate ' + fmt(q.rate) + '/m², total ' + fmt(total) + ' (range ' + fmt(totalMin) + '-' + fmt(totalMax) + ')');
 }
+
+updateHouseArea(); // set default area on load
 
 function calcHandrail(){
   var type = document.getElementById('handrail-type').value;
