@@ -191,7 +191,16 @@ footer a { color: var(--primary); text-decoration: none; }
           <label>Floor Area (m²)</label>
           <input type="number" id="steel-area" placeholder="e.g. 500" min="1">
         </div>
-        <div style="font-size:12px;color:var(--mid);margin-bottom:14px;">Includes structural design, shop drawings, fabrication, surface protection (paint), supply and installation. Excludes foundations, concrete works, transport outside Lusaka, roofing/cladding upgrades, and electrical/plumbing works.</div>
+        <div class="field-group" style="background:var(--light); padding:14px 16px; border-radius:6px;">
+          <label style="margin-bottom:10px;">Standard Package — Simple, Sound Structure</label>
+          <label style="display:flex; align-items:center; gap:8px; font-family:var(--font-body); text-transform:none; font-weight:400; font-size:14px; margin-bottom:10px;">
+            <input type="checkbox" id="steel-add-foundation" checked style="width:auto;"> Foundations &amp; concrete floor slab (standard soil, standard spec)
+          </label>
+          <label style="display:flex; align-items:center; gap:8px; font-family:var(--font-body); text-transform:none; font-weight:400; font-size:14px;">
+            <input type="checkbox" id="steel-add-roofing" checked style="width:auto;"> Roofing &amp; cladding (standard IBR sheeting)
+          </label>
+        </div>
+        <div style="font-size:12px;color:var(--mid);margin-bottom:14px;">Base rate includes structural design, shop drawings, fabrication, surface protection (paint), supply and installation of a simple, sound structure to standard specification. Non-standard soil conditions, larger spans, premium cladding, or other extras are quoted separately once we've seen the site. Excludes transport outside Lusaka and electrical/plumbing works.</div>
         <button class="calc-btn" onclick="calcSteelBuilding()">Calculate Estimate</button>
       </div>
 
@@ -225,16 +234,24 @@ footer a { color: var(--primary); text-decoration: none; }
         </select>
       </div>
       <div class="field-group">
-        <label>Finish Level</label>
+        <label>Structure Level</label>
         <select id="house-quality">
-          <option value="low">Low / Basic — block walls, IBR roof, screed floors, standard doors/windows</option>
-          <option value="medium" selected>Medium / Standard — tiled floors, ceilings, standard kitchen &amp; bathroom fittings</option>
-          <option value="high">High / Premium — imported tiles, built-in cabinetry, solar, glass balustrades</option>
+          <option value="low">Low / Basic — block walls, standard IBR roof, simple &amp; sound</option>
+          <option value="medium" selected>Medium / Standard — block or face brick, quality roof, solid standard build</option>
+          <option value="high">High / Premium — premium structure, feature roofing, solar-ready</option>
         </select>
       </div>
       <div class="field-group">
         <label>Floor Area (m²) <span style="font-weight:400;text-transform:none;color:var(--mid);">— adjust if you know your actual plan size</span></label>
         <input type="number" id="house-area" min="1">
+      </div>
+      <div style="font-size:12px;color:var(--mid);margin-bottom:14px;">Covers the shell: foundations, walls, roof structure, and standard finishes — built simple and sound. Excludes land, professional fees, and statutory approvals.</div>
+
+      <div class="field-group" style="background:var(--light); padding:14px 16px; border-radius:6px;">
+        <label style="margin-bottom:6px;">Interior Finishing (Optional)</label>
+        <div style="font-size:12px;color:var(--mid);font-weight:400;text-transform:none;margin-bottom:10px;">Interior work is quoted separately — you buy the materials (tiles, paint, doors, kitchen &amp; bathroom fittings, etc.) and we install at 25% of your material cost. Enter your material budget below to add this in.</div>
+        <label style="font-size:13px; font-weight:600;">Interior Material Budget (ZMW)</label>
+        <input type="number" id="house-interior-budget" placeholder="e.g. 80000" min="0">
       </div>
       <button class="calc-btn" onclick="calcHouse()">Calculate Estimate</button>
     </div>
@@ -340,8 +357,10 @@ var QUALITY_RATES = {
 
 var HANDRAIL_RATES = { glass: 4195, stainless: 2250 }; // K/m, published starting rates (Bolide balustrade flyer, Aug 2026)
 
-var STEEL_BUILDING_RATES_USD = { b15: 85, b25: 110, b40: 145 }; // USD/m², published starting rates (Bolide steel flyer, Aug 2026)
+var STEEL_BUILDING_RATES_USD = { b15: 85, b25: 110, b40: 145 }; // USD/m², published starting rates (Bolide steel flyer, Aug 2026) — shell only (structure, cladding-frame, install)
 var STEEL_BUILDING_LABELS = { b15: 'B15 Series (up to 15m clear span)', b25: 'B25 Series (15m–25m clear span)', b40: 'B40 Series (25m–40m+ clear span)' };
+// Standard package add-ons, USD/m² — indicative for simple/standard spec; confirm on site for non-standard soil or spans
+var STEEL_ADDON_RATES_USD = { foundation: 20, roofing: 30 };
 
 // ===== LIVE EXCHANGE RATE (refreshes daily) =====
 var FALLBACK_FX = 18.98; // used only if the live fetch fails
@@ -430,17 +449,33 @@ function calcSteelBuilding(){
   var series = document.getElementById('steel-series').value;
   var area = parseFloat(document.getElementById('steel-area').value);
   if(!area || area <= 0){ alert('Please enter the floor area in m².'); return; }
-  var rateUsd = STEEL_BUILDING_RATES_USD[series];
+  var addFoundation = document.getElementById('steel-add-foundation').checked;
+  var addRoofing = document.getElementById('steel-add-roofing').checked;
+
+  var shellUsd = STEEL_BUILDING_RATES_USD[series];
+  var rateUsd = shellUsd;
+  var included = [];
+  if(addFoundation){ rateUsd += STEEL_ADDON_RATES_USD.foundation; included.push('Foundations & concrete slab'); }
+  if(addRoofing){ rateUsd += STEEL_ADDON_RATES_USD.roofing; included.push('Roofing & cladding'); }
+
   var rateZmw = rateUsd * currentFx;
   var label = STEEL_BUILDING_LABELS[series];
   var total = rateZmw * area;
-  lastEstimate = { description: 'Engineered Steel Building — ' + label, unit: 'm² floor area', qty: area, rate: rateZmw, total: total, notes: 'Structural design, shop drawings, fabrication, surface protection (paint), supply and installation. Excludes foundations, concrete works, transport outside Lusaka, roofing/cladding upgrades, electrical/plumbing/other specialist works. Rate converted from $' + rateUsd + '/m² at today\'s exchange rate (1 USD = ' + fmt(currentFx) + ').' };
-  showResult(total, [
+  var includedText = included.length ? included.join(' + ') : 'Structural shell only';
+
+  lastEstimate = { description: label + ' — Standard Package (' + includedText + ')', unit: 'm²', qty: area, rate: rateZmw, total: total, notes: 'Simple, sound structure to standard specification: structural design, shop drawings, fabrication, surface protection, supply and installation' + (addFoundation ? ', standard foundations & concrete floor slab' : '') + (addRoofing ? ', standard IBR roofing & cladding' : '') + '. Non-standard soil, spans, or finishes are extra, quoted after a site visit. Rate converted from $' + rateUsd + '/m² at today\'s exchange rate (1 USD = ' + fmt(currentFx) + ').' };
+
+  var breakdown = [
     ['Building series', label],
     ['Floor area', area + ' m²'],
-    ['Rate per m²', '$' + rateUsd + ' (' + fmt(rateZmw) + ' at today\'s rate)'],
-    ['Excludes', 'Foundations, concrete, transport outside Lusaka, roofing/cladding upgrades, M&E']
-  ], 'Engineered steel building estimate: ' + label + ', ' + area + 'm² floor area, rate $' + rateUsd + '/m² (' + fmt(rateZmw) + ' at today\'s FX), total ' + fmt(total) + ' (structural shell only — excludes foundations/concrete/M&E)');
+    ['Base rate (shell)', '$' + shellUsd + '/m²']
+  ];
+  if(addFoundation) breakdown.push(['+ Foundations & slab', '$' + STEEL_ADDON_RATES_USD.foundation + '/m²']);
+  if(addRoofing) breakdown.push(['+ Roofing & cladding', '$' + STEEL_ADDON_RATES_USD.roofing + '/m²']);
+  breakdown.push(['Total rate', '$' + rateUsd + '/m² (' + fmt(rateZmw) + ' today)']);
+  breakdown.push(['Extras (non-standard specs)', 'Quoted separately']);
+
+  showResult(total, breakdown, 'Engineered steel building estimate: ' + label + ', ' + area + 'm², standard package (' + includedText + '), rate $' + rateUsd + '/m² (' + fmt(rateZmw) + ' at today\'s FX), total ' + fmt(total));
 }
 
 function calcSteel(){
@@ -458,23 +493,43 @@ function calcSteel(){
   ], 'Structural steel estimate: ' + (source==='local'?'Local UMZ':'Imported SA') + ', ' + kg + 'kg, rate ' + fmt(rate) + '/kg, total ' + fmt(total));
 }
 
+var INTERIOR_INSTALL_RATE = 0.25; // Bolide installs client-supplied interior materials at 25% of material value
+
 function calcHouse(){
   var size = document.getElementById('house-size').value;
   var quality = document.getElementById('house-quality').value;
   var area = parseFloat(document.getElementById('house-area').value);
   if(!area || area <= 0){ alert('Please enter the floor area.'); return; }
   var q = QUALITY_RATES[quality];
-  var total = q.rate * area;
+  var shellTotal = q.rate * area;
   var totalMin = q.min * area;
   var totalMax = q.max * area;
   var houseLabel = HOUSE_LABELS[size];
-  lastEstimate = { description: houseLabel + ' — ' + q.label + ' Finish (construction only)', unit: 'm²', qty: area, rate: q.rate, total: total, notes: 'Construction cost only — materials and labour to build. Excludes land, professional fees, and statutory approvals. Indicative range: ' + fmt(totalMin) + ' – ' + fmt(totalMax) + ' depending on final specification.' };
-  showResult(total, [
+
+  var interiorBudget = parseFloat(document.getElementById('house-interior-budget').value) || 0;
+  var interiorInstallFee = interiorBudget * INTERIOR_INSTALL_RATE;
+  var total = shellTotal + interiorInstallFee;
+
+  var notes = 'Structure (shell) cost only — materials and labour to build the foundations, walls, roof and standard finishes. Excludes land, professional fees, and statutory approvals. Indicative shell range: ' + fmt(totalMin) + ' – ' + fmt(totalMax) + ' depending on final specification.';
+  if(interiorBudget > 0){
+    notes += ' Interior finishing: client supplies materials (budgeted at ' + fmt(interiorBudget) + '); Bolide installs at 25% of material value (' + fmt(interiorInstallFee) + ').';
+  }
+
+  lastEstimate = { description: houseLabel + ' — ' + q.label + ' Structure' + (interiorBudget > 0 ? ' + Interior Installation (25% of client-supplied materials)' : ''), unit: 'm²', qty: area, rate: q.rate, total: total, notes: notes };
+
+  var breakdown = [
     ['House size', houseLabel + ' (' + area + ' m²)'],
-    ['Finish level', q.label],
+    ['Structure level', q.label],
     ['Rate per m²', fmt(q.rate) + ' (typical)'],
-    ['Indicative range', fmt(totalMin) + ' – ' + fmt(totalMax)]
-  ], 'House build estimate: ' + houseLabel + ', ' + area + 'm², ' + q.label + ' finish, rate ' + fmt(q.rate) + '/m², total ' + fmt(total) + ' (range ' + fmt(totalMin) + '-' + fmt(totalMax) + ')');
+    ['Structure subtotal', fmt(shellTotal)],
+    ['Indicative structure range', fmt(totalMin) + ' – ' + fmt(totalMax)]
+  ];
+  if(interiorBudget > 0){
+    breakdown.push(['Interior materials (client-supplied)', fmt(interiorBudget)]);
+    breakdown.push(['Interior installation (25%)', fmt(interiorInstallFee)]);
+  }
+
+  showResult(total, breakdown, 'House build estimate: ' + houseLabel + ', ' + area + 'm², ' + q.label + ' structure, rate ' + fmt(q.rate) + '/m², structure ' + fmt(shellTotal) + (interiorBudget > 0 ? ', interior install fee ' + fmt(interiorInstallFee) + ' (25% of ' + fmt(interiorBudget) + ' material budget)' : '') + ', grand total ' + fmt(total));
 }
 
 updateHouseArea(); // set default area on load
