@@ -124,6 +124,7 @@ footer a { color: var(--primary); text-decoration: none; }
 
 <div class="container">
   <div class="estimator-card">
+    <div id="fxBanner" style="text-align:center; font-size:12px; color:var(--mid); font-family:var(--font-display); font-weight:600; letter-spacing:0.5px; margin-bottom:18px; padding:8px; background:var(--light); border-radius:6px;">Loading today's exchange rate&hellip;</div>
     <div class="tabs" id="tabs">
       <button class="tab-btn active" data-tab="fencing" onclick="switchTab('fencing', this)">Fencing</button>
       <button class="tab-btn" data-tab="steel" onclick="switchTab('steel', this)">Structural Steel</button>
@@ -316,8 +317,40 @@ var CIVIL_RATES = { block200: 228, block100: 190, concrete: 1900 };
 
 var HANDRAIL_RATES = { glass: 4195, stainless: 2250 }; // K/m, published starting rates (Bolide balustrade flyer, Aug 2026)
 
-var STEEL_BUILDING_RATES = { b15: 1015, b25: 1320, b40: 1740 }; // K/m², published starting rates (Bolide steel flyer, Aug 2026)
+var STEEL_BUILDING_RATES_USD = { b15: 85, b25: 110, b40: 145 }; // USD/m², published starting rates (Bolide steel flyer, Aug 2026)
 var STEEL_BUILDING_LABELS = { b15: 'B15 Series (up to 15m clear span)', b25: 'B25 Series (15m–25m clear span)', b40: 'B40 Series (25m–40m+ clear span)' };
+
+// ===== LIVE EXCHANGE RATE (refreshes daily) =====
+var FALLBACK_FX = 18.98; // used only if the live fetch fails
+var currentFx = FALLBACK_FX;
+
+function getLiveFx(){
+  return new Promise(function(resolve){
+    var today = new Date().toISOString().slice(0,10);
+    var cached = null;
+    try { cached = JSON.parse(localStorage.getItem('bolide_fx_cache')); } catch(e){}
+    if(cached && cached.date === today && cached.rate){
+      resolve(cached.rate);
+      return;
+    }
+    fetch('https://open.er-api.com/v6/latest/USD')
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        var rate = data && data.rates && data.rates.ZMW ? data.rates.ZMW : FALLBACK_FX;
+        try { localStorage.setItem('bolide_fx_cache', JSON.stringify({date: today, rate: rate})); } catch(e){}
+        resolve(rate);
+      })
+      .catch(function(){ resolve(FALLBACK_FX); });
+  });
+}
+
+getLiveFx().then(function(rate){
+  currentFx = rate;
+  var banner = document.getElementById('fxBanner');
+  if(banner){
+    banner.textContent = 'Exchange rate today: 1 USD = K' + rate.toFixed(2) + ' (auto-updated daily)';
+  }
+});
 
 function fmt(n){ return 'K' + n.toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0}); }
 
@@ -371,15 +404,16 @@ function calcSteelBuilding(){
   var series = document.getElementById('steel-series').value;
   var area = parseFloat(document.getElementById('steel-area').value);
   if(!area || area <= 0){ alert('Please enter the floor area in m².'); return; }
-  var rate = STEEL_BUILDING_RATES[series];
+  var rateUsd = STEEL_BUILDING_RATES_USD[series];
+  var rateZmw = rateUsd * currentFx;
   var label = STEEL_BUILDING_LABELS[series];
-  var total = rate * area;
+  var total = rateZmw * area;
   showResult(total, [
     ['Building series', label],
     ['Floor area', area + ' m²'],
-    ['Rate per m²', fmt(rate)],
+    ['Rate per m²', '$' + rateUsd + ' (' + fmt(rateZmw) + ' at today\'s rate)'],
     ['Excludes', 'Foundations, concrete, transport outside Lusaka, roofing/cladding upgrades, M&E']
-  ], 'Engineered steel building estimate: ' + label + ', ' + area + 'm² floor area, rate ' + fmt(rate) + '/m², total ' + fmt(total) + ' (structural shell only — excludes foundations/concrete/M&E)');
+  ], 'Engineered steel building estimate: ' + label + ', ' + area + 'm² floor area, rate $' + rateUsd + '/m² (' + fmt(rateZmw) + ' at today\'s FX), total ' + fmt(total) + ' (structural shell only — excludes foundations/concrete/M&E)');
 }
 
 function calcSteel(){
