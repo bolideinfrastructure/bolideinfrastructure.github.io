@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Estimate | Bolide Infrastructure Solutions</title>
+<meta name="description" content="Get an instant indicative estimate for fencing, structural steel, civil works and handrailing from Bolide Infrastructure Solutions, Zambia.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary: #f05a28;
+  --primary-dark: #c94818;
+  --navy: #0d1b2a;
+  --dark: #111;
+  --mid: #555;
+  --light: #f7f7f7;
+  --white: #fff;
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body: 'Barlow', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); background: #fff; color: #222; line-height: 1.7; }
+
+header { position: sticky; top: 0; z-index: 1000; background: rgba(255,255,255,0.97); border-bottom: 3px solid var(--primary); backdrop-filter: blur(6px); }
+.nav { max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 10px 24px; }
+.nav img { height: 44px; }
+.nav-links { display: flex; align-items: center; gap: 8px; }
+.nav-links a { padding: 8px 14px; text-decoration: none; color: #111; font-family: var(--font-display); font-weight: 600; font-size: 15px; letter-spacing: 0.3px; border-radius: 4px; transition: color 0.2s, background 0.2s; }
+.nav-links a:hover { color: var(--primary); background: #fff4f0; }
+.nav-links .cta-nav { background: var(--primary); color: #fff; padding: 8px 18px; }
+.nav-links .cta-nav:hover { background: var(--primary-dark); color: #fff; }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+.hamburger span { width: 24px; height: 2px; background: #111; border-radius: 2px; }
+.mobile-menu { display: none; flex-direction: column; background: #fff; padding: 16px 24px 20px; border-top: 1px solid #eee; }
+.mobile-menu a { padding: 12px 0; text-decoration: none; color: #111; font-family: var(--font-display); font-weight: 600; font-size: 17px; border-bottom: 1px solid #f0f0f0; }
+.mobile-menu.open { display: flex; }
+
+.hero { background: linear-gradient(135deg, rgba(13,27,42,0.95) 0%, rgba(13,27,42,0.85) 60%, rgba(240,90,40,0.25) 100%); padding: 64px 24px 56px; text-align: center; }
+.hero-tag { display: inline-block; background: var(--primary); color: #fff; font-family: var(--font-display); font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 6px 14px; border-radius: 2px; margin-bottom: 18px; }
+.hero h1 { font-family: var(--font-display); font-size: clamp(34px, 5vw, 56px); font-weight: 800; color: #fff; line-height: 1.1; letter-spacing: -0.5px; max-width: 760px; margin: 0 auto 16px; }
+.hero h1 span { color: var(--primary); }
+.hero p { color: rgba(255,255,255,0.85); font-size: 17px; max-width: 560px; margin: 0 auto; }
+
+.container { max-width: 900px; margin: auto; padding: 56px 24px; }
+.section-label { font-family: var(--font-display); font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--primary); margin-bottom: 8px; text-align: center; }
+
+.estimator-card { background: #fff; border-radius: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.08); padding: 32px; border-top: 5px solid var(--primary); }
+
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.tab-btn { flex: 1; min-width: 140px; padding: 12px 14px; border-radius: 8px; border: 2px solid #e5e5e5; background: #fff; font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: 0.3px; color: var(--mid); cursor: pointer; transition: all 0.2s; text-align: center; }
+.tab-btn:hover { border-color: var(--primary); color: var(--primary); }
+.tab-btn.active { background: var(--navy); border-color: var(--navy); color: #fff; }
+
+.field-group { margin-bottom: 18px; }
+.field-group label { display: block; font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: 0.5px; text-transform: uppercase; color: var(--navy); margin-bottom: 6px; }
+.field-group select, .field-group input { width: 100%; padding: 12px 14px; border: 1.5px solid #ddd; border-radius: 6px; font-family: var(--font-body); font-size: 15px; color: #222; background: #fff; }
+.field-group select:focus, .field-group input:focus { outline: none; border-color: var(--primary); }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media(max-width:600px){ .field-row { grid-template-columns: 1fr; } }
+
+.calc-btn { width: 100%; background: var(--primary); color: #fff; padding: 15px; border: none; border-radius: 6px; font-family: var(--font-display); font-weight: 700; font-size: 17px; letter-spacing: 0.5px; cursor: pointer; transition: background 0.2s; margin-top: 6px; }
+.calc-btn:hover { background: var(--primary-dark); }
+
+.result-box { display: none; margin-top: 28px; background: var(--light); border-radius: 8px; padding: 24px; border-left: 5px solid var(--primary); }
+.result-box.show { display: block; }
+.result-label { font-family: var(--font-display); font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--mid); margin-bottom: 6px; }
+.result-value { font-family: var(--font-display); font-size: 40px; font-weight: 800; color: var(--navy); line-height: 1.1; }
+.result-value span { font-size: 18px; color: var(--mid); font-weight: 600; }
+.result-note { font-size: 13px; color: var(--mid); margin-top: 12px; line-height: 1.6; }
+.result-breakdown { margin-top: 16px; font-size: 14px; color: var(--mid); }
+.result-breakdown div { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid #e5e5e5; }
+.result-breakdown div:last-child { border-bottom: none; font-weight: 700; color: var(--navy); }
+
+.disclaimer { font-size: 12px; color: #999; margin-top: 20px; text-align: center; line-height: 1.6; }
+
+.lead-form { display: none; margin-top: 24px; padding-top: 24px; border-top: 1px solid #e5e5e5; }
+.lead-form.show { display: block; }
+.lead-form h3 { font-family: var(--font-display); font-size: 19px; font-weight: 700; color: var(--navy); margin-bottom: 14px; }
+.lead-form input, .lead-form textarea { width: 100%; padding: 12px 14px; border: 1.5px solid #ddd; border-radius: 6px; font-family: var(--font-body); font-size: 15px; margin-bottom: 12px; }
+.lead-form button { width: 100%; background: var(--navy); color: #fff; padding: 14px; border: none; border-radius: 6px; font-family: var(--font-display); font-weight: 700; font-size: 16px; cursor: pointer; transition: background 0.2s; }
+.lead-form button:hover { background: #1a3350; }
+
+.whatsapp { position: fixed; bottom: 24px; right: 24px; background: #25d366; color: #fff; padding: 14px 20px; border-radius: 50px; font-family: var(--font-display); font-weight: 700; font-size: 15px; text-decoration: none; z-index: 3000; box-shadow: 0 4px 20px rgba(37,211,102,0.4); display: flex; align-items: center; gap: 8px; }
+
+footer { background: var(--dark); color: #aaa; padding: 32px 24px; text-align: center; font-size: 13px; }
+footer a { color: var(--primary); text-decoration: none; }
+
+@media(max-width:768px){ .nav-links { display: none; } .hamburger { display: flex; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="index.html"><img src="images/logo.png" alt="Bolide Infrastructure Solutions"></a>
+    <nav class="nav-links">
+      <a href="index.html#about">About</a>
+      <a href="index.html#services">Services</a>
+      <a href="products.html">Products</a>
+      <a href="index.html#projects">Projects</a>
+      <a href="estimator.html" style="color:var(--primary);">Free Estimate</a>
+      <a href="index.html#contact" class="cta-nav">Get a Quote</a>
+    </nav>
+    <div class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')"><span></span><span></span><span></span></div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#about">About</a>
+    <a href="index.html#services">Services</a>
+    <a href="index.html#projects">Projects</a>
+    <a href="estimator.html">Free Estimate</a>
+    <a href="index.html#contact">Get a Quote</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-tag">Free &middot; Instant &middot; No Obligation</div>
+  <h1>Get an Instant <span>Estimate</span></h1>
+  <p>Select your project type below for a ballpark cost in seconds. This gives you a starting number to plan around — we'll confirm the exact price after a quick site check.</p>
+</section>
+
+<div class="container">
+  <div class="estimator-card">
+    <div class="tabs" id="tabs">
+      <button class="tab-btn active" data-tab="fencing" onclick="switchTab('fencing', this)">Fencing</button>
+      <button class="tab-btn" data-tab="steel" onclick="switchTab('steel', this)">Structural Steel</button>
+      <button class="tab-btn" data-tab="civil" onclick="switchTab('civil', this)">Civil / Block Work</button>
+      <button class="tab-btn" data-tab="handrail" onclick="switchTab('handrail', this)">Handrailing</button>
+    </div>
+
+    <!-- FENCING -->
+    <div class="tab-panel" id="panel-fencing">
+      <div class="field-group">
+        <label>Fence Type</label>
+        <select id="fence-type">
+          <option value="ref254">Clear-View REF 254 (Economical Secure)</option>
+          <option value="ref359">Clear-View REF 359 (Mid-Economical Secure)</option>
+          <option value="ref577">Clear-View REF 577 (High Secure)</option>
+          <option value="diamond">Diamond Mesh Fencing</option>
+          <option value="game">Game Wire / Field Fence</option>
+        </select>
+      </div>
+      <div class="field-row" id="fence-clearview-options">
+        <div class="field-group">
+          <label>Height</label>
+          <select id="fence-height">
+            <option value="1.8">1.8m</option>
+            <option value="2.0">2.0m</option>
+            <option value="2.4">2.4m</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label>Finish</label>
+          <select id="fence-finish">
+            <option value="galv">Galvanized</option>
+            <option value="powder">Powder Coated</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-group">
+        <label>Fence Length (metres)</label>
+        <input type="number" id="fence-length" placeholder="e.g. 150" min="1">
+      </div>
+      <button class="calc-btn" onclick="calcFencing()">Calculate Estimate</button>
+    </div>
+
+    <!-- STRUCTURAL STEEL -->
+    <div class="tab-panel" id="panel-steel" style="display:none;">
+      <div class="field-group">
+        <label>What are you pricing?</label>
+        <select id="steel-mode" onchange="toggleSteelMode()">
+          <option value="building">A complete engineered steel building (per m² floor area)</option>
+          <option value="tonnage">Steel fabrication only (per kg, you supply the drawings)</option>
+        </select>
+      </div>
+
+      <div id="steel-building-fields">
+        <div class="field-group">
+          <label>Building Series (by clear span)</label>
+          <select id="steel-series">
+            <option value="b15">B15 Series — up to 15m clear span (workshops, farm sheds, storage)</option>
+            <option value="b25">B25 Series — 15m–25m clear span (warehouses, distribution, manufacturing)</option>
+            <option value="b40">B40 Series — 25m–40m+ clear span (heavy industry, mining, large warehouses)</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label>Floor Area (m²)</label>
+          <input type="number" id="steel-area" placeholder="e.g. 500" min="1">
+        </div>
+        <div style="font-size:12px;color:var(--mid);margin-bottom:14px;">Includes structural design, shop drawings, fabrication, surface protection (paint), supply and installation. Excludes foundations, concrete works, transport outside Lusaka, roofing/cladding upgrades, and electrical/plumbing works.</div>
+        <button class="calc-btn" onclick="calcSteelBuilding()">Calculate Estimate</button>
+      </div>
+
+      <div id="steel-tonnage-fields" style="display:none;">
+        <div class="field-group">
+          <label>Steel Source</label>
+          <select id="steel-source">
+            <option value="local">Local (UMZ / Zambian steel — most economical)</option>
+            <option value="imported">Imported (South Africa — higher spec, e.g. S355)</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label>Estimated Tonnage (kg)</label>
+          <input type="number" id="steel-kg" placeholder="e.g. 5000" min="1">
+          <div style="font-size:12px;color:var(--mid);margin-top:6px;">Not sure of the tonnage? We can work this out from your drawings — request a full quote below instead.</div>
+        </div>
+        <button class="calc-btn" onclick="calcSteel()">Calculate Estimate</button>
+      </div>
+    </div>
+
+    <!-- CIVIL / BLOCK -->
+    <div class="tab-panel" id="panel-civil" style="display:none;">
+      <div class="field-group">
+        <label>Work Type</label>
+        <select id="civil-type">
+          <option value="block200">Blockwork — 200mm wall</option>
+          <option value="block100">Blockwork — 100mm wall</option>
+          <option value="concrete">Reinforced Concrete (beams/columns/slabs)</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label id="civil-area-label">Area (m²)</label>
+        <input type="number" id="civil-area" placeholder="e.g. 120" min="1">
+      </div>
+      <button class="calc-btn" onclick="calcCivil()">Calculate Estimate</button>
+    </div>
+
+    <!-- HANDRAILING -->
+    <div class="tab-panel" id="panel-handrail" style="display:none;">
+      <div class="field-group">
+        <label>System Type</label>
+        <select id="handrail-type">
+          <option value="glass">Glass Balustrade (stainless posts + glass panels)</option>
+          <option value="stainless">Stainless Steel Line-Fill Handrail (no glass)</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Length (metres)</label>
+        <input type="number" id="handrail-length" placeholder="e.g. 12" min="1">
+      </div>
+      <button class="calc-btn" onclick="calcHandrail()">Calculate Estimate</button>
+    </div>
+
+    <div class="result-box" id="resultBox">
+      <div class="result-label">Estimated Cost</div>
+      <div class="result-value" id="resultValue">K0 <span>ZMW</span></div>
+      <div class="result-breakdown" id="resultBreakdown"></div>
+      <div class="result-note">This is an indicative estimate based on current standard rates. Final pricing depends on site conditions, exact specifications, and material costs at time of order. Request a firm quote below — we typically respond within 24 hours.</div>
+    </div>
+
+    <div class="lead-form" id="leadForm">
+      <h3>Get a Firm Quote for This</h3>
+      <form action="https://api.web3forms.com/submit" method="POST" id="quoteForm">
+        <input type="hidden" name="access_key" value="f7a0bf26-b132-4f74-ae09-635808288f43">
+        <input type="hidden" name="subject" value="Estimator Quote Request - Bolide Infrastructure">
+        <input type="hidden" name="redirect" value="false">
+        <input type="hidden" name="estimate_details" id="estimate-details-field">
+        <div class="field-row">
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="tel" name="phone" placeholder="Phone Number" required>
+        </div>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <textarea name="message" rows="3" placeholder="Any additional details about your project (location, timeline, etc.)"></textarea>
+        <button type="submit">Request Firm Quote &#8594;</button>
+      </form>
+    </div>
+
+    <div class="disclaimer">Rates last reviewed August 2026. Prices exclude transport outside a 50km radius of Lusaka and are subject to a site visit for final confirmation.</div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 Bolide Infrastructure Solutions Limited &middot; NCC Grade 5, Category C &middot; <a href="index.html">Back to Home</a></p>
+</footer>
+
+<a class="whatsapp" href="https://wa.me/260966855207" target="_blank"><span>&#128172;</span> WhatsApp Us</a>
+
+<script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
+
+function switchTab(tab, btn){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.tab-panel').forEach(p=>p.style.display='none');
+  document.getElementById('panel-'+tab).style.display='block';
+  document.getElementById('resultBox').classList.remove('show');
+  document.getElementById('leadForm').classList.remove('show');
+}
+
+document.getElementById('fence-type').addEventListener('change', function(){
+  var v = this.value;
+  document.getElementById('fence-clearview-options').style.display = (v==='ref254'||v==='ref359'||v==='ref577') ? 'grid' : 'none';
+});
+
+document.getElementById('civil-type').addEventListener('change', function(){
+  var v = this.value;
+  document.getElementById('civil-area-label').textContent = (v==='concrete') ? 'Volume (m³)' : 'Area (m²)';
+});
+
+// ===== RATE TABLES (ZMW, client-ready, TOT applied) — from Bolide Rate Book, Aug 2026 =====
+var FENCE_RATES = {
+  ref254: { 1.8: {galv:886.83, powder:1162.50}, 2.0: {galv:942.31, powder:1272.30}, 2.4: {galv:1006.87, powder:1331.25} },
+  ref359: { 1.8: {galv:904.82, powder:1292.99}, 2.0: {galv:1099.20, powder:1406.05}, 2.4: {galv:1182.54, powder:1527.44} },
+  ref577: { 1.8: {galv:1393.78, powder:1669.45}, 2.0: {galv:1525.07, powder:1835.14}, 2.4: {galv:1676.45, powder:2021.23} }
+};
+var DIAMOND_RATE = 360.14;
+var GAME_WIRE_RATE = 148.41;
+
+var STEEL_RATE_LOCAL = 33.25;    // K/kg, UMZ-based, supply+fix erected
+var STEEL_RATE_IMPORTED = 48.00; // K/kg, SA-imported average, supply+fix erected
+
+var CIVIL_RATES = { block200: 228, block100: 190, concrete: 1900 };
+
+var HANDRAIL_RATES = { glass: 4195, stainless: 2250 }; // K/m, published starting rates (Bolide balustrade flyer, Aug 2026)
+
+var STEEL_BUILDING_RATES = { b15: 1015, b25: 1320, b40: 1740 }; // K/m², published starting rates (Bolide steel flyer, Aug 2026)
+var STEEL_BUILDING_LABELS = { b15: 'B15 Series (up to 15m clear span)', b25: 'B25 Series (15m–25m clear span)', b40: 'B40 Series (25m–40m+ clear span)' };
+
+function fmt(n){ return 'K' + n.toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0}); }
+
+function showResult(total, breakdownRows, detailsText){
+  document.getElementById('resultValue').innerHTML = fmt(total) + ' <span>ZMW (indicative)</span>';
+  var bd = document.getElementById('resultBreakdown');
+  bd.innerHTML = '';
+  breakdownRows.forEach(function(row){
+    var d = document.createElement('div');
+    d.innerHTML = '<span>'+row[0]+'</span><span>'+row[1]+'</span>';
+    bd.appendChild(d);
+  });
+  document.getElementById('resultBox').classList.add('show');
+  document.getElementById('leadForm').classList.add('show');
+  document.getElementById('estimate-details-field').value = detailsText;
+  document.getElementById('resultBox').scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+function calcFencing(){
+  var type = document.getElementById('fence-type').value;
+  var length = parseFloat(document.getElementById('fence-length').value);
+  if(!length || length <= 0){ alert('Please enter the fence length in metres.'); return; }
+
+  var rate, label;
+  if(type === 'diamond'){
+    rate = DIAMOND_RATE; label = 'Diamond Mesh Fencing';
+  } else if(type === 'game'){
+    rate = GAME_WIRE_RATE; label = 'Game Wire / Field Fence';
+  } else {
+    var height = document.getElementById('fence-height').value;
+    var finish = document.getElementById('fence-finish').value;
+    rate = FENCE_RATES[type][height][finish];
+    var typeLabels = {ref254:'REF 254', ref359:'REF 359', ref577:'REF 577'};
+    label = typeLabels[type] + ' — ' + height + 'm ' + (finish==='galv'?'Galvanized':'Powder Coated');
+  }
+  var total = rate * length;
+  showResult(total, [
+    ['Fence type', label],
+    ['Length', length + ' m'],
+    ['Rate per metre', fmt(rate)]
+  ], 'Fencing estimate: ' + label + ', ' + length + 'm, rate ' + fmt(rate) + '/m, total ' + fmt(total));
+}
+
+function toggleSteelMode(){
+  var mode = document.getElementById('steel-mode').value;
+  document.getElementById('steel-building-fields').style.display = mode === 'building' ? 'block' : 'none';
+  document.getElementById('steel-tonnage-fields').style.display = mode === 'tonnage' ? 'block' : 'none';
+}
+
+function calcSteelBuilding(){
+  var series = document.getElementById('steel-series').value;
+  var area = parseFloat(document.getElementById('steel-area').value);
+  if(!area || area <= 0){ alert('Please enter the floor area in m².'); return; }
+  var rate = STEEL_BUILDING_RATES[series];
+  var label = STEEL_BUILDING_LABELS[series];
+  var total = rate * area;
+  showResult(total, [
+    ['Building series', label],
+    ['Floor area', area + ' m²'],
+    ['Rate per m²', fmt(rate)],
+    ['Excludes', 'Foundations, concrete, transport outside Lusaka, roofing/cladding upgrades, M&E']
+  ], 'Engineered steel building estimate: ' + label + ', ' + area + 'm² floor area, rate ' + fmt(rate) + '/m², total ' + fmt(total) + ' (structural shell only — excludes foundations/concrete/M&E)');
+}
+
+function calcSteel(){
+  var source = document.getElementById('steel-source').value;
+  var kg = parseFloat(document.getElementById('steel-kg').value);
+  if(!kg || kg <= 0){ alert('Please enter the estimated tonnage in kg.'); return; }
+  var rate = source === 'local' ? STEEL_RATE_LOCAL : STEEL_RATE_IMPORTED;
+  var total = rate * kg;
+  showResult(total, [
+    ['Steel source', source==='local' ? 'Local (UMZ)' : 'Imported (South Africa)'],
+    ['Weight', kg.toLocaleString() + ' kg'],
+    ['Rate per kg', fmt(rate)]
+  ], 'Structural steel estimate: ' + (source==='local'?'Local UMZ':'Imported SA') + ', ' + kg + 'kg, rate ' + fmt(rate) + '/kg, total ' + fmt(total));
+}
+
+function calcCivil(){
+  var type = document.getElementById('civil-type').value;
+  var area = parseFloat(document.getElementById('civil-area').value);
+  if(!area || area <= 0){ alert('Please enter the area or volume.'); return; }
+  var rate = CIVIL_RATES[type];
+  var unit = type === 'concrete' ? 'm³' : 'm²';
+  var labels = {block200:'Blockwork — 200mm wall', block100:'Blockwork — 100mm wall', concrete:'Reinforced Concrete'};
+  var total = rate * area;
+  showResult(total, [
+    ['Work type', labels[type]],
+    [(type==='concrete'?'Volume':'Area'), area + ' ' + unit],
+    ['Rate per ' + unit, fmt(rate)]
+  ], 'Civil/block estimate: ' + labels[type] + ', ' + area + unit + ', rate ' + fmt(rate) + '/' + unit + ', total ' + fmt(total));
+}
+
+function calcHandrail(){
+  var type = document.getElementById('handrail-type').value;
+  var length = parseFloat(document.getElementById('handrail-length').value);
+  if(!length || length <= 0){ alert('Please enter the length in metres.'); return; }
+  var rate = HANDRAIL_RATES[type];
+  var label = type === 'glass' ? 'Glass Balustrade' : 'Stainless Steel Handrail';
+  var total = rate * length;
+  showResult(total, [
+    ['System', label],
+    ['Length', length + ' m'],
+    ['Rate per metre', fmt(rate)]
+  ], 'Handrailing estimate: ' + label + ', ' + length + 'm, rate ' + fmt(rate) + '/m, total ' + fmt(total));
+}
+</script>
+
+</body>
+</html>
