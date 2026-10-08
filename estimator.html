@@ -150,9 +150,9 @@ footer a { color: var(--primary); text-decoration: none; }
       <div class="field-group">
         <label>Fence Type</label>
         <select id="fence-type">
-          <option value="ref254">Clear-View REF 254 (Economical Secure)</option>
-          <option value="ref359">Clear-View REF 359 (Mid-Economical Secure)</option>
-          <option value="ref577">Clear-View REF 577 (High Secure)</option>
+          <option value="ref254">Clear-View REF 254 — Aperture 50×76mm, Wire 4×3mm (Economical Secure)</option>
+          <option value="ref359">Clear-View REF 359 — Aperture 25×76mm, Wire 4×3mm (Mid-Economical Secure)</option>
+          <option value="ref577">Clear-View REF 577 — Aperture 12×76mm, Wire 4×3mm (High Secure)</option>
           <option value="diamond">Diamond Mesh Fencing</option>
           <option value="game">Game Wire / Field Fence</option>
         </select>
@@ -176,7 +176,7 @@ footer a { color: var(--primary); text-decoration: none; }
         </div>
         <div class="field-group">
           <label>Post Finish</label>
-          <select id="fence-finish" onchange="updateRateBadge()">
+          <select id="fence-finish" onchange="updateRateBadge();updateSpecPole()">
             <option value="epoxy">Standard — Epoxy Painted Posts</option>
             <option value="powder">Premium — Powder Coated / Pre-Galvanized (on request)</option>
           </select>
@@ -401,6 +401,7 @@ document.getElementById('fence-type').addEventListener('change', function(){
     document.getElementById('spec-standard').textContent = s.standard;
     specsPanel.classList.add('visible');
     updateRateBadge();
+    updateSpecPole();
   } else {
     specsPanel.classList.remove('visible');
     rateBadge.classList.remove('visible');
@@ -416,6 +417,12 @@ function updateRateBadge(){
   document.getElementById('rate-badge-value').textContent = 'K' + rate.toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0});
   document.getElementById('fence-rate-badge').classList.add('visible');
 }
+function updateSpecPole(){
+  var f = document.getElementById('fence-finish').value;
+  var poleText = f === 'powder' ? '76 × 76 mm SQ PC/Pregalv' : '76 × 76 mm SQ Epoxy';
+  var el = document.getElementById('spec-pole');
+  if(el) el.textContent = poleText;
+}
 
 document.getElementById('house-size').addEventListener('change', updateHouseArea);
 
@@ -423,11 +430,19 @@ function updateHouseArea(){
   document.getElementById('house-area').value = HOUSE_AREAS[document.getElementById('house-size').value];
 }
 
-// ===== RATE TABLES (ZMW, all-inclusive supply+install+delivery within 50km) — FENCE_PRICING_FINAL, Aug 2026 =====
+// ===== RATE TABLES (ZMW, all-inclusive supply+install+delivery within 50km) — FENCE_PRICING_FINAL =====
+// POST FINISH POLICY: Epoxy painted posts are the default standard option.
+// Powder Coated / Pre-Galvanized posts are a premium upgrade available only on client request —
+// these are significantly more expensive (~K300–500/m extra) and are not quoted unless specifically asked for.
+// Galvanized (hot-dip) posts are not offered — epoxy provides better corrosion protection for local conditions.
+//
+// Rate derivation: Base rates from FENCE_PRICING_FINAL.xlsx col 11 (ZMW all-inclusive, galv poles).
+// Epoxy rates = galv base + (534.07 − 451.92) / 3m pole spacing = +ZMW 27/m (epoxy vs galv pole delta).
+// Powder rates sourced directly from spreadsheet col 11 (POWDER COATED/PREGALV rows, include PC poles).
 var FENCE_RATES = {
-  ref254: { "1.8": {galv:1035, powder:1673}, "2.0": {galv:1102, powder:1782}, "2.4": {galv:1180, powder:1902} },
-  ref359: { "1.8": {galv:1057, powder:1830}, "2.0": {galv:1291, powder:1967}, "2.4": {galv:1392, powder:2113} },
-  ref577: { "1.8": {galv:1624, powder:2257}, "2.0": {galv:1779, powder:2452}, "2.4": {galv:1959, powder:2672} }
+  ref254: { "1.8": {epoxy:1030, powder:1266}, "2.0": {epoxy:1097, powder:1375}, "2.4": {epoxy:1175, powder:1495} },
+  ref359: { "1.8": {epoxy:1051, powder:1423}, "2.0": {epoxy:1285, powder:1559}, "2.4": {epoxy:1386, powder:1706} },
+  ref577: { "1.8": {epoxy:1619, powder:1849}, "2.0": {epoxy:1774, powder:2045}, "2.4": {epoxy:1953, powder:2265} }
 };
 // Fence technical specifications — SABS-approved BestFence clear-view panels
 var FENCE_SPECS = {
@@ -549,7 +564,8 @@ function calcFencing(){
     var finish = document.getElementById('fence-finish').value;
     rate = FENCE_RATES[type][height][finish];
     var typeLabels = {ref254:'REF 254', ref359:'REF 359', ref577:'REF 577'};
-    label = typeLabels[type] + ' Clear-View Fence, ' + height + 'm, ' + (finish==='galv'?'Galvanized':'Powder Coated') + ' — supply and installation';
+    var finishLabels = {epoxy:'Epoxy Painted Posts (Standard)', powder:'Powder Coated / Pre-Galvanized Posts (Premium)'};
+    label = typeLabels[type] + ' Clear-View Fence, ' + height + 'm, ' + finishLabels[finish] + ' — supply and installation';
   }
   var total = rate * length;
   lastEstimate = { category: 'fencing', description: label, unit: 'm', qty: length, rate: rate, total: total, notes: 'Includes material, installation and delivery within 50km of Lusaka.' };
