@@ -76,6 +76,18 @@ header { position: sticky; top: 0; z-index: 1000; background: rgba(255,255,255,0
 .result-breakdown div:last-child { border-bottom: none; font-weight: 700; color: var(--navy); }
 
 .disclaimer { font-size: 12px; color: #999; margin-top: 20px; text-align: center; line-height: 1.6; }
+/* Fence specs info panel */
+.fence-specs-info { display: none; background: var(--navy); color: #fff; border-radius: 8px; padding: 16px 20px; margin: 12px 0 16px; }
+.fence-specs-info.visible { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.spec-item .spec-label { display: block; font-family: var(--font-display); font-weight: 700; font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 3px; }
+.spec-item .spec-val { display: block; font-family: var(--font-display); font-weight: 800; font-size: 16px; color: var(--primary); }
+/* Live rate badge */
+.rate-badge { display: none; background: var(--primary); color: #fff; border-radius: 8px; padding: 14px 20px; margin: 12px 0; align-items: center; justify-content: space-between; gap: 12px; }
+.rate-badge.visible { display: flex; }
+.rate-badge-label { font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; opacity: 0.85; }
+.rate-badge-value { font-family: var(--font-display); font-weight: 800; font-size: 28px; line-height: 1; }
+.rate-badge-sub { font-size: 11px; opacity: 0.75; margin-top: 2px; }
+@media(max-width:600px){ .fence-specs-info.visible { grid-template-columns: repeat(2,1fr); } .rate-badge { flex-direction: column; align-items: flex-start; } }
 
 .lead-form { display: none; margin-top: 24px; padding-top: 24px; border-top: 1px solid #e5e5e5; }
 .lead-form.show { display: block; }
@@ -145,22 +157,36 @@ footer a { color: var(--primary); text-decoration: none; }
           <option value="game">Game Wire / Field Fence</option>
         </select>
       </div>
+      <!-- Specs info panel — shown for clear-view types only -->
+      <div class="fence-specs-info" id="fence-specs-panel">
+        <div class="spec-item"><span class="spec-label">Aperture Size</span><span class="spec-val" id="spec-aperture">—</span></div>
+        <div class="spec-item"><span class="spec-label">Wire Thickness</span><span class="spec-val" id="spec-wire">—</span></div>
+        <div class="spec-item"><span class="spec-label">Pole Size</span><span class="spec-val" id="spec-pole">—</span></div>
+        <div class="spec-item"><span class="spec-label">Standard</span><span class="spec-val" id="spec-standard">—</span></div>
+      </div>
+
       <div class="field-row" id="fence-clearview-options">
         <div class="field-group">
           <label>Height</label>
-          <select id="fence-height">
+          <select id="fence-height" onchange="updateRateBadge()">
             <option value="1.8">1.8m</option>
             <option value="2.0">2.0m</option>
             <option value="2.4">2.4m</option>
           </select>
         </div>
         <div class="field-group">
-          <label>Finish</label>
-          <select id="fence-finish">
-            <option value="galv">Galvanized</option>
-            <option value="powder">Powder Coated</option>
+          <label>Post Finish</label>
+          <select id="fence-finish" onchange="updateRateBadge()">
+            <option value="epoxy">Standard — Epoxy Painted Posts</option>
+            <option value="powder">Premium — Powder Coated / Pre-Galvanized (on request)</option>
           </select>
         </div>
+      </div>
+
+      <!-- Highlighted per-metre rate badge -->
+      <div class="rate-badge" id="fence-rate-badge">
+        <div><div class="rate-badge-label">All-Inclusive Rate</div><div class="rate-badge-sub">Supply &amp; installation, delivery within 50km</div></div>
+        <div style="text-align:right;"><div class="rate-badge-value" id="rate-badge-value">—</div><div class="rate-badge-sub">per metre (ZMW)</div></div>
       </div>
       <div class="field-row" id="fence-diamond-options" style="display:none;">
         <div class="field-group">
@@ -360,10 +386,36 @@ function switchTab(tab, btn){
 
 document.getElementById('fence-type').addEventListener('change', function(){
   var v = this.value;
-  document.getElementById('fence-clearview-options').style.display = (v==='ref254'||v==='ref359'||v==='ref577') ? 'grid' : 'none';
+  var isClearView = (v==='ref254'||v==='ref359'||v==='ref577');
+  document.getElementById('fence-clearview-options').style.display = isClearView ? 'grid' : 'none';
   document.getElementById('fence-diamond-options').style.display = (v==='diamond') ? 'grid' : 'none';
   document.getElementById('fence-game-options').style.display = (v==='game') ? 'block' : 'none';
+
+  var specsPanel = document.getElementById('fence-specs-panel');
+  var rateBadge = document.getElementById('fence-rate-badge');
+  if(isClearView){
+    var s = FENCE_SPECS[v];
+    document.getElementById('spec-aperture').textContent = s.aperture;
+    document.getElementById('spec-wire').textContent = s.wire;
+    document.getElementById('spec-pole').textContent = s.pole;
+    document.getElementById('spec-standard').textContent = s.standard;
+    specsPanel.classList.add('visible');
+    updateRateBadge();
+  } else {
+    specsPanel.classList.remove('visible');
+    rateBadge.classList.remove('visible');
+  }
 });
+
+function updateRateBadge(){
+  var v = document.getElementById('fence-type').value;
+  if(v!=='ref254' && v!=='ref359' && v!=='ref577') return;
+  var h = document.getElementById('fence-height').value;
+  var f = document.getElementById('fence-finish').value;
+  var rate = FENCE_RATES[v][h][f];
+  document.getElementById('rate-badge-value').textContent = 'K' + rate.toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0});
+  document.getElementById('fence-rate-badge').classList.add('visible');
+}
 
 document.getElementById('house-size').addEventListener('change', updateHouseArea);
 
@@ -371,11 +423,17 @@ function updateHouseArea(){
   document.getElementById('house-area').value = HOUSE_AREAS[document.getElementById('house-size').value];
 }
 
-// ===== RATE TABLES (ZMW, client-ready, TOT applied) — from Bolide Rate Book, Aug 2026 =====
+// ===== RATE TABLES (ZMW, all-inclusive supply+install+delivery within 50km) — FENCE_PRICING_FINAL, Aug 2026 =====
 var FENCE_RATES = {
-  ref254: { "1.8": {galv:886.83, powder:1162.50}, "2.0": {galv:942.31, powder:1272.30}, "2.4": {galv:1006.87, powder:1331.25} },
-  ref359: { "1.8": {galv:904.82, powder:1292.99}, "2.0": {galv:1099.20, powder:1406.05}, "2.4": {galv:1182.54, powder:1527.44} },
-  ref577: { "1.8": {galv:1393.78, powder:1669.45}, "2.0": {galv:1525.07, powder:1835.14}, "2.4": {galv:1676.45, powder:2021.23} }
+  ref254: { "1.8": {galv:1035, powder:1673}, "2.0": {galv:1102, powder:1782}, "2.4": {galv:1180, powder:1902} },
+  ref359: { "1.8": {galv:1057, powder:1830}, "2.0": {galv:1291, powder:1967}, "2.4": {galv:1392, powder:2113} },
+  ref577: { "1.8": {galv:1624, powder:2257}, "2.0": {galv:1779, powder:2452}, "2.4": {galv:1959, powder:2672} }
+};
+// Fence technical specifications — SABS-approved BestFence clear-view panels
+var FENCE_SPECS = {
+  ref254: { aperture: '50 × 76 mm', wire: '4 × 3 mm', pole: '76 × 76 mm SQ', standard: 'SABS Approved' },
+  ref359: { aperture: '25 × 76 mm', wire: '4 × 3 mm', pole: '76 × 76 mm SQ', standard: 'SABS Approved' },
+  ref577: { aperture: '12 × 76 mm', wire: '4 × 3 mm', pole: '76 × 76 mm SQ', standard: 'SABS Approved' }
 };
 // Diamond mesh — K/m, all-in supply+install, from real KML job (BIS26.08.01: 2.4m/2.5mm/50mm confirmed at K379.09/m)
 // Other height/gauge combos scaled from SA market rates (Cashbuild, Pole Yard) for wire mass by gauge, calibrated to the one confirmed real rate.
