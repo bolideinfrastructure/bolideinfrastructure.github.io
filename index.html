@@ -254,8 +254,14 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
 .whatsapp { position: fixed; bottom: 24px; right: 24px; background: #25d366; color: #fff; padding: 14px 20px; border-radius: 50px; font-family: var(--font-display); font-weight: 700; font-size: 15px; text-decoration: none; z-index: 3000; box-shadow: 0 4px 20px rgba(37,211,102,0.4); display: flex; align-items: center; gap: 8px; transition: transform 0.2s, box-shadow 0.2s; }
 .whatsapp:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,0.5); }
 .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); justify-content: center; align-items: center; z-index: 4000; }
-.lightbox img { max-width: 90%; max-height: 88vh; border-radius: 4px; }
-.lightbox-close { position: absolute; top: 20px; right: 28px; color: #fff; font-size: 40px; cursor: pointer; line-height: 1; }
+.lightbox img { max-width: 88%; max-height: 85vh; border-radius: 4px; object-fit: contain; }
+.lightbox-close { position: absolute; top: 20px; right: 28px; color: #fff; font-size: 40px; cursor: pointer; line-height: 1; z-index: 4001; }
+.lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.15); border: none; color: #fff; font-size: 32px; width: 52px; height: 52px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; z-index: 4001; }
+.lightbox-nav:hover { background: rgba(240,90,40,0.75); }
+.lightbox-prev { left: 16px; }
+.lightbox-next { right: 16px; }
+.lightbox-counter { position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.6); font-family: var(--font-body); font-size: 13px; }
+@media(max-width:600px){.lightbox-nav{width:40px;height:40px;font-size:22px;}.lightbox-prev{left:6px;}.lightbox-next{right:6px;}}
 @media(max-width: 900px) {
   .about-grid { grid-template-columns: 1fr; }
   .about-image img { height: 300px; }
@@ -1217,14 +1223,55 @@ footer { background: var(--dark); color: #aaa; padding: 50px 24px 30px; }
 <a class="whatsapp" href="https://wa.me/260966855207" target="_blank"><span>&#128172;</span> WhatsApp Us</a>
 
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <span class="lightbox-close">&times;</span>
-  <img id="lightbox-img" alt="Project photo">
+  <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+  <button class="lightbox-nav lightbox-prev" onclick="event.stopPropagation();lightboxStep(-1)">&#8249;</button>
+  <img id="lightbox-img" alt="Project photo" onclick="event.stopPropagation()">
+  <button class="lightbox-nav lightbox-next" onclick="event.stopPropagation();lightboxStep(1)">&#8250;</button>
+  <div class="lightbox-counter" id="lightbox-counter"></div>
 </div>
 
 <script>
-function openLightbox(src){document.getElementById('lightbox-img').src=src;document.getElementById('lightbox').style.display='flex';document.body.style.overflow='hidden';}
-function closeLightbox(){document.getElementById('lightbox').style.display='none';document.body.style.overflow='';}
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+var _lbImgs=[],_lbIdx=0;
+function openLightbox(src){
+  // collect all images in the same proj-card as the clicked image
+  var allImgs=document.querySelectorAll('.proj-gallery img');
+  // find which card contains this src, then get its images
+  var card=null;
+  allImgs.forEach(function(img){if(img.src.includes(src.split('/').pop().split('%20').join(' '))||decodeURIComponent(img.src).includes(src)){card=img.closest('.proj-card');}});
+  if(!card){
+    // fallback: gallery section images
+    _lbImgs=[src];_lbIdx=0;
+  } else {
+    var imgs=card.querySelectorAll('.proj-gallery img');
+    _lbImgs=[];
+    imgs.forEach(function(img){_lbImgs.push(img.getAttribute('src'));});
+    _lbIdx=_lbImgs.indexOf(src);
+    if(_lbIdx<0)_lbIdx=0;
+  }
+  _lbShow();
+  document.getElementById('lightbox').style.display='flex';
+  document.body.style.overflow='hidden';
+}
+function _lbShow(){
+  document.getElementById('lightbox-img').src=_lbImgs[_lbIdx];
+  var ctr=document.getElementById('lightbox-counter');
+  ctr.textContent=_lbImgs.length>1?(_lbIdx+1)+' / '+_lbImgs.length:'';
+}
+function lightboxStep(dir){
+  _lbIdx=(_lbIdx+dir+_lbImgs.length)%_lbImgs.length;
+  _lbShow();
+}
+function closeLightbox(){document.getElementById('lightbox').style.display='none';document.body.style.overflow='';_lbImgs=[];_lbIdx=0;}
+var _lbTouchX=0;
+document.getElementById('lightbox').addEventListener('touchstart',function(e){_lbTouchX=e.touches[0].clientX;},{passive:true});
+document.getElementById('lightbox').addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-_lbTouchX;if(Math.abs(dx)>50){lightboxStep(dx<0?1:-1);}},{passive:true});
+document.addEventListener('keydown',function(e){
+  var lb=document.getElementById('lightbox');
+  if(lb.style.display!=='flex')return;
+  if(e.key==='Escape')closeLightbox();
+  if(e.key==='ArrowRight')lightboxStep(1);
+  if(e.key==='ArrowLeft')lightboxStep(-1);
+});
 function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open');}
 function filterProjects(sector,btn){
   document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
